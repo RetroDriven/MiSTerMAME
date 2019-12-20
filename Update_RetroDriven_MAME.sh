@@ -16,7 +16,7 @@
 # Copyright 2019 Alessandro "Locutus73" Miele
 
 # You can download the latest version of this script from:
-# https://github.com/RetroDriven/MiSTer_UnofficialCores
+# https://github.com/RetroDriven/MiSTerMAME
 
 : '
 ###### Disclaimer / Legal Information ######
