@@ -34,7 +34,6 @@ By downloading and using this Script you are agreeing to the following:
 #=========   USER OPTIONS   =========
 
 #Base directory for all script’s tasks, "/media/fat" for SD root, "/media/usb0" for USB drive root.
-#BASE_PATH="/media/fat"
 BASE_PATH="/media/fat"
 
 #Directory for Mame Zips
@@ -102,7 +101,6 @@ esac
 
 #Make Directories if needed
 mkdir -p $MAME_PATH
-mkdir -p $MRA_PATH
 
 #Mame Zip Downloading
 echo "Checking MAME Zips"
