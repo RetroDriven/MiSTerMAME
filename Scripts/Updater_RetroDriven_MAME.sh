@@ -25,7 +25,7 @@ By downloading and using this Script you are agreeing to the following:
 * You are responsible for checking your local laws regarding the use of the ROMs that this Script downloads.
 * You are authorized/licensed to own/use the ROMs associated with this Script.
 * You will not distribute any of these files without the appropriate permissions.
-* You own the original Arcade PCB for ROM file that you download.
+* You own the original Arcade PCB for each ROM file that you download.
 * I take no responsibility for any data loss or anything, use the script at your own risk.
 '
 
@@ -108,7 +108,7 @@ mkdir -p $MRA_PATH
 echo "Checking MAME Zips"
 echo
 sleep 3
-for file_mame in $(curl $CURL_RETRY $SSL_SECURITY_OPTION -s https://mister.retrodriven.com/MAME/Mame/ |
+for file_mame in $(curl $CURL_RETRY $SSL_SECURITY_OPTION -s https://mister.retrodriven.com/MAME/ROM/ |
                   grep href |
                   sed 's/.*href="//' |
                   sed 's/".*//' |
@@ -118,7 +118,7 @@ for file_mame in $(curl $CURL_RETRY $SSL_SECURITY_OPTION -s https://mister.retro
 	    echo "Skipping: $file_mame" >&2
 	else
 	    echo "Downloading: $file_mame"
-	    curl $CURL_RETRY $SSL_SECURITY_OPTION -s -O https://mister.retrodriven.com/MAME/Mame/$file_mame
+	    curl $CURL_RETRY $SSL_SECURITY_OPTION -s -O https://mister.retrodriven.com/MAME/ROM/$file_mame
 	fi
 done
 echo
