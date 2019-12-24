@@ -29,6 +29,9 @@ By downloading and using this Script you are agreeing to the following:
 * I take no responsibility for any data loss or anything, use the script at your own risk.
 '
 
+# v1.1 - Cleaned up script and added some additional Variables
+#        Added IDDQD DOOM Loading Screen option
+#        Added File Size Comparing to make sure the Zips match(Local vs Remote files)
 # v1.0 - Changed original Script from Locutus73 as needed
 
 #=========   USER OPTIONS   =========
@@ -36,18 +39,19 @@ By downloading and using this Script you are agreeing to the following:
 #Base directory for all script’s tasks, "/media/fat" for SD root, "/media/usb0" for USB drive root.
 BASE_PATH="/media/fat"
 
-#Directory for Mame Zips
+#Directory for MAME Zips
 MAME_PATH=$BASE_PATH/"Arcade/Mame"
 
-#========= CODE STARTS HERE =========
+#Main URL
+MAIN_URL="https://mister.retrodriven.com"
 
-echo
-echo "*** NEWS: RetroDriven.com - Launching Soon! ***"
-echo
-#sleep 3
-echo "*** RetroDriven Core Updater - A Festivus for the rest of Us! ***" 
-echo
-#sleep 3
+#MAME ROM Zips URL
+MAME_URL="https://mister.retrodriven.com/MAME/ROM"
+
+#Set to "True" for DOOM Loading screen and Pure Retro Nostalgia. Set to "False" to skip the DOOM Loading screen....but why would you?
+IDDQD="True"
+
+#========= DO NOT CHANGE BELOW =========
 
 ALLOW_INSECURE_SSL="true"
 CURL_RETRY="--connect-timeout 15 --max-time 120 --retry 3 --retry-delay 5"
@@ -75,7 +79,7 @@ then
 fi
 
 SSL_SECURITY_OPTION=""
-curl $CURL_RETRY -q https://retrodriven.com &>/dev/null
+curl $CURL_RETRY -q $MAIN_URL &>/dev/null
 case $? in
 	0)
 		;;
@@ -99,30 +103,107 @@ case $? in
 		;;
 esac
 
-#Make Directories if needed
-mkdir -p $MAME_PATH
+#========= FUNCTIONS =========
 
-#Mame Zip Downloading
-echo "Checking MAME Zips"
-echo
-sleep 3
-for file_mame in $(curl $CURL_RETRY $SSL_SECURITY_OPTION -s https://mister.retrodriven.com/MAME/ROM/ |
-                  grep href |
-                  sed 's/.*href="//' |
-                  sed 's/".*//' |
-                  grep '^[a-zA-Z0-9].*'); do
-	cd $MAME_PATH 
-	if [ -e "$MAME_PATH/$file_mame" ]; then
-	    echo "Skipping: $file_mame" >&2
-	else
-	    echo "Downloading: $file_mame"
-	    curl $CURL_RETRY $SSL_SECURITY_OPTION -s -O https://mister.retrodriven.com/MAME/ROM/$file_mame
-	fi
-done
-echo
+#Shareware Info Function
+Shareware(){
+echo "=========================================================================="
+echo "                    Shareware - Please Distribute!                        "
+echo "                Please report issues on the GitHub Page                   "
+echo "=========================================================================="
+}
 
+#Doom_Boot Function
+Doom_Boot(){
+echo "W_Init: Init MAMEfiles."
+sleep 1
+echo "        adding mame.zip"
+sleep 1
+echo "        RetroDriven version"
+sleep 1
+Shareware
+sleep 1
+echo "M_Init: Init miscellanous info."
+sleep 1
+echo -n "R_Init: Init MAME Zip refresh daemon - ["; sleep 0.05; echo -n "."; sleep 0.05; echo -n "."; sleep 0.05; echo -n "."; sleep 0.05; echo -n "."; sleep 0.05; sleep 0.05; echo -n "."; sleep 0.05; echo -n ".";sleep 0.05; echo -n ".";sleep 0.05; echo -n ".";sleep 0.05; echo -n ".";sleep 0.05; echo -n ".";sleep 0.05; echo -n ".";sleep 0.05; echo -n ".";sleep 0.05; echo -n ".";sleep 0.05; echo -n ".";sleep 0.05; echo -n ".";sleep 0.05; echo -n ".";sleep 0.05; echo -n ".";sleep 0.05; echo -n ".";sleep 0.05; echo -n ".";sleep 0.05; echo -n ".";sleep 0.05; echo -n ".";sleep 0.05; echo -n ".";sleep 0.05; echo -n ".";sleep 0.05; echo -n ".";sleep 0.05; echo -n ".";sleep 0.05; echo -n ".";sleep 0.05; echo -n ".";sleep 0.05; echo -n ".";sleep 0.05; echo -n ".";sleep 0.05; echo -n ".";sleep 0.05; echo -n ".";sleep 0.05; echo -n ".";sleep 0.05; echo -n "."; echo -n "]";
 echo
-echo "*** All MAME Zips are up to date! ***"
+sleep 1
+echo
+}
+
+#IDDQD_Off Function
+IDDQD_Off(){
+echo
+echo "IDDQD Off - No DOOM for you!"
+sleep 1
+Shareware
+echo
+}
+
+#RetroDriven Updater Banner Function
+RetroDriven_Banner(){
+echo
+echo " ------------------------------------------------------------------------"
+echo "|                   RetroDriven: MAME Zip Updater v1.1                   |"
+echo " ------------------------------------------------------------------------"
+sleep 1
+}
+
+#Download Zip Function
+Download_Zip(){  
+echo "Downloading: $FILE_MAME"
+curl $CURL_RETRY $SSL_SECURITY_OPTION -# -O $MAME_URL/$FILE_MAME
+echo
+}
+
+#Footer Function
+Footer(){
+echo
+echo "*** MAME Zips are up to date! ***"
 #echo
 #echo "** Please visit RetroDriven.com for all of your MiSTer and Retro News and Updates! ***"
 echo
+#sleep 3
+}
+
+#========= MAIN CODE =========
+
+#RetroDriven Updater Banner
+RetroDriven_Banner
+
+#Doom Boot loader
+if [ $IDDQD == "True" ]; then
+    Doom_Boot
+else
+    IDDQD_Off
+    sleep 3
+fi
+
+#Make Directories if needed
+mkdir -p $MAME_PATH
+
+#Change to MAME Path
+cd $MAME_PATH
+
+#MAME Zip Downloading
+for FILE_MAME in $(curl $CURL_RETRY $SSL_SECURITY_OPTION -s $MAME_URL/ |
+                  grep href |
+                  sed 's/.*href="//' |
+                  sed 's/".*//' |
+                  grep '^[a-zA-Z0-9].*.zip'); do
+	   
+        #Check to see if the Zip exists already
+        if [ -e "$FILE_MAME" ];then
+            REMOTE_SIZE=$(curl $CURL_RETRY $SSL_SECURITY_OPTION -s -L -I $MAME_URL/$FILE_MAME | awk -v IGNORECASE=1 '/^Content-Length/ { print int($2) }')
+            LOCAL_SIZE=$(stat -c %s $MAME_PATH/$FILE_MAME)
+        fi
+        #Check to see if the File Sizes match(Local vs Remote)
+        if [[ -e "$FILE_MAME" && $LOCAL_SIZE -eq $REMOTE_SIZE ]];then
+            echo "Skipping: $FILE_MAME" >&2
+            else
+            #Download Zip if the File Sizes don't match or if the Zip is missing
+            Download_Zip "$FILE_MAME"
+        fi   	    
+done
+
+Footer
