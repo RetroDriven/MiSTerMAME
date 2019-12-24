@@ -206,5 +206,7 @@ for FILE_MAME in $(curl $CURL_RETRY $SSL_SECURITY_OPTION -s $MAME_URL/ |
             Download_Zip "$FILE_MAME"
         fi   	    
 done
+
 echo
+
 Footer
