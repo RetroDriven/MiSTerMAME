@@ -161,9 +161,7 @@ Footer(){
 echo "=========================================================================="
 echo "                         MAME Zips are up to date!                        "
 echo "=========================================================================="
-echo
 #echo "** Please visit RetroDriven.com for all of your MiSTer and Retro News and Updates! ***"
-#echo
 #sleep 3
 }
 
