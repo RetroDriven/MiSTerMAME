@@ -204,7 +204,7 @@ mkdir -p $MAME_PATH
 #Change to MAME Path
 cd $MAME_PATH
 
-#Download Offical Zips
+#Download Official Zips
 SUBDIR="Official"
 Download_Zip "$SUBDIR"
 
