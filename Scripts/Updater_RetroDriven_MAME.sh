@@ -111,7 +111,7 @@ esac
 RetroDriven_Banner(){
 echo
 echo " ------------------------------------------------------------------------"
-echo "|                   RetroDriven: MAME Zip Updater v1.1                   |"
+echo "|                   RetroDriven: MAME Zip Updater v1.2                   |"
 echo " ------------------------------------------------------------------------"
 sleep 1
 }
