@@ -48,7 +48,7 @@ MAME_PATH=$BASE_PATH/"Arcade/Mame"
 MAIN_URL="https://mister.retrodriven.com"
 
 #MAME ROM Zips URL
-MAME_URL="https://mister.retrodriven.com/Zips"
+MAME_URL="https://mister.retrodriven.com/MAME/Zips"
 
 #Set to "True" for DOOM Loading screen and Pure Retro Nostalgia. Set to "False" to skip the DOOM Loading screen....but why would you?
 IDDQD="True"
