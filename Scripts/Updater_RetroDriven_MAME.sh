@@ -29,7 +29,7 @@ By downloading and using this Script you are agreeing to the following:
 * I take no responsibility for any data loss or anything, use the script at your own risk.
 '
 
-# v1.2 - Organized Zips via Subfolders to main them easier
+# v1.2 - Organized Zips via Subfolders
 #        Adjusted script to loop through the subfolders
 # v1.1 - Cleaned up script and added some additional Variables
 #        Added IDDQD DOOM Loading Screen option
