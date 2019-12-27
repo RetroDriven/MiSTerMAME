@@ -29,6 +29,8 @@ By downloading and using this Script you are agreeing to the following:
 * I take no responsibility for any data loss or anything, use the script at your own risk.
 '
 
+# v1.2 - Organized Zips via Subfolders to main them easier
+#        Adjusted script to loop through the subfolders
 # v1.1 - Cleaned up script and added some additional Variables
 #        Added IDDQD DOOM Loading Screen option
 #        Added File Size Comparing to make sure the Zips match(Local vs Remote files)
@@ -46,7 +48,7 @@ MAME_PATH=$BASE_PATH/"Arcade/Mame"
 MAIN_URL="https://mister.retrodriven.com"
 
 #MAME ROM Zips URL
-MAME_URL="https://mister.retrodriven.com/MAME/ROM"
+MAME_URL="https://mister.retrodriven.com/Zips"
 
 #Set to "True" for DOOM Loading screen and Pure Retro Nostalgia. Set to "False" to skip the DOOM Loading screen....but why would you?
 IDDQD="True"
@@ -105,6 +107,15 @@ esac
 
 #========= FUNCTIONS =========
 
+#RetroDriven Updater Banner Function
+RetroDriven_Banner(){
+echo
+echo " ------------------------------------------------------------------------"
+echo "|                   RetroDriven: MAME Zip Updater v1.1                   |"
+echo " ------------------------------------------------------------------------"
+sleep 1
+}
+
 #Shareware Info Function
 Shareware(){
 echo "=========================================================================="
@@ -140,20 +151,29 @@ Shareware
 echo
 }
 
-#RetroDriven Updater Banner Function
-RetroDriven_Banner(){
-echo
-echo " ------------------------------------------------------------------------"
-echo "|                   RetroDriven: MAME Zip Updater v1.1                   |"
-echo " ------------------------------------------------------------------------"
-sleep 1
-}
-
 #Download Zip Function
 Download_Zip(){  
-echo "Downloading: $FILE_MAME"
-curl $CURL_RETRY $SSL_SECURITY_OPTION -# -O $MAME_URL/$FILE_MAME
-echo
+for FILE_MAME in $(curl $CURL_RETRY $SSL_SECURITY_OPTION -s $MAME_URL/$SUBDIR/ |
+                  grep href |
+                  sed 's/.*href="//' |
+                  sed 's/".*//' |
+                  grep '^[a-zA-Z0-9].*.zip'); do
+	   
+        #Check to see if the Zip exists already
+        if [ -e "$FILE_MAME" ];then
+            REMOTE_SIZE=$(curl $CURL_RETRY $SSL_SECURITY_OPTION -s -L -I $MAME_URL/$SUBDIR/$FILE_MAME | awk -v IGNORECASE=1 '/^Content-Length/ { print int($2) }')
+            LOCAL_SIZE=$(stat -c %s $MAME_PATH/$FILE_MAME)
+        fi
+        #Check to see if the File Sizes match(Local vs Remote)
+        if [[ -e "$FILE_MAME" && $LOCAL_SIZE -eq $REMOTE_SIZE ]];then
+            echo "Skipping: $FILE_MAME" >&2
+            else
+            #Download Zip if the File Sizes don't match or if the Zip is missing
+            echo "Downloading: $FILE_MAME"
+            curl $CURL_RETRY $SSL_SECURITY_OPTION -# -O $MAME_URL/$SUBDIR/$FILE_MAME
+            echo
+        fi   	    
+done
 }
 
 #Footer Function
@@ -184,27 +204,27 @@ mkdir -p $MAME_PATH
 #Change to MAME Path
 cd $MAME_PATH
 
-#MAME Zip Downloading
-for FILE_MAME in $(curl $CURL_RETRY $SSL_SECURITY_OPTION -s $MAME_URL/ |
-                  grep href |
-                  sed 's/.*href="//' |
-                  sed 's/".*//' |
-                  grep '^[a-zA-Z0-9].*.zip'); do
-	   
-        #Check to see if the Zip exists already
-        if [ -e "$FILE_MAME" ];then
-            REMOTE_SIZE=$(curl $CURL_RETRY $SSL_SECURITY_OPTION -s -L -I $MAME_URL/$FILE_MAME | awk -v IGNORECASE=1 '/^Content-Length/ { print int($2) }')
-            LOCAL_SIZE=$(stat -c %s $MAME_PATH/$FILE_MAME)
-        fi
-        #Check to see if the File Sizes match(Local vs Remote)
-        if [[ -e "$FILE_MAME" && $LOCAL_SIZE -eq $REMOTE_SIZE ]];then
-            echo "Skipping: $FILE_MAME" >&2
-            else
-            #Download Zip if the File Sizes don't match or if the Zip is missing
-            Download_Zip "$FILE_MAME"
-        fi   	    
-done
+#Download Offical Zips
+SUBDIR="Official"
+Download_Zip "$SUBDIR"
+
+#Download Jotego Zips
+SUBDIR="Jotego"
+Download_Zip "$SUBDIR"
+
+#Download MrX Zips
+SUBDIR="MrX"
+Download_Zip "$SUBDIR"
+
+#Download Gaz68 Zips
+SUBDIR="Gaz68"
+Download_Zip "$SUBDIR"
+
+#Download Nullobject Zips
+SUBDIR="Nullobject"
+Download_Zip "$SUBDIR"
 
 echo
 
+#Display Footer
 Footer
