@@ -216,6 +216,10 @@ Download_Zip "$SUBDIR"
 SUBDIR="MrX"
 Download_Zip "$SUBDIR"
 
+#Download MrX Sega System 1 Zips
+SUBDIR="MrX/SegaSystem1"
+Download_Zip "$SUBDIR"
+
 #Download Gaz68 Zips
 SUBDIR="Gaz68"
 Download_Zip "$SUBDIR"
