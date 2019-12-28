@@ -31,7 +31,7 @@ By downloading and using this Script you are agreeing to the following:
 
 # v1.4 - MRA directory structure has changed within MiSTer
 #        Adjusted Script and INI to account for the changes
-#	 Added INI Options for Showing Downloaded Files List/Log
+#	 Added INI Option for Showing Downloaded Files List/Log
 # v1.3 - Added MRA File downloading
 #        MRA Filtering Added
 # v1.2 - Organized Zips via Subfolders
@@ -132,7 +132,7 @@ esac
 RetroDriven_Banner(){
 echo
 echo " ------------------------------------------------------------------------"
-echo "|                   RetroDriven: MAME Zip Updater v1.4                   |"
+echo "|                 RetroDriven: MiSTer MAME Updater v1.4                  |"
 echo " ------------------------------------------------------------------------"
 sleep 1
 }
