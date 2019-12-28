@@ -29,6 +29,9 @@ By downloading and using this Script you are agreeing to the following:
 * I take no responsibility for any data loss or anything, use the script at your own risk.
 '
 
+# v1.4 - MRA directory structure has changed within MiSTer
+#        Adjusted Script and INI to account for the changes
+#	 Added INI Options for Showing Downloaded Files List/Log
 # v1.3 - Added MRA File downloading
 #        MRA Filtering Added
 # v1.2 - Organized Zips via Subfolders
@@ -44,10 +47,10 @@ By downloading and using this Script you are agreeing to the following:
 BASE_PATH="/media/fat"
 
 #Directory for MAME Zips
-MAME_PATH=$BASE_PATH/"Arcade/Mame"
+MAME_PATH=$BASE_PATH/"_Arcade/Mame"
 
 #Directory for MRA Files
-MRA_PATH=$BASE_PATH/"_ArcadeNew"
+MRA_PATH=$BASE_PATH/"_Arcade"
 
 #Main URL
 MAIN_URL="https://mister.retrodriven.com"
@@ -67,6 +70,9 @@ MRA_DOWNLOAD="False"
 #A space separated list of filters for MRA Files.
 #i.e. “DigDug DonkeyKong MsPacman”
 MRA_FILTER="" 
+
+#Set to "True" to see a list of the files that were Downloaded. Set to "False" if you do not want to see this list.
+SHOW_DOWNLOADED="True"
 
 #========= DO NOT CHANGE BELOW =========
 
@@ -126,7 +132,7 @@ esac
 RetroDriven_Banner(){
 echo
 echo " ------------------------------------------------------------------------"
-echo "|                   RetroDriven: MAME Zip Updater v1.3                   |"
+echo "|                   RetroDriven: MAME Zip Updater v1.4                   |"
 echo " ------------------------------------------------------------------------"
 sleep 1
 }
@@ -185,7 +191,8 @@ for FILE_MAME in $(curl $CURL_RETRY $SSL_SECURITY_OPTION -s $MAME_URL/$SUBDIR/ |
             else
             #Download Zip if the File Sizes don't match or if the Zip is missing
             echo "Downloading: $FILE_MAME"
-            curl $CURL_RETRY $SSL_SECURITY_OPTION -# -O $MAME_URL/$SUBDIR/$FILE_MAME
+            curl $CURL_RETRY $SSL_SECURITY_OPTION -# -O $MAME_URL/$SUBDIR/$FILE_MAME        
+            ZIP_SUMMARY+=$(echo "$FILE_MAME ")           
             echo
         fi   	    
 done
@@ -212,25 +219,49 @@ for FILE_MRA in $(curl $CURL_RETRY $SSL_SECURITY_OPTION -s $MRA_URL/$SUBDIR/ |
             #Download MRA if the File Sizes don't match or if the MRA is missing
             echo "Downloading: $FILE_MRA"
             curl $CURL_RETRY $SSL_SECURITY_OPTION -# -O $MRA_URL/$SUBDIR/$FILE_MRA
+            MRA_SUMMARY+=$(echo "$FILE_MRA ")  
             echo
         fi   	    
 done
 }
 
-#Footer Function
-Footer(){
-echo "=========================================================================="
-echo "                         MAME ZIPs are up to date!                        "
-echo "=========================================================================="
-#echo "** Please visit RetroDriven.com for all of your MiSTer and Retro News and Updates! ***"
-#sleep 3
+#Zip Log Function
+Zip_Log(){
+echo "***** Zip Files Downloaded *****"
+echo
+    if [ ${#ZIP_SUMMARY[@]} -eq 0 ]; then    
+        echo "All Zip files are up to date!"
+        echo 
+    else
+        echo "${ZIP_SUMMARY[@]}"
+        echo
+        sleep 3     
+fi
 }
 
-#Footer Mra Function
-Footer_Mra(){
+#Mra Log Function
+Mra_Log(){
+echo "***** MRA Files Downloaded *****"
+echo
+    if [ ${#MRA_SUMMARY[@]} -eq 0 ]; then    
+        echo "All MRA files are up to date!"
+        echo 
+    else
+        echo "${MRA_SUMMARY[@]}"
+        echo
+        sleep 3     
+fi
+}
+
+#Footer Function
+Footer(){
+if [ $SHOW_DOWNLOADED == "True" ];then
+    clear
+fi
 echo "=========================================================================="
-echo "                    MAME ZIPs and MRAs are up to date!                    "
+echo "                    MAME ZIP/MRA files are up to date!                    "
 echo "=========================================================================="
+echo
 #echo "** Please visit RetroDriven.com for all of your MiSTer and Retro News and Updates! ***"
 #sleep 3
 }
@@ -281,10 +312,12 @@ Download_Zip "$SUBDIR"
 #MRA Downloading
 if [ $MRA_DOWNLOAD == "True" ];then
     
+    clear
     echo
     echo "=========================================================================="
     echo "                           Downloading MRA Files                          "
     echo "=========================================================================="
+    sleep 2    
 
     #Make Directories if needed
     mkdir -p $MRA_PATH
@@ -320,8 +353,16 @@ fi
 echo
 
 #Display Footer
-if [ $MRA_DOWNLOAD == "True" ];then
-    Footer_Mra
-else
-    Footer
+Footer
+
+#Display Zip Downloaded Files
+if [ $SHOW_DOWNLOADED == "True" ];then
+Zip_Log
 fi
+
+#Display MRA Downloaded Files
+if [ $SHOW_DOWNLOADED == "True" ] && [ $MRA_DOWNLOAD == "True" ];then
+Mra_Log
+fi
+
+echo
