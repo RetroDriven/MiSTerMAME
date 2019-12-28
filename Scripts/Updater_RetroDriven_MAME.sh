@@ -29,6 +29,8 @@ By downloading and using this Script you are agreeing to the following:
 * I take no responsibility for any data loss or anything, use the script at your own risk.
 '
 
+# v1.3 - Added MRA File downloading
+#        MRA Filtering Added
 # v1.2 - Organized Zips via Subfolders
 #        Adjusted script to loop through the subfolders
 # v1.1 - Cleaned up script and added some additional Variables
@@ -44,14 +46,27 @@ BASE_PATH="/media/fat"
 #Directory for MAME Zips
 MAME_PATH=$BASE_PATH/"Arcade/Mame"
 
+#Directory for MRA Files
+MRA_PATH=$BASE_PATH/"_ArcadeNew"
+
 #Main URL
 MAIN_URL="https://mister.retrodriven.com"
 
 #MAME ROM Zips URL
 MAME_URL="https://mister.retrodriven.com/MAME/Zips"
 
-#Set to "True" for DOOM Loading screen and Pure Retro Nostalgia. Set to "False" to skip the DOOM Loading screen....but why would you?
+#MRA URL
+MRA_URL="https://mister.retrodriven.com/MAME/MRA"
+
+#Set to "True" for DOOM Loading screen and Pure Retro Nostalgia. Set to "False" to skip the DOOM Loading screen.
 IDDQD="True"
+
+#Set to "True" to download the Arcade MRA Files. Set to "False" if you do not want to download these files.
+MRA_DOWNLOAD="False"
+
+#A space separated list of filters for MRA Files.
+#i.e. “DigDug DonkeyKong MsPacman”
+MRA_FILTER="" 
 
 #========= DO NOT CHANGE BELOW =========
 
@@ -111,7 +126,7 @@ esac
 RetroDriven_Banner(){
 echo
 echo " ------------------------------------------------------------------------"
-echo "|                   RetroDriven: MAME Zip Updater v1.2                   |"
+echo "|                   RetroDriven: MAME Zip Updater v1.3                   |"
 echo " ------------------------------------------------------------------------"
 sleep 1
 }
@@ -152,13 +167,13 @@ echo
 }
 
 #Download Zip Function
-Download_Zip(){  
+Download_Zip(){
 for FILE_MAME in $(curl $CURL_RETRY $SSL_SECURITY_OPTION -s $MAME_URL/$SUBDIR/ |
                   grep href |
                   sed 's/.*href="//' |
                   sed 's/".*//' |
                   grep '^[a-zA-Z0-9].*.zip'); do
-	   
+
         #Check to see if the Zip exists already
         if [ -e "$FILE_MAME" ];then
             REMOTE_SIZE=$(curl $CURL_RETRY $SSL_SECURITY_OPTION -s -L -I $MAME_URL/$SUBDIR/$FILE_MAME | awk -v IGNORECASE=1 '/^Content-Length/ { print int($2) }')
@@ -176,10 +191,45 @@ for FILE_MAME in $(curl $CURL_RETRY $SSL_SECURITY_OPTION -s $MAME_URL/$SUBDIR/ |
 done
 }
 
+#Download MRA Function
+Download_Mra(){
+MRA_FILTER="$( echo "$MRA_FILTER" | sed -e 's/\([a-zA-Z0-9]*\) /\1\n/g')" 
+for FILE_MRA in $(curl $CURL_RETRY $SSL_SECURITY_OPTION -s $MRA_URL/$SUBDIR/ |
+                  grep href |
+                  sed 's/.*href="//' |
+                  sed 's/".*//' |
+                  grep -iF "$MRA_FILTER.mra"); do 
+
+        #Check to see if the MRA exists already
+        if [ -e "$FILE_MRA" ];then
+            REMOTE_SIZE=$(curl $CURL_RETRY $SSL_SECURITY_OPTION -s -L -I $MRA_URL/$SUBDIR/$FILE_MRA | awk -v IGNORECASE=1 '/^Content-Length/ { print int($2) }')
+            LOCAL_SIZE=$(stat -c %s $MRA_PATH/$FILE_MRA)
+        fi
+        #Check to see if the File Sizes match(Local vs Remote)
+        if [[ -e "$FILE_MRA" && $LOCAL_SIZE -eq $REMOTE_SIZE ]];then
+            echo "Skipping: $FILE_MRA" >&2
+            else
+            #Download MRA if the File Sizes don't match or if the MRA is missing
+            echo "Downloading: $FILE_MRA"
+            curl $CURL_RETRY $SSL_SECURITY_OPTION -# -O $MRA_URL/$SUBDIR/$FILE_MRA
+            echo
+        fi   	    
+done
+}
+
 #Footer Function
 Footer(){
 echo "=========================================================================="
-echo "                         MAME Zips are up to date!                        "
+echo "                         MAME ZIPs are up to date!                        "
+echo "=========================================================================="
+#echo "** Please visit RetroDriven.com for all of your MiSTer and Retro News and Updates! ***"
+#sleep 3
+}
+
+#Footer Mra Function
+Footer_Mra(){
+echo "=========================================================================="
+echo "                    MAME ZIPs and MRAs are up to date!                    "
 echo "=========================================================================="
 #echo "** Please visit RetroDriven.com for all of your MiSTer and Retro News and Updates! ***"
 #sleep 3
@@ -228,7 +278,50 @@ Download_Zip "$SUBDIR"
 SUBDIR="Nullobject"
 Download_Zip "$SUBDIR"
 
+#MRA Downloading
+if [ $MRA_DOWNLOAD == "True" ];then
+    
+        echo
+    echo "=========================================================================="
+    echo "                           Downloading MRA Files                          "
+    echo "=========================================================================="
+
+    #Make Directories if needed
+    mkdir -p $MRA_PATH
+
+    #Change to MAME Path
+    cd $MRA_PATH
+
+    #Download Official MRAs
+    SUBDIR="Official"
+    Download_Mra "$SUBDIR"
+
+    #Download Jotego MRAs
+    SUBDIR="Jotego"
+    Download_Mra "$SUBDIR"
+
+    #Download MrX MRAs
+    SUBDIR="MrX"
+    Download_Mra "$SUBDIR"
+
+    #Download MrX Sega System 1 MRAs
+    SUBDIR="MrX/SegaSystem1"
+    Download_Mra "$SUBDIR"
+
+    #Download Gaz68 MRAs
+    SUBDIR="Gaz68"
+    Download_Mra "$SUBDIR"
+
+    #Download Nullobject MRAs
+    SUBDIR="Nullobject"
+    Download_Mra "$SUBDIR"
+fi
+
 echo
 
 #Display Footer
-Footer
+if [ $MRA_DOWNLOAD == "True" ];then
+    Footer_Mra
+else
+    Footer
+fi
