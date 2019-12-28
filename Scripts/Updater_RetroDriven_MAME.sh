@@ -281,7 +281,7 @@ Download_Zip "$SUBDIR"
 #MRA Downloading
 if [ $MRA_DOWNLOAD == "True" ];then
     
-        echo
+    echo
     echo "=========================================================================="
     echo "                           Downloading MRA Files                          "
     echo "=========================================================================="
