@@ -47,9 +47,11 @@ By downloading and using this Script you are agreeing to the following:
 BASE_PATH="/media/fat"
 
 #Directory for MRA Files
+#This is your Arcade Directory
 MRA_PATH=$BASE_PATH/"_Arcade"
 
 #Directory for MAME Zips
+#LEAVE THIS AS IS
 MAME_PATH=$MRA_PATH/"Mame"
 
 #Main URL
