@@ -50,7 +50,7 @@ BASE_PATH="/media/fat"
 MRA_PATH=$BASE_PATH/"_Arcade"
 
 #Directory for MAME Zips
-MAME_PATH=$BASE_PATH/$MRA_PATH/"Mame"
+MAME_PATH=$MRA_PATH/"Mame"
 
 #Main URL
 MAIN_URL="https://mister.retrodriven.com"
