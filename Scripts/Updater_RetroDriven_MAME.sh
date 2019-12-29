@@ -46,11 +46,11 @@ By downloading and using this Script you are agreeing to the following:
 #Base directory for all script’s tasks, "/media/fat" for SD root, "/media/usb0" for USB drive root.
 BASE_PATH="/media/fat"
 
-#Directory for MAME Zips
-MAME_PATH=$BASE_PATH/"_Arcade/Mame"
-
 #Directory for MRA Files
 MRA_PATH=$BASE_PATH/"_Arcade"
+
+#Directory for MAME Zips
+MAME_PATH=$BASE_PATH/$MRA_PATH/"Mame"
 
 #Main URL
 MAIN_URL="https://mister.retrodriven.com"
