@@ -29,6 +29,10 @@ By downloading and using this Script you are agreeing to the following:
 * I take no responsibility for any data loss or anything, use the script at your own risk.
 '
 
+# v1.5 - Added most recent MRA files
+#        Added Hbmame Zips
+#        Removed MRA Filtering for now
+#        Adjusted Script to handle spaces in MRA file names
 # v1.4 - MRA directory structure has changed within MiSTer
 #        Adjusted Script and INI to account for the changes
 #	 Added INI Option for Showing Downloaded Files List/Log
@@ -68,10 +72,6 @@ IDDQD="True"
 
 #Set to "True" to download the Arcade MRA Files. Set to "False" if you do not want to download these files.
 MRA_DOWNLOAD="False"
-
-#A space separated list of filters for MRA Files.
-#i.e. “DigDug DonkeyKong MsPacman”
-MRA_FILTER="" 
 
 #Set to "True" to see a list of the files that were Downloaded. Set to "False" if you do not want to see this list.
 SHOW_DOWNLOADED="True"
@@ -134,7 +134,7 @@ esac
 RetroDriven_Banner(){
 echo
 echo " ------------------------------------------------------------------------"
-echo "|                 RetroDriven: MiSTer MAME Updater v1.4                  |"
+echo "|                 RetroDriven: MiSTer MAME Updater v1.5                  |"
 echo " ------------------------------------------------------------------------"
 sleep 1
 }
@@ -183,12 +183,12 @@ for FILE_MAME in $(curl $CURL_RETRY $SSL_SECURITY_OPTION -s $MAME_URL/$SUBDIR/ |
                   grep '^[a-zA-Z0-9].*.zip'); do
 
         #Check to see if the Zip exists already
-        if [ -e "$FILE_MAME" ];then
+        if [ -e "$LMAME_PATH/$FILE_MAME" ];then
             REMOTE_SIZE=$(curl $CURL_RETRY $SSL_SECURITY_OPTION -s -L -I $MAME_URL/$SUBDIR/$FILE_MAME | awk -v IGNORECASE=1 '/^Content-Length/ { print int($2) }')
-            LOCAL_SIZE=$(stat -c %s $MAME_PATH/$FILE_MAME)
+            LOCAL_SIZE=$(stat -c %s "$LMAME_PATH/$FILE_MAME")
         fi
         #Check to see if the File Sizes match(Local vs Remote)
-        if [[ -e "$FILE_MAME" && $LOCAL_SIZE -eq $REMOTE_SIZE ]];then
+        if [[ -e "$LMAME_PATH/$FILE_MAME" && $LOCAL_SIZE -eq $REMOTE_SIZE ]];then
             echo "Skipping: $FILE_MAME" >&2
             else
             #Download Zip if the File Sizes don't match or if the Zip is missing
@@ -202,26 +202,27 @@ done
 
 #Download MRA Function
 Download_Mra(){
-MRA_FILTER="$( echo "$MRA_FILTER" | sed -e 's/\([a-zA-Z0-9]*\) /\1\n/g')" 
 for FILE_MRA in $(curl $CURL_RETRY $SSL_SECURITY_OPTION -s $MRA_URL/$SUBDIR/ |
                   grep href |
                   sed 's/.*href="//' |
                   sed 's/".*//' |
-                  grep -iF "$MRA_FILTER.mra"); do 
+                  grep '^[a-zA-Z0-9].*.mra'); do 
 
         #Check to see if the MRA exists already
-        if [ -e "$FILE_MRA" ];then
-            REMOTE_SIZE=$(curl $CURL_RETRY $SSL_SECURITY_OPTION -s -L -I $MRA_URL/$SUBDIR/$FILE_MRA | awk -v IGNORECASE=1 '/^Content-Length/ { print int($2) }')
-            LOCAL_SIZE=$(stat -c %s $MRA_PATH/$FILE_MRA)
+        MRA_CLEAN="$(echo $FILE_MRA | sed 's/%20/ /g')"
+        if [ -e "$LMRA_PATH/$MRA_CLEAN" ];then
+            REMOTE_SIZE=$(curl $CURL_RETRY $SSL_SECURITY_OPTION -s -L -I "$MRA_URL/$SUBDIR/$FILE_MRA" | awk -v IGNORECASE=1 '/^Content-Length/ { print int($2) }')
+            LOCAL_SIZE=$(stat -c %s "$LMRA_PATH/$MRA_CLEAN")
         fi
         #Check to see if the File Sizes match(Local vs Remote)
-        if [[ -e "$FILE_MRA" && $LOCAL_SIZE -eq $REMOTE_SIZE ]];then
-            echo "Skipping: $FILE_MRA" >&2
+        if [[ -e "$LMRA_PATH/$MRA_CLEAN" && $LOCAL_SIZE -eq $REMOTE_SIZE ]];then
+            echo "Skipping: $MRA_CLEAN" >&2
             else
-            #Download MRA if the File Sizes don't match or if the MRA is missing
-            echo "Downloading: $FILE_MRA"
-            curl $CURL_RETRY $SSL_SECURITY_OPTION -# -O $MRA_URL/$SUBDIR/$FILE_MRA
-            MRA_SUMMARY+=$(echo "$FILE_MRA ")  
+            #Download MRA if the File Sizes don't match or if the MRA is missing            
+            echo "Downloading: $MRA_CLEAN"            
+            curl $CURL_RETRY $SSL_SECURITY_OPTION -# -O "$MRA_URL/$SUBDIR/$FILE_MRA"
+            rename 's/%20/ /g' $FILE_MRA                  
+            MRA_SUMMARY+=$(echo "$MRA_CLEAN ")  
             echo
         fi   	    
 done
@@ -283,33 +284,19 @@ fi
 
 #Make Directories if needed
 mkdir -p $MAME_PATH
-
-#Change to MAME Path
-cd $MAME_PATH
+mkdir -p $MRA_PATH/"hbmame"
 
 #Download Official Zips
 SUBDIR="Official"
-Download_Zip "$SUBDIR"
+cd $MAME_PATH
+LMAME_PATH="$MAME_PATH"
+Download_Zip "$SUBDIR" "$LMAME_PATH"
 
-#Download Jotego Zips
-SUBDIR="Jotego"
-Download_Zip "$SUBDIR"
-
-#Download MrX Zips
-SUBDIR="MrX"
-Download_Zip "$SUBDIR"
-
-#Download MrX Sega System 1 Zips
-SUBDIR="MrX/SegaSystem1"
-Download_Zip "$SUBDIR"
-
-#Download Gaz68 Zips
-SUBDIR="Gaz68"
-Download_Zip "$SUBDIR"
-
-#Download Nullobject Zips
-SUBDIR="Nullobject"
-Download_Zip "$SUBDIR"
+#Download hbmame Zips
+SUBDIR="hbmame"
+cd $MRA_PATH/"hbmame"
+LMAME_PATH="$MRA_PATH/hbmame"
+Download_Zip "$SUBDIR" "$LMAME_PATH"
 
 #MRA Downloading
 if [ $MRA_DOWNLOAD == "True" ];then
@@ -321,35 +308,21 @@ if [ $MRA_DOWNLOAD == "True" ];then
     echo "=========================================================================="
     sleep 2    
 
-    #Make Directories if needed
+    #Make Directories if needed   
     mkdir -p $MRA_PATH
-
-    #Change to MAME Path
-    cd $MRA_PATH
-
+    mkdir -p $MRA_PATH/"_Sega System 1"
+ 
     #Download Official MRAs
     SUBDIR="Official"
-    Download_Mra "$SUBDIR"
+    cd $MRA_PATH
+    LMRA_PATH="$MRA_PATH"
+    Download_Mra "$SUBDIR" "$LMRA_PATH"
 
-    #Download Jotego MRAs
-    SUBDIR="Jotego"
-    Download_Mra "$SUBDIR"
-
-    #Download MrX MRAs
-    SUBDIR="MrX"
-    Download_Mra "$SUBDIR"
-
-    #Download MrX Sega System 1 MRAs
-    SUBDIR="MrX/SegaSystem1"
-    Download_Mra "$SUBDIR"
-
-    #Download Gaz68 MRAs
-    SUBDIR="Gaz68"
-    Download_Mra "$SUBDIR"
-
-    #Download Nullobject MRAs
-    SUBDIR="Nullobject"
-    Download_Mra "$SUBDIR"
+    #Download Sega System 1 MRAs
+    SUBDIR="_Sega%20System%201"
+    cd $MRA_PATH/"_Sega System 1"
+    LMRA_PATH="$MRA_PATH/_Sega System 1"     
+    Download_Mra "$SUBDIR" "$LMRA_PATH"
 fi
 
 echo
