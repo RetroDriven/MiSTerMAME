@@ -221,7 +221,7 @@ for FILE_MRA in $(curl $CURL_RETRY $SSL_SECURITY_OPTION -s $MRA_URL/$SUBDIR/ |
             #Download MRA if the File Sizes don't match or if the MRA is missing            
             echo "Downloading: $MRA_CLEAN"            
             curl $CURL_RETRY $SSL_SECURITY_OPTION -# -O "$MRA_URL/$SUBDIR/$FILE_MRA"
-            rename 's/%20/ /g' $FILE_MRA                  
+            rename 's/%20/ /g' "$LMRA_PATH/$FILE_MRA"                  
             MRA_SUMMARY+=$(echo "$MRA_CLEAN ")  
             echo
         fi   	    
