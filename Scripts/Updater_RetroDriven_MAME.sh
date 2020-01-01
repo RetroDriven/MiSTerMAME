@@ -29,13 +29,14 @@ By downloading and using this Script you are agreeing to the following:
 * I take no responsibility for any data loss or anything, use the script at your own risk.
 '
 
+# v1.6 - Added HBMAME_PATH option. You can now use the "Games" folder for Mame and Hbmame Zips
 # v1.5 - Added most recent MRA files
 #        Added Hbmame Zips
 #        Removed MRA Filtering for now
 #        Adjusted Script to handle spaces in MRA file names
 # v1.4 - MRA directory structure has changed within MiSTer
 #        Adjusted Script and INI to account for the changes
-#	 Added INI Option for Showing Downloaded Files List/Log
+#        Added INI Option for Showing Downloaded Files List/Log
 # v1.3 - Added MRA File downloading
 #        MRA Filtering Added
 # v1.2 - Organized Zips via Subfolders
@@ -55,8 +56,12 @@ BASE_PATH="/media/fat"
 MRA_PATH=$BASE_PATH/"_Arcade"
 
 #Directory for MAME Zips
-#LEAVE THIS AS IS
+#You can use the "Games" Path for Mame be replacing the default path with: MAME_PATH=$BASE_PATH/Games/"Mame"
 MAME_PATH=$MRA_PATH/"Mame"
+
+#Directory for HBMAME Zips
+#You can use the "Games" Path for hbmame be replacing the default path with: HBMAME_PATH=$BASE_PATH/Games/"hbmame"
+HBMAME_PATH=$MRA_PATH/"hbmame"
 
 #Main URL
 MAIN_URL="https://mister.retrodriven.com"
@@ -134,7 +139,7 @@ esac
 RetroDriven_Banner(){
 echo
 echo " ------------------------------------------------------------------------"
-echo "|                 RetroDriven: MiSTer MAME Updater v1.5                  |"
+echo "|                 RetroDriven: MiSTer MAME Updater v1.6                  |"
 echo " ------------------------------------------------------------------------"
 sleep 1
 }
@@ -285,7 +290,7 @@ fi
 
 #Make Directories if needed
 mkdir -p $MAME_PATH
-mkdir -p $MRA_PATH/"hbmame"
+mkdir -p $HBMAME_PATH
 
 #Download Official Zips
 SUBDIR="Official"
@@ -295,8 +300,8 @@ Download_Zip "$SUBDIR" "$LMAME_PATH"
 
 #Download hbmame Zips
 SUBDIR="hbmame"
-cd $MRA_PATH/"hbmame"
-LMAME_PATH="$MRA_PATH/hbmame"
+cd $HBMAME_PATH
+LMAME_PATH="$HBMAME_PATH"
 Download_Zip "$SUBDIR" "$LMAME_PATH"
 
 #MRA Downloading
