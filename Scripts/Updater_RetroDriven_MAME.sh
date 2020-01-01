@@ -322,15 +322,16 @@ fi
 
 #Create MAME directory if needed
 mkdir -p $MAME_PATH
+
 #Create Log Folder if needed
 if [ $LOG_DOWNLOADED == "True" ];then
     mkdir -p $LOG_PATH
 fi
 
-#Download Official Zips
+#Download MAME Zips
 Download_MAME
 
-#Download hbmame Zips
+#Download HBMAME Zips
 if [ $HBMAME_DOWNLOAD == "True" ];then
     Download_HBMAME
 fi
