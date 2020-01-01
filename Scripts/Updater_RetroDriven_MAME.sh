@@ -29,6 +29,10 @@ By downloading and using this Script you are agreeing to the following:
 * I take no responsibility for any data loss or anything, use the script at your own risk.
 '
 
+# v1.7 - Script overhaul completed. Crazy fast Updating speeds!
+#        Zipped Mame/HBMame/MRA/Alt MRA files on my end
+#        Zips will be downloaded and exracted only if the files are missing or out of date
+#        Added an Option in the INI for Download Logs
 # v1.6 - Added HBMAME_PATH option. You can now use the "Games" folder for Mame and Hbmame Zips
 # v1.5 - Added most recent MRA files
 #        Added Hbmame Zips
@@ -48,8 +52,20 @@ By downloading and using this Script you are agreeing to the following:
 
 #=========   USER OPTIONS   =========
 
+#Main URL
+MAIN_URL="https://mister.retrodriven.com"
+
+#MAME ROM Zips URL
+MAME_URL="https://mister.retrodriven.com/MAME/Zips"
+
+#MRA URL
+MRA_URL="https://mister.retrodriven.com/MAME/MRA"
+
 #Base directory for all script’s tasks, "/media/fat" for SD root, "/media/usb0" for USB drive root.
 BASE_PATH="/media/fat"
+
+#Directory to save the Download Logs to if you enable this option below
+LOG_PATH=$BASE_PATH/"RetroDriven_Logs"
 
 #Directory for MRA Files
 #This is your Arcade Directory
@@ -63,23 +79,20 @@ MAME_PATH=$MRA_PATH/"Mame"
 #You can use the "Games" Path for hbmame be replacing the default path with: HBMAME_PATH=$BASE_PATH/Games/"hbmame"
 HBMAME_PATH=$MRA_PATH/"hbmame"
 
-#Main URL
-MAIN_URL="https://mister.retrodriven.com"
-
-#MAME ROM Zips URL
-MAME_URL="https://mister.retrodriven.com/MAME/Zips"
-
-#MRA URL
-MRA_URL="https://mister.retrodriven.com/MAME/MRA"
-
 #Set to "True" for DOOM Loading screen and Pure Retro Nostalgia. Set to "False" to skip the DOOM Loading screen.
 IDDQD="True"
 
 #Set to "True" to download the Arcade MRA Files. Set to "False" if you do not want to download these files.
 MRA_DOWNLOAD="False"
 
-#Set to "True" to see a list of the files that were Downloaded. Set to "False" if you do not want to see this list.
-SHOW_DOWNLOADED="True"
+#Set to "True" to download the Alternative Arcade MRA Files. Set to "False" if you do not want to download these files.
+MRA_ALT_DOWNLOAD="False"
+
+#Set to "True" to download the HBMame Files. Set to "False" if you do not want to download these files.
+HBMAME_DOWNLOAD="False"
+
+#Set to "True" to save a Log File showing which Files were Downloaded/Updated each time you run the Updater
+LOG_DOWNLOADED="True"
 
 #========= DO NOT CHANGE BELOW =========
 
@@ -139,7 +152,7 @@ esac
 RetroDriven_Banner(){
 echo
 echo " ------------------------------------------------------------------------"
-echo "|                 RetroDriven: MiSTer MAME Updater v1.6                  |"
+echo "|                 RetroDriven: MiSTer MAME Updater v1.7                  |"
 echo " ------------------------------------------------------------------------"
 sleep 1
 }
@@ -179,94 +192,113 @@ Shareware
 echo
 }
 
-#Download Zip Function
-Download_Zip(){
-for FILE_MAME in $(curl $CURL_RETRY $SSL_SECURITY_OPTION -s $MAME_URL/$SUBDIR/ |
-                  grep href |
-                  sed 's/.*href="//' |
-                  sed 's/".*//' |
-                  grep '^[a-zA-Z0-9].*.zip'); do
+#Download MAME Function
+Download_MAME(){
 
-        #Check to see if the Zip exists already
-        if [ -e "$LMAME_PATH/$FILE_MAME" ];then
-            REMOTE_SIZE=$(curl $CURL_RETRY $SSL_SECURITY_OPTION -s -L -I $MAME_URL/$SUBDIR/$FILE_MAME | awk -v IGNORECASE=1 '/^Content-Length/ { print int($2) }')
-            LOCAL_SIZE=$(stat -c %s "$LMAME_PATH/$FILE_MAME")
-        fi
-        #Check to see if the File Sizes match(Local vs Remote)
-        if [[ -e "$LMAME_PATH/$FILE_MAME" && $LOCAL_SIZE -eq $REMOTE_SIZE ]];then
-            echo "Skipping: $FILE_MAME" >&2
-            else
-            #Download Zip if the File Sizes don't match or if the Zip is missing
-            echo "Downloading: $FILE_MAME"
-            curl $CURL_RETRY $SSL_SECURITY_OPTION -# -O $MAME_URL/$SUBDIR/$FILE_MAME        
-            ZIP_SUMMARY+=$(echo "$FILE_MAME ")           
-            echo
-        fi   	    
-done
+    echo
+    echo "=========================================================================="
+    echo "                          Downloading MAME Files                          "
+    echo "=========================================================================="
+    sleep 1
+
+    #Download Zip and extract files/folders if they don't exist    
+    cd "$MAME_PATH"
+    curl $CURL_RETRY $SSL_SECURITY_OPTION -Os "$MAME_URL/Mame.zip"
+    #Save to Log if Option is Enabled    
+    if [ $LOG_DOWNLOADED == "True" ];then
+        unzip -uo "Mame.zip" | tee -a "$LOG_PATH/Mame_Downloaded.txt"
+    else   
+        unzip -uo "Mame.zip"
+    fi    
+    #Delete Zip as it is no longer needed after Unzip
+    rm "Mame.zip"
+    sleep 1
+    clear 
+}
+
+#Download HBMAME Function
+Download_HBMAME(){
+
+    echo
+    echo "=========================================================================="
+    echo "                         Downloading HBMAME Files                         "
+    echo "=========================================================================="
+    sleep 1
+    
+    #Create Directory if neded
+    mkdir -p "$HBMAME_PATH"    
+    cd "$HBMAME_PATH"
+
+    #Download Zip and extract files/folders if they don't exist    
+    curl $CURL_RETRY $SSL_SECURITY_OPTION -Os "$MAME_URL/hbmame.zip"
+    #Save to Log if Option is Enabled    
+    if [ $LOG_DOWNLOADED == "True" ];then
+        unzip -uo "hbmame.zip" | tee -a "$LOG_PATH/HBMame_Downloaded.txt"
+    else   
+        unzip -uo "hbmame.zip"
+    fi    
+    #Delete Zip as it is no longer needed after Unzip
+    rm "hbmame.zip" 
+    sleep 1
+    clear 
 }
 
 #Download MRA Function
-Download_Mra(){
-for FILE_MRA in $(curl $CURL_RETRY $SSL_SECURITY_OPTION -s $MRA_URL/$SUBDIR/ |
-                  grep href |
-                  sed 's/.*href="//' |
-                  sed 's/".*//' |
-                  grep '^[a-zA-Z0-9].*.mra'); do 
+Download_MRA(){
 
-        #Check to see if the MRA exists already
-        MRA_CLEAN="$(echo $FILE_MRA | sed 's/%20/ /g')"
-        if [ -e "$LMRA_PATH/$MRA_CLEAN" ];then
-            REMOTE_SIZE=$(curl $CURL_RETRY $SSL_SECURITY_OPTION -s -L -I "$MRA_URL/$SUBDIR/$FILE_MRA" | awk -v IGNORECASE=1 '/^Content-Length/ { print int($2) }')
-            LOCAL_SIZE=$(stat -c %s "$LMRA_PATH/$MRA_CLEAN")
-        fi
-        #Check to see if the File Sizes match(Local vs Remote)
-        if [[ -e "$LMRA_PATH/$MRA_CLEAN" && $LOCAL_SIZE -eq $REMOTE_SIZE ]];then
-            echo "Skipping: $MRA_CLEAN" >&2
-            else
-            #Download MRA if the File Sizes don't match or if the MRA is missing            
-            echo "Downloading: $MRA_CLEAN"            
-            curl $CURL_RETRY $SSL_SECURITY_OPTION -# -O "$MRA_URL/$SUBDIR/$FILE_MRA"
-            cd "$LMRA_PATH"                            
-            mv -f "$FILE_MRA" "$(echo "$FILE_MRA"|sed 's/%20/ /g')" 2>/dev/null; true             
-            MRA_SUMMARY+=$(echo "$MRA_CLEAN ")  
-            echo
-        fi   	    
-done
+    echo
+    echo "=========================================================================="
+    echo "                           Downloading MRA Files                          "
+    echo "=========================================================================="
+    sleep 1 
+
+    #Download Zip and extract files/folders if they don't exist    
+    cd "$MRA_PATH"
+    curl $CURL_RETRY $SSL_SECURITY_OPTION -Os "$MRA_URL/MRA.zip"
+    #Save to Log if Option is Enabled    
+    if [ $LOG_DOWNLOADED == "True" ];then
+        unzip -uo "MRA.zip" | tee -a "$LOG_PATH/MRA_Downloaded.txt"
+    else   
+        unzip -uo "MRA.zip"
+    fi    
+    #Delete Alternatives.zip as it is no longer needed after Unzip
+    rm "MRA.zip" 
+    sleep 1
+    clear 
 }
 
-#Zip Log Function
-Zip_Log(){
-echo "***** Zip Files Downloaded *****"
-echo
-    if [ ${#ZIP_SUMMARY[@]} -eq 0 ]; then    
-        echo "All Zip files are up to date!"
-        echo 
-    else
-        echo "${ZIP_SUMMARY[@]}"
-        echo
-        sleep 3     
-fi
-}
+#Download MRA Alt Function
+Download_MRA_ALT(){
+    
+    echo
+    echo "=========================================================================="
+    echo "                        Downloading Alt MRA Files                         "
+    echo "=========================================================================="
+    sleep 1 
 
-#Mra Log Function
-Mra_Log(){
-echo "***** MRA Files Downloaded *****"
-echo
-    if [ ${#MRA_SUMMARY[@]} -eq 0 ]; then    
-        echo "All MRA files are up to date!"
-        echo 
-    else
-        echo "${MRA_SUMMARY[@]}"
-        echo
-        sleep 3     
-fi
+    #Create Directory and assign Variables    
+    mkdir -p $MRA_PATH/"_Alternatives"    
+    MRA_ALT_PATH="$MRA_PATH/_Alternatives"
+    
+    #Download Zip and extract files/folders if they don't exist    
+    cd "$MRA_ALT_PATH"
+    curl $CURL_RETRY $SSL_SECURITY_OPTION -Os "$MRA_URL/Alternatives.zip"
+    #Save to Log if Option is Enabled    
+    if [ $LOG_DOWNLOADED == "True" ];then
+        unzip -uo "Alternatives.zip" | tee -a "$LOG_PATH/MRA_Alternatives_Downloaded.txt"
+    else   
+        unzip -uo "Alternatives.zip"
+    fi    
+    #Delete Zip as it is no longer needed after Unzip
+    rm "Alternatives.zip"
+    sleep 1
+    clear   	    
 }
 
 #Footer Function
 Footer(){
-if [ $SHOW_DOWNLOADED == "True" ];then
-    clear
-fi
+clear
+echo
 echo "=========================================================================="
 echo "                    MAME ZIP/MRA files are up to date!                    "
 echo "=========================================================================="
@@ -281,54 +313,41 @@ echo
 RetroDriven_Banner
 
 #Doom Boot loader
-if [ $IDDQD == "True" ]; then
+if [ $IDDQD == "True" ];then
     Doom_Boot
 else
     IDDQD_Off
     sleep 3
 fi
 
-#Make Directories if needed
+#Create MAME directory if needed
 mkdir -p $MAME_PATH
-mkdir -p $HBMAME_PATH
+#Create Log Folder if needed
+if [ $LOG_DOWNLOADED == "True" ];then
+    mkdir -p $LOG_PATH
+fi
 
 #Download Official Zips
-SUBDIR="Official"
-cd $MAME_PATH
-LMAME_PATH="$MAME_PATH"
-Download_Zip "$SUBDIR" "$LMAME_PATH"
+Download_MAME
 
 #Download hbmame Zips
-SUBDIR="hbmame"
-cd $HBMAME_PATH
-LMAME_PATH="$HBMAME_PATH"
-Download_Zip "$SUBDIR" "$LMAME_PATH"
+if [ $HBMAME_DOWNLOAD == "True" ];then
+    Download_HBMAME
+fi
 
 #MRA Downloading
 if [ $MRA_DOWNLOAD == "True" ];then
     
-    clear
-    echo
-    echo "=========================================================================="
-    echo "                           Downloading MRA Files                          "
-    echo "=========================================================================="
-    sleep 2    
-
     #Make Directories if needed   
     mkdir -p $MRA_PATH
-    mkdir -p $MRA_PATH/"_Sega System 1"
- 
-    #Download Official MRAs
-    SUBDIR="Official"
-    cd $MRA_PATH
-    LMRA_PATH="$MRA_PATH"
-    Download_Mra "$SUBDIR" "$LMRA_PATH"
+    
+    #Download MRA Files
+    Download_MRA
 
-    #Download Sega System 1 MRAs
-    SUBDIR="_Sega%20System%201"
-    cd $MRA_PATH/"_Sega System 1"
-    LMRA_PATH="$MRA_PATH/_Sega System 1"     
-    Download_Mra "$SUBDIR" "$LMRA_PATH"
+    #Download Alternative MRA Files
+    if [ $MRA_ALT_DOWNLOAD == "True" ];then
+        Download_MRA_ALT
+    fi     
 fi
 
 echo
@@ -336,14 +355,9 @@ echo
 #Display Footer
 Footer
 
-#Display Zip Downloaded Files
-if [ $SHOW_DOWNLOADED == "True" ];then
-Zip_Log
-fi
-
-#Display MRA Downloaded Files
-if [ $SHOW_DOWNLOADED == "True" ] && [ $MRA_DOWNLOAD == "True" ];then
-Mra_Log
+#Display Log Info
+if [ $LOG_DOWNLOADED == "True" ];then
+echo "Downloaded Log Files are located here: $LOG_PATH"
 fi
 
 echo
