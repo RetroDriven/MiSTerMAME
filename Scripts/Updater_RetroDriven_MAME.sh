@@ -18,7 +18,7 @@
 # You can download the latest version of this script from:
 # https://github.com/RetroDriven/MiSTerMAME
 
-: '
+'
 ###### Disclaimer / Legal Information ######
 By downloading and using this Script you are agreeing to the following:
 
@@ -29,8 +29,6 @@ By downloading and using this Script you are agreeing to the following:
 * I take no responsibility for any data loss or anything, use the script at your own risk.
 '
 
-# v1.8 - Moved MAME and MRA Zips away from Archive.org
-#        Adjusted URLs to download away from Archive.org
 # v1.7 - Script overhaul completed. Crazy fast Updating speeds!
 #        Zipped Mame/HBMame/MRA/Alt MRA files on my end
 #        Zips will be downloaded and exracted only if the files are missing or out of date
