@@ -17,12 +17,16 @@ Right-Click and Save As the following below:
 * Simply run <b>Update_RetroDriven_MAME.sh</b> via MiSTer Scripts Menu to Download/Update your MAME ROM Zips/MRAs.
 
 ## New MRA Arcade Core Folder Structure
-The following below is the directory structure for the new MRA/Mame Arcade Core setup 
+The following below is the directory structure for the new MRA/Mame Arcade Core setup: 
 
 * /_Arcade/*.mra
 * /_Arcade/cores/*.rbf
-* /_Arcade/mame/*.zip or /Games/mame/*.zip
-* /_Arcade/hbmame/*.zip or /Games/hbmame/*.zip
+* /_Arcade/mame/*.zip 
+* /_Arcade/hbmame/*.zip
+
+You can place your Mame/HbMame Zip files into your Games folder instead like below: 
+* /Games/mame/*.zip
+* /Games/hbmame/*.zip
 
 ## Notes ##
 * By default MRA Files and HBMame files are not downloaded. You can enable these via the INI File.
