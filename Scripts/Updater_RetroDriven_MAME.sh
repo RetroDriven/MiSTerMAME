@@ -278,7 +278,9 @@ Download_MRA(){
         unzip -uo "MRA.zip"
     fi    
     #Delete Alternatives.zip as it is no longer needed after Unzip
-    rm "MRA.zip" 
+    rm "MRA.zip"
+        #Remove Jotego Cores as those have been moved to the _Jotego folder
+    rm "1942.mra" "1943 Kai Midway Kaisen.mra" "1943 The Battle of Midway.mra" "1943 The Battle of Midway Mark II.mra" "Bionic Commando.mra" "Black Tiger.mra" "Commando.mra" "Double Dragon (World set 2).mra" "F-1 Dream.mra" "Ghosts'n Goblins.mra" "Gun.Smoke.mra" "Popeye.mra" "Tiger Road.mra" "Vulgus.mra" 2>/dev/null; true
     sleep 1
     clear 
 }
