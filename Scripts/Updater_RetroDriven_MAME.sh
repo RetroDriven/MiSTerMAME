@@ -18,7 +18,7 @@
 # You can download the latest version of this script from:
 # https://github.com/RetroDriven/MiSTerMAME
 
-'
+: '
 ###### Disclaimer / Legal Information ######
 By downloading and using this Script you are agreeing to the following:
 
