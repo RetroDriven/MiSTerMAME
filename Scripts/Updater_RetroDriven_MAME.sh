@@ -29,8 +29,8 @@ By downloading and using this Script you are agreeing to the following:
 * I take no responsibility for any data loss or anything, use the script at your own risk.
 '
 
-# v1.8 - Moved MAME and MRA Zips to Archive.org
-#        Adjusted URLs to download from Archive.org
+# v1.8 - Moved MAME and MRA Zips away from Archive.org
+#        Adjusted URLs to download away from Archive.org
 # v1.7 - Script overhaul completed. Crazy fast Updating speeds!
 #        Zipped Mame/HBMame/MRA/Alt MRA files on my end
 #        Zips will be downloaded and exracted only if the files are missing or out of date
@@ -53,15 +53,14 @@ By downloading and using this Script you are agreeing to the following:
 # v1.0 - Changed original Script from Locutus73 as needed
 
 #=========   URL OPTIONS   =========
-
 #Main URL
-MAIN_URL="https://archive.org"
+MAIN_URL="https://mister.retrodriven.com"
 
 #MAME ROM Zips URL
-MAME_URL="https://ia801508.us.archive.org/32/items/MiSTerMAME_RetroDriven/MAME"
+MAME_URL="https://mister.retrodriven.com/MAME/Zips"
 
-#MRA Zips URL
-MRA_URL="https://ia801508.us.archive.org/32/items/MiSTerMAME_RetroDriven/MRA"
+#MRA URL
+MRA_URL="https://mister.retrodriven.com/MAME/MRA"
 
 #=========   DIRECTORY OPTIONS   =========
 
