@@ -76,9 +76,9 @@ LOG_PATH=$BASE_PATH/"RetroDriven_Logs"
 MRA_PATH=$BASE_PATH/"_Arcade"
 
 #Directory for MAME Zips
-#Games Path: MAME_PATH=$BASE_PATH/Games/"Mame"
-#Arcade Path: MAME_PATH=$MRA_PATH/"Mame
-MAME_PATH=$MRA_PATH/"Mame"
+#Games Path: MAME_PATH=$BASE_PATH/Games/"mame"
+#Arcade Path: MAME_PATH=$MRA_PATH/"mame
+MAME_PATH=$MRA_PATH/"mame"
 
 #Directory for HBMAME Zips
 #Games Path: HBMAME_PATH=$BASE_PATH/Games/"hbmame"
