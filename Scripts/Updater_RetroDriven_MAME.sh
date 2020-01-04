@@ -165,7 +165,7 @@ esac
 RetroDriven_Banner(){
 echo
 echo " ------------------------------------------------------------------------"
-echo "|                 RetroDriven: MiSTer MAME Updater v1.8                  |"
+echo "|                 RetroDriven: MiSTer MAME Updater v1.7                  |"
 echo " ------------------------------------------------------------------------"
 sleep 1
 }
