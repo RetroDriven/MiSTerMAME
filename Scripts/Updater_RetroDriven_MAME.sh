@@ -52,13 +52,19 @@ By downloading and using this Script you are agreeing to the following:
 
 #=========   URL OPTIONS   =========
 #Main URL
-MAIN_URL="https://mister.retrodriven.com"
+MAIN_URL="https://cloud.retrodriven.com"
 
 #MAME ROM Zips URL
-MAME_URL="https://mister.retrodriven.com/MAME/Zips"
+MAME_URL="https://cloud.retrodriven.com/index.php/s/aawtmdKR44gbJ4q/download"
+
+#HBMAME ROM Zips URL
+HBMAME_URL="https://cloud.retrodriven.com/index.php/s/Gocj2FgSQt5ko6z/download"
 
 #MRA URL
-MRA_URL="https://mister.retrodriven.com/MAME/MRA"
+MRA_URL="https://cloud.retrodriven.com/index.php/s/9axCEB29YatqYP3/download"
+
+#MRA Alternatives URL
+MRA_ALT_URL="https://cloud.retrodriven.com/index.php/s/MQN3Y8yw76AgLZW/download"
 
 #=========   DIRECTORY OPTIONS   =========
 
@@ -216,7 +222,7 @@ Download_MAME(){
 
     #Download Zip and extract files/folders if they don't exist    
     cd "$MAME_PATH"
-    curl $CURL_RETRY $SSL_SECURITY_OPTION -Os "$MAME_URL/Mame.zip"
+    curl $CURL_RETRY $SSL_SECURITY_OPTION -OJs "$MAME_URL"
     #Save to Log if Option is Enabled    
     if [ $LOG_DOWNLOADED == "True" ];then
         unzip -uo "Mame.zip" | tee -a "$LOG_PATH/Mame_Downloaded.txt"
@@ -243,7 +249,7 @@ Download_HBMAME(){
     cd "$HBMAME_PATH"
 
     #Download Zip and extract files/folders if they don't exist    
-    curl $CURL_RETRY $SSL_SECURITY_OPTION -Os "$MAME_URL/hbmame.zip"
+    curl $CURL_RETRY $SSL_SECURITY_OPTION -OJs "$HBMAME_URL"
     #Save to Log if Option is Enabled    
     if [ $LOG_DOWNLOADED == "True" ];then
         unzip -uo "hbmame.zip" | tee -a "$LOG_PATH/HBMame_Downloaded.txt"
@@ -267,7 +273,7 @@ Download_MRA(){
 
     #Download Zip and extract files/folders if they don't exist    
     cd "$MRA_PATH"
-    curl $CURL_RETRY $SSL_SECURITY_OPTION -Os "$MRA_URL/MRA.zip"
+    curl $CURL_RETRY $SSL_SECURITY_OPTION -OJs "$MRA_URL"
     #Save to Log if Option is Enabled    
     if [ $LOG_DOWNLOADED == "True" ];then
         unzip -uo "MRA.zip" | tee -a "$LOG_PATH/MRA_Downloaded.txt"
@@ -297,7 +303,7 @@ Download_MRA_ALT(){
     
     #Download Zip and extract files/folders if they don't exist    
     cd "$MRA_ALT_PATH"
-    curl $CURL_RETRY $SSL_SECURITY_OPTION -Os "$MRA_URL/Alternatives.zip"
+    curl $CURL_RETRY $SSL_SECURITY_OPTION -OJs "$MRA_ALT_URL"
     #Save to Log if Option is Enabled    
     if [ $LOG_DOWNLOADED == "True" ];then
         unzip -uo "Alternatives.zip" | tee -a "$LOG_PATH/MRA_Alternatives_Downloaded.txt"
