@@ -29,7 +29,7 @@ By downloading and using this Script you are agreeing to the following:
 * I take no responsibility for any data loss or anything, use the script at your own risk.
 '
 # v1.8 - Removed Support for Official MRA files and Alternatives
-#        These MRA files can be download/updater via Official Updater
+#        These MRA files can be downloaded via Official Updater Script
 #	 All Unofficial MRA files will remain here until those become Official
 # v1.7 - Script overhaul completed. Crazy fast Updating speeds!
 #        Zipped Mame/HBMame/MRA/Alt MRA files on my end
