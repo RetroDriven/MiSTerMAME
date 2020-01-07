@@ -28,7 +28,7 @@ By downloading and using this Script you are agreeing to the following:
 * You own the original Arcade PCB for each ROM file that you download.
 * I take no responsibility for any data loss or anything, use the script at your own risk.
 '
-# v1.8 - Remove Support for Official MRA files and Alternatives
+# v1.8 - Removed Support for Official MRA files and Alternatives
 #        These MRA files can be download/updater via Official Updater
 #	 All Unofficial MRA files will remain here until those become Official
 # v1.7 - Script overhaul completed. Crazy fast Updating speeds!
