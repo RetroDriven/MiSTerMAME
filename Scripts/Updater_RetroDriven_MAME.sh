@@ -28,7 +28,9 @@ By downloading and using this Script you are agreeing to the following:
 * You own the original Arcade PCB for each ROM file that you download.
 * I take no responsibility for any data loss or anything, use the script at your own risk.
 '
-
+# v1.8 - Remove Support for Official MRA files and Alternatives
+#        These MRA files can be download/updater via Official Updater
+#	 All Unofficial MRA files will remain here until those become Official
 # v1.7 - Script overhaul completed. Crazy fast Updating speeds!
 #        Zipped Mame/HBMame/MRA/Alt MRA files on my end
 #        Zips will be downloaded and exracted only if the files are missing or out of date
@@ -63,9 +65,6 @@ HBMAME_URL="https://cloud.retrodriven.com/index.php/s/Gocj2FgSQt5ko6z/download"
 #MRA URL
 MRA_URL="https://cloud.retrodriven.com/index.php/s/9axCEB29YatqYP3/download"
 
-#MRA Alternatives URL
-MRA_ALT_URL="https://cloud.retrodriven.com/index.php/s/MQN3Y8yw76AgLZW/download"
-
 #=========   DIRECTORY OPTIONS   =========
 
 #Base directory for all script’s tasks
@@ -97,13 +96,9 @@ HBMAME_PATH=$MRA_PATH/"hbmame"
 #Set to "False" to skip the DOOM Loading screen...but why would you do that?
 IDDQD="True"
 
-#Set to "True" to download the Arcade MRA Files
+#Set to "True" to download the Unofficial Arcade MRA Files(Jotego, gaz68, MrX, etc.)
 #Set to "False" if you do not want to download these files
 MRA_DOWNLOAD="False"
-
-#Set to "True" to download the Alternative Arcade MRA Files
-#Set to "False" if you do not want to download these files
-MRA_ALT_DOWNLOAD="False"
 
 #Set to "True" to download the HBMame Files
 #Set to "False" if you do not want to download these files
@@ -171,7 +166,7 @@ esac
 RetroDriven_Banner(){
 echo
 echo " ------------------------------------------------------------------------"
-echo "|                 RetroDriven: MiSTer MAME Updater v1.7                  |"
+echo "|                 RetroDriven: MiSTer MAME Updater v1.8                  |"
 echo " ------------------------------------------------------------------------"
 sleep 1
 }
@@ -288,34 +283,6 @@ Download_MRA(){
     clear 
 }
 
-#Download MRA Alt Function
-Download_MRA_ALT(){
-    
-    echo
-    echo "=========================================================================="
-    echo "                        Downloading Alt MRA Files                         "
-    echo "=========================================================================="
-    sleep 1 
-
-    #Create Directory and assign Variables    
-    mkdir -p $MRA_PATH/"_Alternatives"    
-    MRA_ALT_PATH="$MRA_PATH/_Alternatives"
-    
-    #Download Zip and extract files/folders if they don't exist    
-    cd "$MRA_ALT_PATH"
-    curl $CURL_RETRY $SSL_SECURITY_OPTION -OJs "$MRA_ALT_URL"
-    #Save to Log if Option is Enabled    
-    if [ $LOG_DOWNLOADED == "True" ];then
-        unzip -uo "Alternatives.zip" | tee -a "$LOG_PATH/MRA_Alternatives_Downloaded.txt"
-    else   
-        unzip -uo "Alternatives.zip"
-    fi    
-    #Delete Zip as it is no longer needed after Unzip
-    rm "Alternatives.zip"
-    sleep 1
-    clear   	    
-}
-
 #Footer Function
 Footer(){
 clear
@@ -364,12 +331,7 @@ if [ $MRA_DOWNLOAD == "True" ];then
     mkdir -p $MRA_PATH
     
     #Download MRA Files
-    Download_MRA
-
-    #Download Alternative MRA Files
-    if [ $MRA_ALT_DOWNLOAD == "True" ];then
-        Download_MRA_ALT
-    fi     
+    Download_MRA    
 fi
 
 echo
