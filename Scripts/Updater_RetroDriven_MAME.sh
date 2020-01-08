@@ -57,16 +57,13 @@ By downloading and using this Script you are agreeing to the following:
 MAIN_URL="https://cloud.retrodriven.com"
 
 #MAME ROM Zips URL
-#MAME_URL="https://cloud.retrodriven.com/index.php/s/aawtmdKR44gbJ4q/download"
-MAME_URL="https://mister.retrodriven.com/Temp/Mame.zip"
+MAME_URL="https://cloud.retrodriven.com/index.php/s/aawtmdKR44gbJ4q/download"
 
 #HBMAME ROM Zips URL
-#HBMAME_URL="https://cloud.retrodriven.com/index.php/s/Gocj2FgSQt5ko6z/download"
-HBMAME_URL="https://mister.retrodriven.com/Temp/hbmame.zip"
+HBMAME_URL="https://cloud.retrodriven.com/index.php/s/Gocj2FgSQt5ko6z/download"
 
 #MRA URL
-#MRA_URL="https://cloud.retrodriven.com/index.php/s/9axCEB29YatqYP3/download"
-MRA_URL="https://mister.retrodriven.com/Temp/MRA.zip"
+MRA_URL="https://cloud.retrodriven.com/index.php/s/9axCEB29YatqYP3/download"
 
 #=========   DIRECTORY OPTIONS   =========
 
