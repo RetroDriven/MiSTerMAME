@@ -197,21 +197,52 @@
 │   ├── Popeye.mra
 │   ├── Tiger Road.mra
 │   └── Vulgus.mra
+
 ├── _Sega System 1
-│   ├── _Alternatives
-│   │   ├── Gonbee no I'm Sorry (315-5110, Japan).mra
-│   │   ├── Ninja Princess (315-5098, 128k Ver.).mra
-│   │   ├── Sanrin San Chan (Japan, 315-5xxx).mra
-│   │   └── Seishun Scandal (315-5132, Japan).mra
+│   ├── 4-D Warriors.mra
 │   ├── Flicky.mra
 │   ├── I'm Sorry.mra
 │   ├── Mister Viking.mra
 │   ├── My Hero.mra
+│   ├── Rafflesia.mra
+│   ├── Regulus.mra
 │   ├── Sega Ninja.mra
 │   ├── Spatter.mra
 │   ├── TeddyBoy Blues.mra
-│   └── Wonder Boy.mra
-└── _Unofficial
+│   ├── Up'n Down.mra
+│   ├── Wonder Boy.mra
+├── _Alternatives
+│   ├── _Flicky
+│   │   └── Flicky (128k Version, not encrypted).mra
+│   ├── _I'm Sorry
+│   │   └── Gonbee no I'm Sorry (315-5110, Japan).mra
+│   ├── _Mister Viking
+│   │   └── Mister Viking (315-5041, Japan).mra
+│   ├── _My Hero
+│   │   └── Seishun Scandal (315-5132, Japan).mra
+│   ├── _Regulus
+│   │   ├── Regulus (315-5033).mra
+│   │   └── Regulus (not encrypted).mra
+│   ├── _Sega Ninja
+│   │   ├── Ninja (315-5102).mra
+│   │   ├── Ninja Princess (315-5051, 128k Ver. bootleg).mra
+│   │   ├── Ninja Princess (315-5098, 128k Ver.).mra
+│   │   ├── Sega Ninja (315-5113).mra
+│   │   └── Sega Ninja (not encrypted).mra
+│   ├── _Spatter
+│   │   ├── Sanrin San Chan (Japan, 315-5xxx).mra
+│   │   └── Spatter (315-5099).mra
+│   ├── _TeddyBoy Blues
+│   │   └── TeddyBoy Blues (315-5115, Old Ver.).mra
+│   ├── _Up and Down
+│   │   └── Up'n Down (not encrypted).mra
+│   └── _Wonder Boy
+│       ├── Wonder Boy (prototype).mra
+│       ├── Wonder Boy (set 2, 315-5135).mra
+│       ├── Wonder Boy (set 3, 315-5135).mra
+│       └── Wonder Boy (set 5, bootleg).mra
+
+├── _Unofficial
     ├── Black Widow.mra
     ├── Donkey Kong Junior.mra
     ├── Root Beer Tapper.mra
