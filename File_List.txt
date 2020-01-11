@@ -1,178 +1,221 @@
-### Mame.zip ###
-1942.zip
-1943kai.zip
-1943mii.zip
-1943.zip
-4dwarrio.zip
-alibaba.zip
-alpha1v.zip
-amidar.zip
-arkanoid.zip
-astdelux.zip
-asteroid.zip
-atetris.zip
-atlantis.zip
-azurian.zip
-bagman.zip
-berzerk.zip
-bionicc.zip
-birdiy.zip
-blkhole.zip
-blktiger.zip
-bombjack.zip
-botanic.zip
-brubber.zip
-btime.zip
-bubbles.zip
-bullfgt.zip
-bwidow.zip
-canyon.zip
-catacomb.zip
-cavenger.zip
-cclimber.zip
-centiped.zip
-ckongpt2.zip
-ckong.zip
-clubpacm.zip
-colony7.zip
-commando.zip
-crush.zip
-ddragon.zip
-defender.zip
-devilfsh.zip
-digdug2.zip
-digdug.zip
-dkongjr.zip
-dkong.zip
-dominos.zip
-dorodon.zip
-dremshpr.zip
-eeekk.zip
-eggor.zip
-eyes.zip
-f1dream.zip
-flicky.zip
-foodf.zip
-frenzy.zip
-frogger.zip
-galagamw.zip
-galaga.zip
-galaxian.zip
-galnamco.zip
-gaplus.zip
-gberet.zip
-gng.zip
-gunsmoke.zip
-imsorry.zip
-invaders.zip
-jin.zip
-joust.zip
-ladybug.zip
-lizwiz.zip
-llander.zip
-mappy.zip
-mayday.zip
-mooncrst.zip
-moonwarp.zip
-motos.zip
-mpatrol.zip
-mrgoemon.zip
-mrtnt.zip
-mrviking.zip
-mspacman.zip
-myhero.zip
-namco50.zip
-namco51.zip
-namco54.zip
-ninjakun.zip
-nrallyx.zip
-orbitron.zip
-pacman.zip
-pacmmm.zip
-pacplus.zip
-pengo.zip
-phoenix.zip
-pickin.zip
-pisces.zip
-pitfall2.zip
-pleiads.zip
-ponpoko.zip
-pooyan.zip
-popeye.zip
-puckman.zip
-raflesia.zip
-rallyx.zip
-regulus.zip
-robotron.zip
-rpatrol.zip
-rygar.zip
-sbrkout.zip
-scobra.zip
-scramble.zip
-seganinj.zip
-sinistar.zip
-snapjack.zip
-solomon.zip
-spatter.zip
-spclaser.zip
-splat.zip
-sprint1.zip
-spyhunt.zip
-squaitsa.zip
-stargate.zip
-starjack.zip
-suprglob.zip
-swat.zip
-tazmania.zip
-teddybb.zip
-theend.zip
-tigeroad.zip
-timeplt.zip
-todruaga.zip
-travrusa.zip
-uniwars.zip
-upndown.zip
-vanvan.zip
-victoryc.zip
-vulgus.zip
-warofbug.zip
-wboy.zip
-wmatch.zip
-woodpeck.zip
-xevious.zip
-zigzagb.zip
+### Mame Files ###
+├── 1942.zip
+├── 1943kai.zip
+├── 1943mii.zip
+├── 1943.zip
+├── 4dwarrio.zip
+├── alibaba.zip
+├── alpha1v.zip
+├── amidar.zip
+├── arkanoid.zip
+├── astdelux.zip
+├── asteroid.zip
+├── atetris.zip
+├── atlantis.zip
+├── azurian.zip
+├── bagman.zip
+├── berzerk.zip
+├── bionicc.zip
+├── birdiy.zip
+├── blkhole.zip
+├── blktiger.zip
+├── bombjack.zip
+├── botanic.zip
+├── brubber.zip
+├── btime.zip
+├── bubbles.zip
+├── bullfgt.zip
+├── bwidow.zip
+├── canyon.zip
+├── catacomb.zip
+├── cavenger.zip
+├── cclimber.zip
+├── centiped.zip
+├── ckongpt2.zip
+├── ckong.zip
+├── clubpacm.zip
+├── colony7.zip
+├── commando.zip
+├── crush.zip
+├── ddragon.zip
+├── defender.zip
+├── devilfsh.zip
+├── digdug2.zip
+├── digdug.zip
+├── dkongjr.zip
+├── dkong.zip
+├── dominos.zip
+├── dorodon.zip
+├── dremshpr.zip
+├── eeekk.zip
+├── eggor.zip
+├── eyes.zip
+├── f1dream.zip
+├── flicky.zip
+├── foodf.zip
+├── frenzy.zip
+├── frogger.zip
+├── galagamw.zip
+├── galaga.zip
+├── galaxian.zip
+├── galnamco.zip
+├── gaplus.zip
+├── gberet.zip
+├── gng.zip
+├── gunsmoke.zip
+├── imsorry.zip
+├── invaders.zip
+├── jin.zip
+├── joust.zip
+├── ladybug.zip
+├── lizwiz.zip
+├── llander.zip
+├── mappy.zip
+├── mayday.zip
+├── mooncrst.zip
+├── moonwarp.zip
+├── motos.zip
+├── mpatrol.zip
+├── mrgoemon.zip
+├── mrtnt.zip
+├── mrviking.zip
+├── mspacman.zip
+├── myhero.zip
+├── namco50.zip
+├── namco51.zip
+├── namco54.zip
+├── ninjakun.zip
+├── nrallyx.zip
+├── orbitron.zip
+├── pacman.zip
+├── pacmmm.zip
+├── pacplus.zip
+├── pengo.zip
+├── phoenix.zip
+├── pickin.zip
+├── pisces.zip
+├── pitfall2.zip
+├── pleiads.zip
+├── ponpoko.zip
+├── pooyan.zip
+├── popeye.zip
+├── puckman.zip
+├── raflesia.zip
+├── rallyx.zip
+├── rbtapper.zip
+├── regulus.zip
+├── robotron.zip
+├── rpatrol.zip
+├── rygar.zip
+├── sbrkout.zip
+├── scobra.zip
+├── scramble.zip
+├── seganinj.zip
+├── sinistar.zip
+├── snapjack.zip
+├── solomon.zip
+├── spatter.zip
+├── spclaser.zip
+├── splat.zip
+├── sprint1.zip
+├── spyhunt.zip
+├── squaitsa.zip
+├── stargate.zip
+├── starjack.zip
+├── suprglob.zip
+├── swat.zip
+├── tapper.zip
+├── tazmania.zip
+├── teddybb.zip
+├── theend.zip
+├── tigeroad.zip
+├── timeplt.zip
+├── todruaga.zip
+├── travrusa.zip
+├── uniwars.zip
+├── upndown.zip
+├── vanvan.zip
+├── victoryc.zip
+├── vulgus.zip
+├── warofbug.zip
+├── wboy.zip
+├── wmatch.zip
+├── woodpeck.zip
+├── xevious.zip
+└── zigzagb.zip
 
-### Hbmame.zip ###
-1942.zip
-1943kai.zip
-1943.zip
-amidar.zip
-asteroid.zip
-bagman.zip
-bombjack.zip
-brubber.zip
-btime.zip
-centiped.zip
-ckong.zip
-commando.zip
-defender.zip
-dkong.zip
-eyes.zip
-frogger.zip
-galaga.zip
-galnamco.zip
-mappy.zip
-mpatrol.zip
-pengo.zip
-phoenix.zip
-pickin.zip
-pisces.zip
-pooyan.zip
-puckman.zip
-rallyx.zip
-robotron.zip
-rygar.zip
-scramble.zip
-solomon.zip
-splat.zip
-xevious.zip
+### Hbmame Files ###
+├── 1942.zip
+├── 1943kai.zip
+├── 1943.zip
+├── amidar.zip
+├── asteroid.zip
+├── bagman.zip
+├── bombjack.zip
+├── brubber.zip
+├── btime.zip
+├── centiped.zip
+├── ckong.zip
+├── commando.zip
+├── defender.zip
+├── dkong.zip
+├── eyes.zip
+├── frogger.zip
+├── galaga.zip
+├── galnamco.zip
+├── mappy.zip
+├── mpatrol.zip
+├── pengo.zip
+├── phoenix.zip
+├── pickin.zip
+├── pisces.zip
+├── pooyan.zip
+├── puckman.zip
+├── rallyx.zip
+├── robotron.zip
+├── rygar.zip
+├── scramble.zip
+├── solomon.zip
+├── splat.zip
+└── xevious.zip
+
+### MRA Files ###
+├── _Jotego
+│   ├── 1942.mra
+│   ├── 1943 Kai Midway Kaisen.mra
+│   ├── 1943 The Battle of Midway Mark II.mra
+│   ├── 1943 The Battle of Midway.mra
+│   ├── Bionic Commando.mra
+│   ├── Black Tiger.mra
+│   ├── Commando.mra
+│   ├── Double Dragon (World set 2).mra
+│   ├── F-1 Dream.mra
+│   ├── Ghosts'n Goblins.mra
+│   ├── Gun.Smoke.mra
+│   ├── Popeye.mra
+│   ├── Tiger Road.mra
+│   └── Vulgus.mra
+├── _Sega System 1
+│   ├── _Alternatives
+│   │   ├── Gonbee no I'm Sorry (315-5110, Japan).mra
+│   │   ├── Ninja Princess (315-5098, 128k Ver.).mra
+│   │   ├── Sanrin San Chan (Japan, 315-5xxx).mra
+│   │   └── Seishun Scandal (315-5132, Japan).mra
+│   ├── Flicky.mra
+│   ├── I'm Sorry.mra
+│   ├── Mister Viking.mra
+│   ├── My Hero.mra
+│   ├── Sega Ninja.mra
+│   ├── Spatter.mra
+│   ├── TeddyBoy Blues.mra
+│   └── Wonder Boy.mra
+└── _Unofficial
+    ├── Black Widow.mra
+    ├── Donkey Kong Junior.mra
+    ├── Root Beer Tapper.mra
+    ├── Rygar.mra
+    ├── Space Invaders.mra
+    ├── Spy Hunter.mra
+    ├── Super Cobra.mra
+    ├── Tapper.mra
+    └── Tazz-Mania.mra
