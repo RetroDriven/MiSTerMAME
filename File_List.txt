@@ -38,6 +38,7 @@
 ├── commando.zip
 ├── crush.zip
 ├── ddragon.zip
+├── ddragon2.zip
 ├── defender.zip
 ├── devilfsh.zip
 ├── digdug2.zip
@@ -189,6 +190,7 @@
 │   ├── Black Tiger.mra
 │   ├── Commando.mra
 │   ├── Double Dragon (World set 2).mra
+│   ├── Double Dragon II - The Revenge.mra
 │   ├── F-1 Dream.mra
 │   ├── Ghosts'n Goblins.mra
 │   ├── Gun.Smoke.mra
