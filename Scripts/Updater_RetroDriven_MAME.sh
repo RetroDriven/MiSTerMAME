@@ -220,7 +220,10 @@ Download_MAME(){
     curl $CURL_RETRY $SSL_SECURITY_OPTION -OJs "$MAME_URL"
     #Save to Log if Option is Enabled    
     if [ $LOG_DOWNLOADED == "True" ];then
+        #unzip -uo "Mame.zip" | tee -a "$LOG_PATH/Mame_Downloaded.txt"
         unzip -uo "Mame.zip" | tee -a "$LOG_PATH/Mame_Downloaded.txt"
+        echo "Date: $TIMESTAMP" >> "$LOG_PATH/Mame_Downloaded.txt"
+        echo "" >> "$LOG_PATH/Mame_Downloaded.txt"   
     else   
         unzip -uo "Mame.zip"
     fi    
@@ -248,6 +251,8 @@ Download_HBMAME(){
     #Save to Log if Option is Enabled    
     if [ $LOG_DOWNLOADED == "True" ];then
         unzip -uo "hbmame.zip" | tee -a "$LOG_PATH/HBMame_Downloaded.txt"
+        echo "Date: $TIMESTAMP" >> "$LOG_PATH/HBMame_Downloaded.txt"
+        echo "" >> "$LOG_PATH/HBMame_Downloaded.txt" 
     else   
         unzip -uo "hbmame.zip"
     fi    
@@ -272,6 +277,8 @@ Download_MRA(){
     #Save to Log if Option is Enabled    
     if [ $LOG_DOWNLOADED == "True" ];then
         unzip -uo "MRA.zip" | tee -a "$LOG_PATH/MRA_Downloaded.txt"
+        echo "Date: $TIMESTAMP" >> "$LOG_PATH/MRA_Downloaded.txt"
+        echo "" >> "$LOG_PATH/MRA_Downloaded.txt" 
     else   
         unzip -uo "MRA.zip"
     fi    
@@ -314,6 +321,7 @@ mkdir -p $MAME_PATH
 #Create Log Folder if needed
 if [ $LOG_DOWNLOADED == "True" ];then
     mkdir -p $LOG_PATH
+    TIMESTAMP=`date "+%m-%d-%Y @ %I:%M%P"`
 fi
 
 #Download MAME Zips
