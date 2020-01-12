@@ -178,6 +178,7 @@
 ├── scramble.zip
 ├── solomon.zip
 ├── splat.zip
+├── tapper.zip
 └── xevious.zip
 
 ### MRA Files ###
@@ -189,8 +190,8 @@
 │   ├── Bionic Commando.mra
 │   ├── Black Tiger.mra
 │   ├── Commando.mra
-│   ├── Double Dragon (World set 2).mra
 │   ├── Double Dragon II - The Revenge.mra
+│   ├── Double Dragon (World set 2).mra
 │   ├── F-1 Dream.mra
 │   ├── Ghosts'n Goblins.mra
 │   ├── Gun.Smoke.mra
@@ -210,45 +211,53 @@
 │   ├── Spatter.mra
 │   ├── TeddyBoy Blues.mra
 │   ├── Up'n Down.mra
-│   ├── Wonder Boy.mra
-├── _Alternatives
-│   ├── _Flicky
-│   │   └── Flicky (128k Version, not encrypted).mra
-│   ├── _I'm Sorry
-│   │   └── Gonbee no I'm Sorry (315-5110, Japan).mra
-│   ├── _Mister Viking
-│   │   └── Mister Viking (315-5041, Japan).mra
-│   ├── _My Hero
-│   │   └── Seishun Scandal (315-5132, Japan).mra
-│   ├── _Regulus
-│   │   ├── Regulus (315-5033).mra
-│   │   └── Regulus (not encrypted).mra
-│   ├── _Sega Ninja
-│   │   ├── Ninja (315-5102).mra
-│   │   ├── Ninja Princess (315-5051, 128k Ver. bootleg).mra
-│   │   ├── Ninja Princess (315-5098, 128k Ver.).mra
-│   │   ├── Sega Ninja (315-5113).mra
-│   │   └── Sega Ninja (not encrypted).mra
-│   ├── _Spatter
-│   │   ├── Sanrin San Chan (Japan, 315-5xxx).mra
-│   │   └── Spatter (315-5099).mra
-│   ├── _TeddyBoy Blues
-│   │   └── TeddyBoy Blues (315-5115, Old Ver.).mra
-│   ├── _Up and Down
-│   │   └── Up'n Down (not encrypted).mra
-│   └── _Wonder Boy
-│       ├── Wonder Boy (prototype).mra
-│       ├── Wonder Boy (set 2, 315-5135).mra
-│       ├── Wonder Boy (set 3, 315-5135).mra
-│       └── Wonder Boy (set 5, bootleg).mra
+│   └── Wonder Boy.mra
+│   ├── _Alternatives
+│   │   ├── _Flicky
+│   │   │   └── Flicky (128k Version, not encrypted).mra
+│   │   ├── _I'm Sorry
+│   │   │   └── Gonbee no I'm Sorry (315-5110, Japan).mra
+│   │   ├── _Mister Viking
+│   │   │   └── Mister Viking (315-5041, Japan).mra
+│   │   ├── _My Hero
+│   │   │   └── Seishun Scandal (315-5132, Japan).mra
+│   │   ├── _Regulus
+│   │   │   ├── Regulus (315-5033).mra
+│   │   │   └── Regulus (not encrypted).mra
+│   │   ├── _Sega Ninja
+│   │   │   ├── Ninja (315-5102).mra
+│   │   │   ├── Ninja Princess (315-5051, 128k Ver. bootleg).mra
+│   │   │   ├── Ninja Princess (315-5098, 128k Ver.).mra
+│   │   │   ├── Sega Ninja (315-5113).mra
+│   │   │   └── Sega Ninja (not encrypted).mra
+│   │   ├── _Spatter
+│   │   │   ├── Sanrin San Chan (Japan, 315-5xxx).mra
+│   │   │   └── Spatter (315-5099).mra
+│   │   ├── _TeddyBoy Blues
+│   │   │   └── TeddyBoy Blues (315-5115, Old Ver.).mra
+│   │   ├── _Up and Down
+│   │   │   └── Up'n Down (not encrypted).mra
+│   │   └── _Wonder Boy
+│   │       ├── Wonder Boy (prototype).mra
+│   │       ├── Wonder Boy (set 2, 315-5135).mra
+│   │       ├── Wonder Boy (set 3, 315-5135).mra
+│   │       └── Wonder Boy (set 5, bootleg).mra
 
 ├── _Unofficial
     ├── Black Widow.mra
     ├── Donkey Kong Junior.mra
-    ├── Root Beer Tapper.mra
     ├── Rygar.mra
     ├── Space Invaders.mra
     ├── Spy Hunter.mra
     ├── Super Cobra.mra
     ├── Tapper.mra
     └── Tazz-Mania.mra
+    ├── _Alternatives
+    │   └── _Tapper
+    │       ├── Tapper (Budweiser, 1-27-84 - Alternate graphics).mra
+    │       ├── Tapper (Budweiser, 12-9-83).mra
+    │       ├── Tapper (Budweiser, Date Unknown).mra
+    │       ├── Tapper (Root Beer).mra
+    │       ├── Tapper (Simpsons Hack) - HBMame.mra
+    │       ├── Tapper (Simpsons Hack ver.81) - HBMame.mra
+    │       └── Tapper (Suntory).mra
