@@ -220,7 +220,6 @@ Download_MAME(){
     curl $CURL_RETRY $SSL_SECURITY_OPTION -OJs "$MAME_URL"
     #Save to Log if Option is Enabled    
     if [ $LOG_DOWNLOADED == "True" ];then
-        #unzip -uo "Mame.zip" | tee -a "$LOG_PATH/Mame_Downloaded.txt"
         unzip -uo "Mame.zip" | tee -a "$LOG_PATH/Mame_Downloaded.txt"
         echo "Date: $TIMESTAMP" >> "$LOG_PATH/Mame_Downloaded.txt"
         echo "" >> "$LOG_PATH/Mame_Downloaded.txt"   
