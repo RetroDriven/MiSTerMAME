@@ -277,6 +277,8 @@ Download_MRA(){
     fi    
     #Delete Alternatives.zip as it is no longer needed after Unzip
     rm "MRA.zip"
+    #Delete Older MRA Files as needed
+    rm "$MRA_PATH/_Unofficial/Root Beer Tapper.mra" 2>/dev/null; true 
     sleep 1
     clear 
 }
