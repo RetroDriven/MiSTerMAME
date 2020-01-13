@@ -40,6 +40,7 @@
 ├── ddragon.zip
 ├── ddragon2.zip
 ├── defender.zip
+├── demoderb.zip
 ├── devilfsh.zip
 ├── digdug2.zip
 ├── digdug.zip
@@ -246,6 +247,7 @@
 ├── _Unofficial
     ├── Black Widow.mra
     ├── Donkey Kong Junior.mra
+    ├── Demolition Derby.mra
     ├── Rygar.mra
     ├── Space Invaders.mra
     ├── Spy Hunter.mra
