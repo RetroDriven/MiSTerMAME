@@ -28,6 +28,7 @@ By downloading and using this Script you are agreeing to the following:
 * You own the original Arcade PCB for each ROM file that you download.
 * I take no responsibility for any data loss or anything, use the script at your own risk.
 '
+# v1.9 - Remove Unofficial MRAs when they are MiSTer Official
 # v1.8 - Removed Support for Official MRA files and Alternatives
 #        These MRA files can be downloaded via Official Updater Script
 #	 All Unofficial MRA files will remain here until those become Official
@@ -166,7 +167,7 @@ esac
 RetroDriven_Banner(){
 echo
 echo " ------------------------------------------------------------------------"
-echo "|                 RetroDriven: MiSTer MAME Updater v1.8                  |"
+echo "|                 RetroDriven: MiSTer MAME Updater v1.9                  |"
 echo " ------------------------------------------------------------------------"
 sleep 1
 }
@@ -281,10 +282,29 @@ Download_MRA(){
     else   
         unzip -uo "MRA.zip"
     fi    
-    #Delete Alternatives.zip as it is no longer needed after Unzip
+    #Delete MRA.zip as it is no longer needed after Unzip
     rm "MRA.zip"
-    #Delete Older MRA Files as needed
-    rm "$MRA_PATH/_Unofficial/Root Beer Tapper.mra" 2>/dev/null; true 
+    
+    #Delete Unofficial MRA Files as needed
+    cd "$MRA_PATH"
+    for file in *.mra; do
+        if [ -f "$file" ];then
+            rm "$MRA_PATH/_Unofficial/$file" 2>/dev/null; true
+        fi
+    done
+    sleep 1
+    clear 
+    
+    #Delete Unofficial Alternative MRA Files as needed
+    if [ -d "$MRA_PATH/_Alternatives" ];then
+        rename "$MRA_PATH/_Alternatives" "$MRA_PATH/_alternatives"     
+    fi    
+        cd "$MRA_PATH/_alternatives/"
+        for dir in *; do
+            if [ -d "$dir" ];then
+                rm -R -f "$MRA_PATH/_Unofficial/_Alternatives/$dir" 2>/dev/null; true
+            fi
+        done
     sleep 1
     clear 
 }
