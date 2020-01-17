@@ -31,7 +31,7 @@ By downloading and using this Script you are agreeing to the following:
 # v1.9 - Remove Unofficial MRAs when they are MiSTer Official
 # v1.8 - Removed Support for Official MRA files and Alternatives
 #        These MRA files can be downloaded via Official Updater Script
-#	 All Unofficial MRA files will remain here until those become Official
+#	     All Unofficial MRA files will remain here until those become Official
 # v1.7 - Script overhaul completed. Crazy fast Updating speeds!
 #        Zipped Mame/HBMame/MRA/Alt MRA files on my end
 #        Zips will be downloaded and exracted only if the files are missing or out of date
@@ -296,15 +296,12 @@ Download_MRA(){
     clear 
     
     #Delete Unofficial Alternative MRA Files as needed
-    if [ -d "$MRA_PATH/_Alternatives" ];then
-        rename "$MRA_PATH/_Alternatives" "$MRA_PATH/_alternatives"     
-    fi    
-        cd "$MRA_PATH/_alternatives/"
-        for dir in *; do
-            if [ -d "$dir" ];then
-                rm -R -f "$MRA_PATH/_Unofficial/_Alternatives/$dir" 2>/dev/null; true
-            fi
-        done
+    cd "$MRA_PATH/_alternatives/"
+    for dir in *; do
+        if [ -d "$dir" ];then
+            rm -R -f "$MRA_PATH/_Unofficial/_Alternatives/$dir" 2>/dev/null; true
+        fi
+    done
     sleep 1
     clear 
 }
