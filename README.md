@@ -33,11 +33,6 @@ You can place your Mame/HbMame Zip files into your Games folder instead like bel
 * You can save Mame and HBMame files within the "Games" Folder on your MiSTer SD Card. By default this Script saves these files within /_Arcade/Mame and /_Arcade/hbmame but the Path's can be change to your liking via the INI File.
 * In the near future the Official MiSTer Updater will download the RBS and MRA files automatically for you. When this happens I will likely remove all Official MRA files from this Script. I will likely keep the Non-Official MRA files here for downloading though. Such as Jotego's MRA Files.
 
-## Wiki ##
-You can visit the Wiki page here for lists of the Files that the Script downloads as well as other information.
-
-<a href="https://github.com/RetroDriven/MiSTerMAME/wiki"> Wiki Page</a>
-
 ## Disclaimer / Legal Information
 By downloading and using this Script you are agreeing to the following:
 
