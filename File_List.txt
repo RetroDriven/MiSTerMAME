@@ -114,6 +114,7 @@
 ├── rpatrol.zip
 ├── rygar.zip
 ├── sarge.zip
+├── sbagman.zip
 ├── sbrkout.zip
 ├── scobra.zip
 ├── scramble.zip
@@ -257,6 +258,7 @@
     ├── Rygar.mra
     ├── Space Invaders.mra
     ├── Spy Hunter.mra
+    ├── Super Bagman.mra
     ├── Super Cobra.mra
     ├── Tapper.mra
     └── Tazz-Mania.mra
