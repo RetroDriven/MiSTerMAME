@@ -668,8 +668,8 @@ wait
 if [ $RBF_DOWNLOAD == "True" ];then
 
     #Get Unofficial Arcade RBF Cores - My GitHub
-    WIKI_URL="https://github.com/RetroDriven/Test/wiki"
-    GITHUB_CORE_URL="https://github.com/RetroDriven/Test/tree/master/Unofficial_Cores"
+    WIKI_URL="https://github.com/RetroDriven/MiSTerMAME/wiki"
+    GITHUB_CORE_URL="https://github.com/RetroDriven/MiSTerMAME/tree/master/Unofficial_Cores"
     DEV_NAME="RetroDriven"
     Unofficial_Updater $WIKI_URL $GITHUB_CORE_URL $DEV_NAME
 
