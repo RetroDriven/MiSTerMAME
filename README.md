@@ -29,7 +29,8 @@ You can place your Mame/HbMame Zip files into your Games folder instead like bel
 * /Games/hbmame/*.zip
 
 ## Unofficial Arcade Core/RBF Downloads ##
-* As of v2.0 of this Script, I have included the ability to Download/Update Unofficial Arcade Core RBF files.
+As of v2.0 of this Script, I have included the ability to Download/Update Unofficial Arcade Core RBF files.
+
 * Jotego's Public Cores will be Download/Updated just like his Updater Script. His Beta Cores are not included as those are for his Patreon Subscribers only.
 * All other Unofficial Arcade Cores are ones that I've come across that are not currently a part of the Official MiSTer GitHub.
 * If/When these Unofficial Arcade Cores are added to the Official MiSTer GitHub, they will be removed on my end to avoid duplicates/issues.
