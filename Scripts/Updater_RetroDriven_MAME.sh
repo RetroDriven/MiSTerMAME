@@ -102,11 +102,11 @@ IDDQD="True"
 
 #Set to "True" to download the Unofficial Arcade MRA Files(Jotego, gaz68, MrX, etc.)
 #Set to "False" if you do not want to download these files
-MRA_DOWNLOAD="False"
+MRA_DOWNLOAD="True"
 
 #Set to "True" to download the HBMame Files
 #Set to "False" if you do not want to download these files
-HBMAME_DOWNLOAD="False"
+HBMAME_DOWNLOAD="True"
 
 #Set to "True" to save a Log File showing which Files were Downloaded/Updated 
 #Set to "False" if you do not want to save the Log Files
@@ -114,7 +114,7 @@ LOG_DOWNLOADED="True"
 
 #Set to "True" to download the Unofficial Arcade RBF Files(Jotego, gaz68, MrX, etc.)
 #Set to "False" if you do not want to download these files
-RBF_DOWNLOAD="False"
+RBF_DOWNLOAD="True"
 
 #Set to "True" to remove the "Arcade-" prefix with the Unofficial Arcade RBF Files
 #Set to "False" if you'd like to keep the "Arcade-" prefix in place 
