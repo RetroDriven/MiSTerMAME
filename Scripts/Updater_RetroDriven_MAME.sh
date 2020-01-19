@@ -28,6 +28,9 @@ By downloading and using this Script you are agreeing to the following:
 * You own the original Arcade PCB for each ROM file that you download.
 * I take no responsibility for any data loss or anything, use the script at your own risk.
 '
+
+# v2.0 - Added option to download/update Unofficial Arcade Cores/RBFs
+#        No more manually adding/updating these on your own   
 # v1.9 - Remove Unofficial MRAs when they are MiSTer Official
 # v1.8 - Removed Support for Official MRA files and Alternatives
 #        These MRA files can be downloaded via Official Updater Script
@@ -109,6 +112,14 @@ HBMAME_DOWNLOAD="False"
 #Set to "False" if you do not want to save the Log Files
 LOG_DOWNLOADED="True"
 
+#Set to "True" to download the Unofficial Arcade RBF Files(Jotego, gaz68, MrX, etc.)
+#Set to "False" if you do not want to download these files
+RBF_DOWNLOAD="False"
+
+#Set to "True" to remove the "Arcade-" prefix with the Unofficial Arcade RBF Files
+#Set to "False" if you'd like to keep the "Arcade-" prefix in place 
+REMOVE_ARCADE_PREFIX="True"
+
 #========= DO NOT CHANGE BELOW =========
 
 ALLOW_INSECURE_SSL="true"
@@ -167,7 +178,7 @@ esac
 RetroDriven_Banner(){
 echo
 echo " ------------------------------------------------------------------------"
-echo "|                 RetroDriven: MiSTer MAME Updater v1.9                  |"
+echo "|                 RetroDriven: MiSTer MAME Updater v2.0                  |"
 echo " ------------------------------------------------------------------------"
 sleep 1
 }
@@ -236,7 +247,7 @@ Download_MAME(){
 #Download HBMAME Function
 Download_HBMAME(){
 
-    echo
+    #echo
     echo "=========================================================================="
     echo "                         Downloading HBMAME Files                         "
     echo "=========================================================================="
@@ -293,7 +304,6 @@ Download_MRA(){
         fi
     done
     sleep 1
-    clear 
     
     #Delete Unofficial Alternative MRA Files as needed
     cd "$MRA_PATH/_alternatives/"
@@ -303,7 +313,6 @@ Download_MRA(){
         fi
     done
     sleep 1
-    clear 
 }
 
 #Footer Function
@@ -311,7 +320,7 @@ Footer(){
 clear
 echo
 echo "=========================================================================="
-echo "                    MAME ZIP/MRA files are up to date!                    "
+echo "                  MAME ZIP/MRA/RBF files are up to date!                  "
 echo "=========================================================================="
 echo
 #echo "** Please visit RetroDriven.com for all of your MiSTer and Retro News and Updates! ***"
@@ -345,6 +354,7 @@ Download_MAME
 
 #Download HBMAME Zips
 if [ $HBMAME_DOWNLOAD == "True" ];then
+    echo    
     Download_HBMAME
 fi
 
@@ -359,6 +369,322 @@ if [ $MRA_DOWNLOAD == "True" ];then
 fi
 
 echo
+
+#================================================================================#
+#                       UNOFFICIAL CORE UPDATER STARTS HERE                      #
+#================================================================================#
+
+#=========   USER OPTIONS   =========
+
+#Directory where RetroDriven Cores are downloaded
+declare -A CORE_CATEGORY_PATHS
+CORE_CATEGORY_PATHS["arcade-cores"]="$MRA_PATH/cores"
+
+DELETE_OLD_FILES="true"
+DOWNLOAD_NEW_CORES="true"
+
+#EXPERIMENTAL: specifies if the update process must be done with parallel processing; use it at your own risk!
+PARALLEL_UPDATE="false"
+
+#========= ADVANCED OPTIONS =========
+SCRIPTS_PATH="Scripts"
+OLD_SCRIPTS_PATH="#Scripts"
+WORK_PATH="/media/fat/$SCRIPTS_PATH/.mister_updater"
+#Uncomment this if you want the script to sync the system date and time with a NTP server
+#NTP_SERVER="0.pool.ntp.org"
+AUTOREBOOT="false"
+REBOOT_PAUSE=0
+TEMP_PATH="/tmp"
+TO_BE_DELETED_EXTENSION="to_be_deleted"
+
+#========= CODE STARTS HERE =========
+if [ $RBF_DOWNLOAD == "True" ];then
+    
+    clear    
+    echo
+    echo "=========================================================================="
+    echo "                    Downloading Unofficial Arcade Cores                   "
+    echo "=========================================================================="
+    sleep 1
+fi
+
+#Unofficial Updater Function
+Unofficial_Updater(){
+
+mkdir -p "$MRA_PATH/cores"
+
+if [ "$DOWNLOAD_NEW_CORES" != "true" ] && [ "$DOWNLOAD_NEW_CORES" != "false" ] && [ "$DOWNLOAD_NEW_CORES" != "" ]
+then
+	for idx in "${!CORE_CATEGORY_PATHS[@]}"; do
+		NEW_CORE_CATEGORY_PATHS[$idx]=$(echo ${CORE_CATEGORY_PATHS[$idx]} | sed "s/$(echo $BASE_PATH | sed 's/\//\\\//g')/$(echo $BASE_PATH | sed 's/\//\\\//g')\/$DOWNLOAD_NEW_CORES/g")
+	done
+	mkdir -p "${NEW_CORE_CATEGORY_PATHS[@]}"
+fi
+
+CORE_URLS=$(curl $CURL_RETRY $SSL_SECURITY_OPTION -sLf "$WIKI_URL" | grep -io '\('$GITHUB_CORE_URL'/[a-zA-Z0-9./_-]*\)\|\(user-content-[a-z-]*\)')
+
+
+CORE_CATEGORY="-"
+SD_INSTALLER_PATH=""
+REBOOT_NEEDED="false"
+CORE_CATEGORIES_FILTER=""
+
+GOOD_CORES=""
+if [ "$GOOD_CORES_URL" != "" ]
+then
+	GOOD_CORES=$(curl $CURL_RETRY $SSL_SECURITY_OPTION -sLf "$GOOD_CORES_URL")
+fi
+
+function checkCoreURL {
+	
+	echo "Checking $(echo $CORE_URL | sed 's/.*\///g' | sed 's/_MiSTer//gI')"
+	[ "${SSH_CLIENT}" != "" ] && echo "URL: $CORE_URL"
+	if echo "$CORE_URL" | grep -q "SD-Installer"
+	then
+		RELEASES_URL="$CORE_URL"
+	else
+		RELEASES_URL=https://github.com$(curl $CURL_RETRY $SSL_SECURITY_OPTION -sLf "$CORE_URL" | grep -o '/'$DEV_NAME'/[a-zA-Z0-9./_-]*/tree/master/[a-zA-Z0-9./_-]*/releases' | head -n1)
+	fi
+
+	RELEASE_URLS=$(curl $CURL_RETRY $SSL_SECURITY_OPTION -sLf "$RELEASES_URL" | grep -o '/'$DEV_NAME'/[a-zA-Z0-9./_-]*_[0-9]\{8\}[a-zA-Z]\?\(\.rbf\|\.rar\)\?')
+
+	MAX_VERSION=""
+	MAX_RELEASE_URL=""
+	GOOD_CORE_VERSION=""
+	for RELEASE_URL in $RELEASE_URLS; do
+		if echo "$RELEASE_URL" | grep -q "SharpMZ"
+		then
+			RELEASE_URL=$(echo "$RELEASE_URL"  | grep '\.rbf$')
+		fi			
+		if echo "$RELEASE_URL" | grep -q "Atari800"
+		then
+			if [ "$CORE_CATEGORY" == "cores" ]
+			then
+				RELEASE_URL=$(echo "$RELEASE_URL"  | grep '800_[0-9]\{8\}[a-zA-Z]\?\.rbf$')
+			else
+				RELEASE_URL=$(echo "$RELEASE_URL"  | grep '5200_[0-9]\{8\}[a-zA-Z]\?\.rbf$')
+			fi
+		fi			
+		CURRENT_VERSION=$(echo "$RELEASE_URL" | grep -o '[0-9]\{8\}[a-zA-Z]\?')
+		
+		if [ "$GOOD_CORES" != "" ]
+		then
+			GOOD_CORE_VERSION=$(echo "$GOOD_CORES" | grep -wo "$(echo "$RELEASE_URL" | sed 's/.*\///g')" | grep -o '[0-9]\{8\}[a-zA-Z]\?')
+			if [ "$GOOD_CORE_VERSION" != "" ]
+			then
+				MAX_VERSION=$CURRENT_VERSION
+				MAX_RELEASE_URL=$RELEASE_URL
+				break
+			fi
+		fi
+		
+		if [[ "$CURRENT_VERSION" > "$MAX_VERSION" ]]
+		then
+			MAX_VERSION=$CURRENT_VERSION
+			MAX_RELEASE_URL=$RELEASE_URL
+		fi
+	done
+	
+	FILE_NAME=$(echo "$MAX_RELEASE_URL" | sed 's/.*\///g')
+	if [ "$CORE_CATEGORY" == "arcade-cores" ] && [ $REMOVE_ARCADE_PREFIX == "True" ]
+	then
+		FILE_NAME=$(echo "$FILE_NAME" | sed 's/Arcade-//gI')
+	fi
+	BASE_FILE_NAME=$(echo "$FILE_NAME" | sed 's/_[0-9]\{8\}.*//g')
+	
+	CURRENT_DIRS="${CORE_CATEGORY_PATHS[$CORE_CATEGORY]}"
+	if [ "${NEW_CORE_CATEGORY_PATHS[$CORE_CATEGORY]}" != "" ]
+	then
+		CURRENT_DIRS=("$CURRENT_DIRS" "${NEW_CORE_CATEGORY_PATHS[$CORE_CATEGORY]}")
+	fi 
+	if [ "$CURRENT_DIRS" == "" ]
+	then
+		CURRENT_DIRS=("$BASE_PATH")
+	fi
+	if [ "$BASE_FILE_NAME" == "MiSTer" ] || [ "$BASE_FILE_NAME" == "menu" ] || { echo "$CORE_URL" | grep -q "SD-Installer"; }
+	then
+		mkdir -p "$WORK_PATH"
+		CURRENT_DIRS=("$WORK_PATH")
+	fi
+	
+	CURRENT_LOCAL_VERSION=""
+	MAX_LOCAL_VERSION=""
+	for CURRENT_DIR in "${CURRENT_DIRS[@]}"
+	do
+		for CURRENT_FILE in "$CURRENT_DIR/$BASE_FILE_NAME"*
+		do
+			if [ -f "$CURRENT_FILE" ]
+			then
+				if echo "$CURRENT_FILE" | grep -q "$BASE_FILE_NAME\_[0-9]\{8\}[a-zA-Z]\?\(\.rbf\|\.rar\)\?$"
+				then
+					CURRENT_LOCAL_VERSION=$(echo "$CURRENT_FILE" | grep -o '[0-9]\{8\}[a-zA-Z]\?')
+					if [ "$GOOD_CORE_VERSION" != "" ]
+					then
+						if [ "$CURRENT_LOCAL_VERSION" == "$GOOD_CORE_VERSION" ]
+						then
+							MAX_LOCAL_VERSION=$CURRENT_LOCAL_VERSION
+						else
+							if [ "$MAX_LOCAL_VERSION" == "" ]
+							then
+								MAX_LOCAL_VERSION="00000000"
+							fi
+							if [ $DELETE_OLD_FILES == "true" ]
+							then
+								mv "${CURRENT_FILE}" "${CURRENT_FILE}.${TO_BE_DELETED_EXTENSION}" > /dev/null 2>&1
+							fi
+						fi
+					else
+						if [[ "$CURRENT_LOCAL_VERSION" > "$MAX_LOCAL_VERSION" ]]
+						then
+							MAX_LOCAL_VERSION=$CURRENT_LOCAL_VERSION
+						fi
+						if [[ "$MAX_VERSION" > "$CURRENT_LOCAL_VERSION" ]] && [ $DELETE_OLD_FILES == "true" ]
+						then
+							# echo "Moving $(echo ${CURRENT_FILE} | sed 's/.*\///g')"
+							mv "${CURRENT_FILE}" "${CURRENT_FILE}.${TO_BE_DELETED_EXTENSION}" > /dev/null 2>&1
+						fi
+					fi
+				
+				fi
+			fi
+		done
+		if [ "$MAX_LOCAL_VERSION" != "" ]
+		then
+			break
+		fi
+	done
+	
+	if [[ "$MAX_VERSION" > "$MAX_LOCAL_VERSION" ]]
+	then
+		if [ "$DOWNLOAD_NEW_CORES" != "false" ] || [ "$MAX_LOCAL_VERSION" != "" ] || [ "$BASE_FILE_NAME" == "MiSTer" ] || [ "$BASE_FILE_NAME" == "menu" ] || { echo "$CORE_URL" | grep -q "SD-Installer"; }
+		then
+			echo "Downloading $FILE_NAME"
+			[ "${SSH_CLIENT}" != "" ] && echo "URL: https://github.com$MAX_RELEASE_URL?raw=true"
+			if curl $CURL_RETRY $SSL_SECURITY_OPTION -# -L "https://github.com$MAX_RELEASE_URL?raw=true" -o "$CURRENT_DIR/$FILE_NAME"
+                #Log File handling                
+                if [ $LOG_DOWNLOADED == "True" ];then
+                echo "$FILE_NAME" >> "$LOG_PATH/RBF_Downloaded.txt"                
+                fi 			
+            then
+				if [ ${DELETE_OLD_FILES} == "true" ]
+				then
+					echo "Deleting old ${BASE_FILE_NAME} files"
+					rm "${CURRENT_DIR}/${BASE_FILE_NAME}"*.${TO_BE_DELETED_EXTENSION} > /dev/null 2>&1
+				fi
+				if [ $BASE_FILE_NAME == "MiSTer" ] || [ $BASE_FILE_NAME == "menu" ]
+				then
+					DESTINATION_FILE=$(echo "$MAX_RELEASE_URL" | sed 's/.*\///g' | sed 's/_[0-9]\{8\}[a-zA-Z]\{0,1\}//g')
+					echo "Moving $DESTINATION_FILE"
+					rm "/media/fat/$DESTINATION_FILE" > /dev/null 2>&1
+					mv "$CURRENT_DIR/$FILE_NAME" "/media/fat/$DESTINATION_FILE"
+					touch "$CURRENT_DIR/$FILE_NAME"
+					REBOOT_NEEDED="true"
+				fi
+				if echo "$CORE_URL" | grep -q "SD-Installer"
+				then
+					SD_INSTALLER_PATH="$CURRENT_DIR/$FILE_NAME"
+				fi
+				if [ "$CORE_CATEGORY" == "arcade-cores" ]
+				then
+					OLD_IFS="$IFS"
+					IFS="|"
+					for ARCADE_ALT_PATH in $ARCADE_ALT_PATHS
+					do
+						for ARCADE_ALT_DIR in "$ARCADE_ALT_PATH/_$BASE_FILE_NAME"*
+						do
+							if [ -d "$ARCADE_ALT_DIR" ]
+							then
+								echo "Updating $(echo $ARCADE_ALT_DIR | sed 's/.*\///g')"
+								if [ $DELETE_OLD_FILES == "true" ]
+								then
+									for ARCADE_HACK_CORE in "$ARCADE_ALT_DIR/"*.rbf
+									do
+										if [ -f "$ARCADE_HACK_CORE" ] && { echo "$ARCADE_HACK_CORE" | grep -q "$BASE_FILE_NAME\_[0-9]\{8\}[a-zA-Z]\?\.rbf$"; }
+										then
+											rm "$ARCADE_HACK_CORE"  > /dev/null 2>&1
+										fi
+									done
+								fi
+								cp "$CURRENT_DIR/$FILE_NAME" "$ARCADE_ALT_DIR/"
+							fi
+						done
+					done
+					IFS="$OLD_IFS"
+				fi
+			else
+				echo "${FILE_NAME} download failed"
+				rm "${CURRENT_DIR}/${FILE_NAME}" > /dev/null 2>&1
+				if [ ${DELETE_OLD_FILES} == "true" ]
+				then
+					echo "Restoring old ${BASE_FILE_NAME} files"
+					for FILE_TO_BE_RESTORED in "${CURRENT_DIR}/${BASE_FILE_NAME}"*.${TO_BE_DELETED_EXTENSION}
+					do
+					  mv "${FILE_TO_BE_RESTORED}" "${FILE_TO_BE_RESTORED%.${TO_BE_DELETED_EXTENSION}}" > /dev/null 2>&1
+					done
+				fi
+			fi
+			sync
+		else
+			echo "New core: $FILE_NAME"
+		fi
+	else
+		echo "Nothing to update"
+	fi
+	
+	echo ""
+}
+
+for CORE_URL in $CORE_URLS; do
+
+	if [[ $CORE_URL == https://* ]]
+	then
+		if [ "$REPOSITORIES_FILTER" == "" ] || { echo "$CORE_URL" | grep -qi "$REPOSITORIES_FILTER";  } || { echo "$CORE_CATEGORY" | grep -qi "$CORE_CATEGORIES_FILTER";  }
+		then
+			if echo "$CORE_URL" | grep -qE "(SD-Installer)|(/Main_MiSTer$)|(/Menu_MiSTer$)"
+			then
+				checkCoreURL
+			else
+				[ "$PARALLEL_UPDATE" == "true" ] && { echo "$(checkCoreURL)"$'\n' & } || checkCoreURL
+			fi
+		fi
+	else
+		CORE_CATEGORY=$(echo "$CORE_URL" | sed 's/user-content-//g')
+		if [ "$CORE_CATEGORY" == "" ]
+		then
+			CORE_CATEGORY="-"
+		fi
+		if [ "$CORE_CATEGORY" == "computer-cores" ]
+		then
+			CORE_CATEGORY="cores"
+		fi
+	fi
+done
+wait
+
+#exit 0
+}
+
+#Download Unofficial Arcade Cores if Enabled
+if [ $RBF_DOWNLOAD == "True" ];then
+
+    #Get Unofficial Arcade RBF Cores - My GitHub
+    WIKI_URL="https://github.com/RetroDriven/Test/wiki"
+    GITHUB_CORE_URL="https://github.com/RetroDriven/Test/tree/master/Unofficial_Cores"
+    DEV_NAME="RetroDriven"
+    Unofficial_Updater $WIKI_URL $GITHUB_CORE_URL $DEV_NAME
+
+    #Get Unofficial Arcade RBF Cores - Jotego
+    WIKI_URL="https://github.com/jotego/jtbin/wiki"
+    GITHUB_CORE_URL="https://github.com/jotego/jtbin/tree/master/mister"
+    DEV_NAME="jotego"
+    Unofficial_Updater $WIKI_URL $GITHUB_CORE_URL $DEV_NAME
+
+    #Log File Timestamp for RBF Files
+    if [ $LOG_DOWNLOADED == "True" ];then
+        echo "Date: $TIMESTAMP" >> "$LOG_PATH/RBF_Downloaded.txt"
+        echo "" >> "$LOG_PATH/RBF_Downloaded.txt"
+    fi
+fi
 
 #Display Footer
 Footer
