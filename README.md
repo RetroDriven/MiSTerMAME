@@ -14,7 +14,7 @@ Right-Click and Save As the following below:
 ## Usage ##
 * Download <b>Update_RetroDriven_MAME.sh</b> above and Save it to your Scripts Folder on your MiSTer SD Card(typically /media/fat/Scripts).
 * Optional: Download <b>Update_RetroDriven_MAME.ini</b> above and Save it to your Scripts Folder. You can change the INI file as needed but it is not required.
-* Simply run <b>Update_RetroDriven_MAME.sh</b> via MiSTer Scripts Menu to Download/Update your MAME ROM Zips/MRAs.
+* Simply run <b>Update_RetroDriven_MAME.sh</b> via MiSTer Scripts Menu to Download/Update your MAME ROM Zips/MRAs and Unofficial Arcade Cores(RBF Files).
 
 ## New MRA Arcade Core Folder Structure ##
 The following below is the directory structure for the new MRA/Mame Arcade Core setup: 
@@ -28,10 +28,17 @@ You can place your Mame/HbMame Zip files into your Games folder instead like bel
 * /Games/mame/*.zip
 * /Games/hbmame/*.zip
 
+## Unofficial Arcade Core/RBF Downloads ##
+* As of v2.0 of this Script, I have included the ability to Download/Update Unofficial Arcade Core RBF files.
+* Jotego's Public Cores will be Download/Updated just like his Updater Script. His Beta Cores are not included as those are for his Patreon Subscribers only.
+* All other Unofficial Arcade Cores are ones that I've come across that are not currently a part of the Official MiSTer GitHub.
+* If/When these Unofficial Arcade Cores are added to the Official MiSTer GitHub, they will be removed on my end to avoid duplicates/issues.
+* Be sure to set the INI Option "REMOVE_ARCADE_PREFIX" based on your current Arcade Core set up to avoid duplicates/issues. 
+* If you do not wish to Download the Unofficial Arcade Core RBF files set "RBF_DOWNLOAD" to False in the INI File.
+
 ## Notes ##
-* By default MRA Files and HBMame files are not downloaded. You can enable these via the INI File.
 * You can save Mame and HBMame files within the "Games" Folder on your MiSTer SD Card. By default this Script saves these files within /_Arcade/Mame and /_Arcade/hbmame but the Path's can be change to your liking via the INI File.
-* In the near future the Official MiSTer Updater will download the RBS and MRA files automatically for you. When this happens I will likely remove all Official MRA files from this Script. I will likely keep the Non-Official MRA files here for downloading though. Such as Jotego's MRA Files.
+* Unofficial MRA files will be removed as Arcade Cores become Official within MiSTer Github and Official Downloader Script. These files within the _Unofficial Folder should be removed/cleaned up automatically but in the event that this does not take place you are free to delete the MRA files manually if needed. 
 
 ## Disclaimer / Legal Information
 By downloading and using this Script you are agreeing to the following:
