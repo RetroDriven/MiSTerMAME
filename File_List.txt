@@ -137,6 +137,7 @@
 ├── teddybb.zip
 ├── theend.zip
 ├── tigeroad.zip
+├── timber.zip
 ├── timeplt.zip
 ├── todruaga.zip
 ├── travrusa.zip
@@ -262,6 +263,7 @@
     ├── Super Cobra.mra
     ├── Tapper.mra
     └── Tazz-Mania.mra
+    └── Timber.mra
     ├── _Alternatives
     │   └── _Tapper
     │       ├── Tapper (Budweiser, 1-27-84 - Alternate graphics).mra
