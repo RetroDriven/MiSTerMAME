@@ -1,15 +1,9 @@
 # MiSTerMAME
 The purpose of this Script to to aid in downloading the correct MAME ROM Zips to use for the new MiSTer Arcade Core MRA configuration. This Script is for testing/educational purposes only.
 
-# Script Download
-Right-Click and Save As the following below:
+# Script and INI Download
 
 <a href="https://cloud.retrodriven.com/index.php/s/Updater/download"> Updater and INI File Download </a>
-
-# INI File Download
-Right-Click and Save As the following below:
-
-<a href="https://raw.githubusercontent.com/RetroDriven/MiSTerMAME/master/Update_RetroDriven_MAME.ini"> Update_RetroDriven_MAME.ini </a>
 
 ## Usage ##
 * Download <b>Update_RetroDriven_MAME.sh</b> above and Save it to your Scripts Folder on your MiSTer SD Card(typically /media/fat/Scripts).
