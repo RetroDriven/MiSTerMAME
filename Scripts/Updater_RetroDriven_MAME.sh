@@ -29,6 +29,10 @@ By downloading and using this Script you are agreeing to the following:
 * I take no responsibility for any data loss or anything, use the script at your own risk.
 '
 
+# v2.1 - Optimized Speed/Bandwidth
+#        Zip files will be dated. Dummy files are saved to Temp directory
+#        Script will look to the Dummy files and only download if there's a newer Zip
+#        This will increase the Script's speed and save Download Bandwith for all
 # v2.0 - Added option to download/update Unofficial Arcade Cores/RBFs
 #        No more manually adding/updating these on your own   
 # v1.9 - Remove Unofficial MRAs when they are MiSTer Official
@@ -61,10 +65,10 @@ By downloading and using this Script you are agreeing to the following:
 MAIN_URL="https://cloud.retrodriven.com"
 
 #MAME ROM Zips URL
-MAME_URL="https://cloud.retrodriven.com/index.php/s/Mame/download"
+MAME_URL="https://cloud.retrodriven.com/index.php/s/MAME/download"
 
 #HBMAME ROM Zips URL
-HBMAME_URL="https://cloud.retrodriven.com/index.php/s/hbmame/download"
+HBMAME_URL="https://cloud.retrodriven.com/index.php/s/HBMAME/download"
 
 #MRA URL
 MRA_URL="https://cloud.retrodriven.com/index.php/s/MRA/download"
@@ -178,7 +182,7 @@ esac
 RetroDriven_Banner(){
 echo
 echo " ------------------------------------------------------------------------"
-echo "|                 RetroDriven: MiSTer MAME Updater v2.0                  |"
+echo "|                 RetroDriven: MiSTer MAME Updater v2.1                  |"
 echo " ------------------------------------------------------------------------"
 sleep 1
 }
@@ -226,22 +230,46 @@ Download_MAME(){
     echo "                          Downloading MAME Files                          "
     echo "=========================================================================="
     sleep 1
+    
+    #Create Directories
+    mkdir -p $MAME_PATH
+    mkdir -p "$BASE_PATH/Scripts/.RetroDriven/MAME"
 
+    #Get Current Zip File Name
+    MAME_FILENAME=$(curl -sIkL "$MAME_URL" | sed -r '/filename=/!d;s/.*filename=(.*)$/\1/' | sed -e 's|["'\'']||g' | sed '/^$/d;s/[[:space:]]//g')
+    rm -f "download"
+    cd "$BASE_PATH/Scripts/.RetroDriven/MAME"
+    if [ -f $MAME_FILENAME ];then
+        echo "MAME Files are up to date!"
+        sleep 1
+        if [ $LOG_DOWNLOADED == "True" ];then
+            echo "Date: $TIMESTAMP" >> "$LOG_PATH/Mame_Downloaded.txt"
+            echo "MAME Files are up to date!" >> "$LOG_PATH/Mame_Downloaded.txt"
+            echo "" >> "$LOG_PATH/Mame_Downloaded.txt"                     
+        fi        
+    fi
+ 
     #Download Zip and extract files/folders if they don't exist    
-    cd "$MAME_PATH"
-    curl $CURL_RETRY $SSL_SECURITY_OPTION -OJs "$MAME_URL"
-    #Save to Log if Option is Enabled    
-    if [ $LOG_DOWNLOADED == "True" ];then
-        unzip -uo "Mame.zip" | tee -a "$LOG_PATH/Mame_Downloaded.txt"
-        echo "Date: $TIMESTAMP" >> "$LOG_PATH/Mame_Downloaded.txt"
-        echo "" >> "$LOG_PATH/Mame_Downloaded.txt"   
-    else   
-        unzip -uo "Mame.zip"
-    fi    
-    #Delete Zip as it is no longer needed after Unzip
-    rm "Mame.zip"
+    if [ ! -f $MAME_FILENAME ];then    
+        cd "$MAME_PATH"
+        curl $CURL_RETRY $SSL_SECURITY_OPTION -OJs "$MAME_URL"
+        #Save to Log if Option is Enabled    
+        if [ $LOG_DOWNLOADED == "True" ];then
+            unzip -uo "$MAME_FILENAME" | tee -a "$LOG_PATH/Mame_Downloaded.txt"
+            echo "Date: $TIMESTAMP" >> "$LOG_PATH/Mame_Downloaded.txt"
+            echo "" >> "$LOG_PATH/Mame_Downloaded.txt"   
+        else   
+            unzip -uo "$MAME_FILENAME"
+        fi    
+        #Delete Zip as it is no longer needed after Unzip
+        rm "$MAME_FILENAME"
+        #Create Dummy Zip to avoid downloading the same file
+        cd "$BASE_PATH/Scripts/.RetroDriven/MAME"
+        rm * 2>/dev/null; true    
+        touch "$MAME_FILENAME"
+    fi
     sleep 1
-    clear 
+    clear     
 }
 
 #Download HBMAME Function
@@ -253,24 +281,45 @@ Download_HBMAME(){
     echo "=========================================================================="
     sleep 1
     
-    #Create Directory if neded
+    #Create Directories
     mkdir -p "$HBMAME_PATH"    
-    cd "$HBMAME_PATH"
+    mkdir -p "$BASE_PATH/Scripts/.RetroDriven/HBMAME"
 
+    #Get Current Zip File Name
+    HBMAME_FILENAME=$(curl -sIkL "$HBMAME_URL" | sed -r '/filename=/!d;s/.*filename=(.*)$/\1/' | sed -e 's|["'\'']||g' | sed '/^$/d;s/[[:space:]]//g')
+    rm -f "download"
+    cd "$BASE_PATH/Scripts/.RetroDriven/HBMAME"
+    if [ -f $HBMAME_FILENAME ];then
+        echo "HBMAME Files are up to date!"
+        sleep 1
+        if [ $LOG_DOWNLOADED == "True" ];then
+            echo "Date: $TIMESTAMP" >> "$LOG_PATH/HBMame_Downloaded.txt"
+            echo "HBMAME Files are up to date!" >> "$LOG_PATH/HBMame_Downloaded.txt"
+            echo "" >> "$LOG_PATH/HBMame_Downloaded.txt"                     
+        fi        
+    fi
+ 
     #Download Zip and extract files/folders if they don't exist    
-    curl $CURL_RETRY $SSL_SECURITY_OPTION -OJs "$HBMAME_URL"
-    #Save to Log if Option is Enabled    
-    if [ $LOG_DOWNLOADED == "True" ];then
-        unzip -uo "hbmame.zip" | tee -a "$LOG_PATH/HBMame_Downloaded.txt"
-        echo "Date: $TIMESTAMP" >> "$LOG_PATH/HBMame_Downloaded.txt"
-        echo "" >> "$LOG_PATH/HBMame_Downloaded.txt" 
-    else   
-        unzip -uo "hbmame.zip"
-    fi    
-    #Delete Zip as it is no longer needed after Unzip
-    rm "hbmame.zip" 
+    if [ ! -f $HBMAME_FILENAME ];then    
+        cd "$HBMAME_PATH"
+        curl $CURL_RETRY $SSL_SECURITY_OPTION -OJs "$HBMAME_URL"
+        #Save to Log if Option is Enabled    
+        if [ $LOG_DOWNLOADED == "True" ];then
+            unzip -uo "$HBMAME_FILENAME" | tee -a "$LOG_PATH/HBMame_Downloaded.txt"
+            echo "Date: $TIMESTAMP" >> "$LOG_PATH/HBMame_Downloaded.txt"
+            echo "" >> "$LOG_PATH/HBMame_Downloaded.txt"   
+        else   
+            unzip -uo "$HBMAME_FILENAME"
+        fi    
+        #Delete Zip as it is no longer needed after Unzip
+        rm "$HBMAME_FILENAME"
+        #Create Dummy Zip to avoid downloading the same file
+        cd "$BASE_PATH/Scripts/.RetroDriven/HBMAME"
+        rm * 2>/dev/null; true    
+        touch "$HBMAME_FILENAME"
+    fi
     sleep 1
-    clear 
+    clear
 }
 
 #Download MRA Function
@@ -282,37 +331,64 @@ Download_MRA(){
     echo "=========================================================================="
     sleep 1 
 
+    #Create Directories
+    mkdir -p $MRA_PATH    
+    mkdir -p "$BASE_PATH/Scripts/.RetroDriven/MRA"
+
+    #Get Current Zip File Name
+    MRA_FILENAME=$(curl -sIkL "$MRA_URL" | sed -r '/filename=/!d;s/.*filename=(.*)$/\1/' | sed -e 's|["'\'']||g' | sed '/^$/d;s/[[:space:]]//g')
+    rm -f "download"
+    cd "$BASE_PATH/Scripts/.RetroDriven/MRA"
+    if [ -f $MRA_FILENAME ];then
+        echo "MRA Files are up to date!"
+        sleep 1
+        if [ $LOG_DOWNLOADED == "True" ];then
+            echo "Date: $TIMESTAMP" >> "$LOG_PATH/MRA_Downloaded.txt"
+            echo "MRA Files are up to date!" >> "$LOG_PATH/MRA_Downloaded.txt"
+            echo "" >> "$LOG_PATH/MRA_Downloaded.txt"                     
+        fi        
+    fi
+ 
     #Download Zip and extract files/folders if they don't exist    
-    cd "$MRA_PATH"
-    curl $CURL_RETRY $SSL_SECURITY_OPTION -OJs "$MRA_URL"
-    #Save to Log if Option is Enabled    
-    if [ $LOG_DOWNLOADED == "True" ];then
-        unzip -uo "MRA.zip" | tee -a "$LOG_PATH/MRA_Downloaded.txt"
-        echo "Date: $TIMESTAMP" >> "$LOG_PATH/MRA_Downloaded.txt"
-        echo "" >> "$LOG_PATH/MRA_Downloaded.txt" 
-    else   
-        unzip -uo "MRA.zip"
-    fi    
-    #Delete MRA.zip as it is no longer needed after Unzip
-    rm "MRA.zip"
-    
-    #Delete Unofficial MRA Files as needed
-    cd "$MRA_PATH"
-    for file in *.mra; do
-        if [ -f "$file" ];then
-            rm "$MRA_PATH/_Unofficial/$file" 2>/dev/null; true
-        fi
-    done
+    if [ ! -f $MRA_FILENAME ];then    
+        cd "$MRA_PATH"
+        curl $CURL_RETRY $SSL_SECURITY_OPTION -OJs "$MRA_URL"
+        #Save to Log if Option is Enabled    
+        if [ $LOG_DOWNLOADED == "True" ];then
+            unzip -uo "$MRA_FILENAME" | tee -a "$LOG_PATH/MRA_Downloaded.txt"
+            echo "Date: $TIMESTAMP" >> "$LOG_PATH/MRA_Downloaded.txt"
+            echo "" >> "$LOG_PATH/MRA_Downloaded.txt"   
+        else   
+            unzip -uo "$MRA_FILENAME"
+        fi    
+        
+        #Delete Zip as it is no longer needed after Unzip
+        cd "$MRA_PATH"       
+        rm "$MRA_FILENAME"
+        
+        #Create Dummy Zip to avoid downloading the same file
+        cd "$BASE_PATH/Scripts/.RetroDriven/MRA"
+        rm * 2>/dev/null; true    
+        touch "$MRA_FILENAME"
+
+        #Delete Unofficial MRA Files as needed
+        cd "$MRA_PATH"
+        for file in *.mra; do
+            if [ -f "$file" ];then
+                rm "$MRA_PATH/_Unofficial/$file" 2>/dev/null; true
+            fi
+        done
+         
+        #Delete Unofficial Alternative MRA Files as needed
+        cd "$MRA_PATH/_alternatives/"
+        for dir in *; do
+            if [ -d "$dir" ];then
+                rm -R -f "$MRA_PATH/_Unofficial/_Alternatives/$dir" 2>/dev/null; true
+            fi
+        done 
+    fi
     sleep 1
-    
-    #Delete Unofficial Alternative MRA Files as needed
-    cd "$MRA_PATH/_alternatives/"
-    for dir in *; do
-        if [ -d "$dir" ];then
-            rm -R -f "$MRA_PATH/_Unofficial/_Alternatives/$dir" 2>/dev/null; true
-        fi
-    done
-    sleep 1
+    clear 
 }
 
 #Footer Function
@@ -340,9 +416,6 @@ else
     sleep 3
 fi
 
-#Create MAME directory if needed
-mkdir -p $MAME_PATH
-
 #Create Log Folder if needed
 if [ $LOG_DOWNLOADED == "True" ];then
     mkdir -p $LOG_PATH
@@ -360,10 +433,7 @@ fi
 
 #MRA Downloading
 if [ $MRA_DOWNLOAD == "True" ];then
-    
-    #Make Directories if needed   
-    mkdir -p $MRA_PATH
-    
+  
     #Download MRA Files
     Download_MRA    
 fi
