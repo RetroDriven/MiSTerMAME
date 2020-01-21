@@ -38,7 +38,7 @@ By downloading and using this Script you are agreeing to the following:
 # v1.9 - Remove Unofficial MRAs when they are MiSTer Official
 # v1.8 - Removed Support for Official MRA files and Alternatives
 #        These MRA files can be downloaded via Official Updater Script
-#	     All Unofficial MRA files will remain here until those become Official
+#	 All Unofficial MRA files will remain here until those become Official
 # v1.7 - Script overhaul completed. Crazy fast Updating speeds!
 #        Zipped Mame/HBMame/MRA/Alt MRA files on my end
 #        Zips will be downloaded and exracted only if the files are missing or out of date
@@ -236,9 +236,9 @@ Download_MAME(){
     mkdir -p "$BASE_PATH/Scripts/.RetroDriven/MAME"
 
     #Get Current Zip File Name
+    cd "$BASE_PATH/Scripts/.RetroDriven/MAME"
     MAME_FILENAME=$(curl -sIkL "$MAME_URL" | sed -r '/filename=/!d;s/.*filename=(.*)$/\1/' | sed -e 's|["'\'']||g' | sed '/^$/d;s/[[:space:]]//g')
     rm -f "download"
-    cd "$BASE_PATH/Scripts/.RetroDriven/MAME"
     if [ -f $MAME_FILENAME ];then
         echo "MAME Files are up to date!"
         sleep 1
@@ -286,9 +286,9 @@ Download_HBMAME(){
     mkdir -p "$BASE_PATH/Scripts/.RetroDriven/HBMAME"
 
     #Get Current Zip File Name
+    cd "$BASE_PATH/Scripts/.RetroDriven/HBMAME"    
     HBMAME_FILENAME=$(curl -sIkL "$HBMAME_URL" | sed -r '/filename=/!d;s/.*filename=(.*)$/\1/' | sed -e 's|["'\'']||g' | sed '/^$/d;s/[[:space:]]//g')
     rm -f "download"
-    cd "$BASE_PATH/Scripts/.RetroDriven/HBMAME"
     if [ -f $HBMAME_FILENAME ];then
         echo "HBMAME Files are up to date!"
         sleep 1
@@ -336,9 +336,9 @@ Download_MRA(){
     mkdir -p "$BASE_PATH/Scripts/.RetroDriven/MRA"
 
     #Get Current Zip File Name
+    cd "$BASE_PATH/Scripts/.RetroDriven/MRA"
     MRA_FILENAME=$(curl -sIkL "$MRA_URL" | sed -r '/filename=/!d;s/.*filename=(.*)$/\1/' | sed -e 's|["'\'']||g' | sed '/^$/d;s/[[:space:]]//g')
     rm -f "download"
-    cd "$BASE_PATH/Scripts/.RetroDriven/MRA"
     if [ -f $MRA_FILENAME ];then
         echo "MRA Files are up to date!"
         sleep 1
