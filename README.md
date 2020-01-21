@@ -4,7 +4,7 @@ The purpose of this Script to to aid in downloading the correct MAME ROM Zips to
 # Script Download
 Right-Click and Save As the following below:
 
-<a href="https://cloud.retrodriven.com/index.php/s/Updater"> Updater and INI File Download </a>
+<a href="https://cloud.retrodriven.com/index.php/s/Updater/download"> Updater and INI File Download </a>
 
 # INI File Download
 Right-Click and Save As the following below:
