@@ -262,8 +262,8 @@
     ├── Super Bagman.mra
     ├── Super Cobra.mra
     ├── Tapper.mra
-    └── Tazz-Mania.mra
-    └── Timber.mra
+    ├── Tazz-Mania.mra
+    ├── Timber.mra
     ├── _Alternatives
     │   └── _Tapper
     │       ├── Tapper (Budweiser, 1-27-84 - Alternate graphics).mra
