@@ -370,6 +370,7 @@ Download_MRA(){
         cd "$BASE_PATH/Scripts/.RetroDriven/MRA"
         rm * 2>/dev/null; true    
         touch "$MRA_FILENAME"
+    fi
 
         #Delete Unofficial MRA Files as needed
         cd "$MRA_PATH"
@@ -386,7 +387,6 @@ Download_MRA(){
                 rm -R -f "$MRA_PATH/_Unofficial/_Alternatives/$dir" 2>/dev/null; true
             fi
         done 
-    fi
     sleep 1
     clear 
 }
