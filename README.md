@@ -6,9 +6,10 @@ The purpose of this Script to to aid in downloading the correct MAME ROM Zips to
 <a href="https://cloud.retrodriven.com/index.php/s/Updater/download"> Script Updater and INI File Download </a>
 
 ## Usage ##
-* Download the ZIP file above and Extract/Copy <b>Update_RetroDriven_MAME.sh</b> and <b>Update_RetroDriven_MAME.ini</b> to your Scripts Folder on your MiSTer SD Card(typically /media/fat/Scripts).
+* Download the ZIP file above and Extract/Copy <b>Update_RetroDriven_MAME.sh</b>, <b>Update_RetroDriven_MAME.ini</b>, and <b>Cache_Remover_RetroDriven.sh<b> to your Scripts Folder on your MiSTer SD Card(typically /media/fat/Scripts).
 * Simply run <b>Update_RetroDriven_MAME.sh</b> via MiSTer Scripts Menu to Download/Update your MAME ROM Zips/MRAs and Unofficial Arcade Cores(RBF Files).
 * Optional: Changing the <b>Update_RetroDriven_MAME.ini</b> file is optional based on your setup/needs.
+* Optional: If you run into any issues downloading the MAME/MRA/HBMAME Zip files you can clear the Cache by running the <b>Cache_Remover_RetroDriven.sh<b> Script. After you do this please run the Updater Script again.
 
 ## New MRA Arcade Core Folder Structure ##
 The following below is the directory structure for the new MRA/Mame Arcade Core setup: 
@@ -20,7 +21,7 @@ The following below is the directory structure for the new MRA/Mame Arcade Core 
 
 You can place your Mame/HbMame Zip files into your Games folder instead like below: 
 * /Games/mame/*.zip
-* /Games/hbmame/*.zip
+* /Games/hbmame/*.zipb>
 
 ## Unofficial Arcade Core/RBF Downloads ##
 As of v2.0 of this Script, I have included the ability to Download/Update Unofficial Arcade Core RBF files.
