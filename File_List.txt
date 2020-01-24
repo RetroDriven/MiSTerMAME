@@ -73,6 +73,7 @@
 ├── ladybug.zip
 ├── lizwiz.zip
 ├── llander.zip
+├── luctoday.zip
 ├── mappy.zip
 ├── maxrpm.zip
 ├── mayday.zip
@@ -259,7 +260,6 @@
     ├── Rygar.mra
     ├── Space Invaders.mra
     ├── Spy Hunter.mra
-    ├── Super Bagman.mra
     ├── Super Cobra.mra
     ├── Tapper.mra
     ├── Tazz-Mania.mra
