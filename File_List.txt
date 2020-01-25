@@ -154,8 +154,6 @@
 ├── xevious.zip
 └── zigzagb.zip
 
-0 directories, 151 files
-
 ### Hbmame Files ###
 ├── 1942.zip
 ├── 1943kai.zip
@@ -255,6 +253,10 @@
 │   │       └── Wonder Boy (set 5, bootleg).mra
 
 ├── _Unofficial
+    ├── 1942.mra
+    ├── 1943 Kai Midway Kaisen.mra
+    ├── 1943 The Battle of Midway Mark II.mra
+    ├── 1943 The Battle of Midway.mra
     ├── Black Widow.mra
     ├── Donkey Kong Junior.mra
     ├── Rygar.mra
