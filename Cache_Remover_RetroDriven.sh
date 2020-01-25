@@ -23,3 +23,5 @@ rm HBMAME*.zip 2>/dev/null; true
 
 echo
 echo "RetroDriven MiSTerMAME Cache has been cleared!"
+echo
+exit 0
