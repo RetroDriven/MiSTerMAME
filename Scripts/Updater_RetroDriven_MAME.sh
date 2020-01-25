@@ -265,7 +265,7 @@ Download_MAME(){
         rm "$MAME_FILENAME"
         #Create Dummy Zip to avoid downloading the same file
         cd "$BASE_PATH/Scripts/.RetroDriven/MAME"
-        rm * 2>/dev/null; true    
+        rm MAME*.zip 2>/dev/null; true    
         touch "$MAME_FILENAME"
     fi
     sleep 1
@@ -315,7 +315,7 @@ Download_HBMAME(){
         rm "$HBMAME_FILENAME"
         #Create Dummy Zip to avoid downloading the same file
         cd "$BASE_PATH/Scripts/.RetroDriven/HBMAME"
-        rm * 2>/dev/null; true    
+        rm HBMAME*.zip 2>/dev/null; true    
         touch "$HBMAME_FILENAME"
     fi
     sleep 1
@@ -368,7 +368,7 @@ Download_MRA(){
         
         #Create Dummy Zip to avoid downloading the same file
         cd "$BASE_PATH/Scripts/.RetroDriven/MRA"
-        rm * 2>/dev/null; true    
+        rm MRA*.zip 2>/dev/null; true    
         touch "$MRA_FILENAME"
     fi
 
