@@ -36,6 +36,7 @@
 ├── clubpacm.zip
 ├── colony7.zip
 ├── commando.zip
+├── crater.zip
 ├── crush.zip
 ├── ddragon2.zip
 ├── ddragon.zip
@@ -47,6 +48,7 @@
 ├── dkongjr.zip
 ├── dkong.zip
 ├── dominos.zip
+├── domino.zip
 ├── dorodon.zip
 ├── dremshpr.zip
 ├── eeekk.zip
@@ -70,6 +72,7 @@
 ├── jin.zip
 ├── joust.zip
 ├── jumpshot.zip
+├── kroozr.zip
 ├── ladybug.zip
 ├── lizwiz.zip
 ├── llander.zip
@@ -120,6 +123,7 @@
 ├── scobra.zip
 ├── scramble.zip
 ├── seganinj.zip
+├── shollow.zip
 ├── sinistar.zip
 ├── snapjack.zip
 ├── solomon.zip
@@ -142,11 +146,14 @@
 ├── timeplt.zip
 ├── todruaga.zip
 ├── travrusa.zip
+├── tron.zip
+├── twotiger.zip
 ├── uniwars.zip
 ├── upndown.zip
 ├── vanvan.zip
 ├── victoryc.zip
 ├── vulgus.zip
+├── wacko.zip
 ├── warofbug.zip
 ├── wboy.zip
 ├── wmatch.zip
@@ -263,9 +270,7 @@
     ├── Space Invaders.mra
     ├── Spy Hunter.mra
     ├── Super Cobra.mra
-    ├── Tapper.mra
     ├── Tazz-Mania.mra
-    ├── Timber.mra
     ├── _Alternatives
     │   └── _Tapper
     │       ├── Tapper (Budweiser, 1-27-84 - Alternate graphics).mra
