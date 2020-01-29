@@ -481,6 +481,15 @@ fi
 #Unofficial Updater Function
 Unofficial_Updater(){
 
+if [ $DEV_NAME == "jotego" ];then
+    clear    
+    echo
+    echo "=========================================================================="
+    echo "                      Downloading Jotego Arcade Cores                     "
+    echo "=========================================================================="
+    sleep 1 
+fi
+
 mkdir -p "$MRA_PATH/cores"
 
 if [ "$DOWNLOAD_NEW_CORES" != "true" ] && [ "$DOWNLOAD_NEW_CORES" != "false" ] && [ "$DOWNLOAD_NEW_CORES" != "" ]
