@@ -29,6 +29,9 @@ By downloading and using this Script you are agreeing to the following:
 * I take no responsibility for any data loss or anything, use the script at your own risk.
 '
 
+# v2.2 - Added option to allow Unofficial MRA files to be copied over to the same path as the Official MRA files
+#        I highly suggest against changing this default option but this was a requested option for those that want it
+#        Keeping the Unofficial MRA files is a safer route and less of a chance for issues with the Official MRA files
 # v2.1 - Optimized Speed/Bandwidth
 #        Zip files will be dated. Dummy files are saved to Temp directory
 #        Script will look to the Dummy files and only download if there's a newer Zip
@@ -38,7 +41,7 @@ By downloading and using this Script you are agreeing to the following:
 # v1.9 - Remove Unofficial MRAs when they are MiSTer Official
 # v1.8 - Removed Support for Official MRA files and Alternatives
 #        These MRA files can be downloaded via Official Updater Script
-#	 All Unofficial MRA files will remain here until those become Official
+#	     All Unofficial MRA files will remain here until those become Official
 # v1.7 - Script overhaul completed. Crazy fast Updating speeds!
 #        Zipped Mame/HBMame/MRA/Alt MRA files on my end
 #        Zips will be downloaded and exracted only if the files are missing or out of date
@@ -107,6 +110,11 @@ IDDQD="True"
 #Set to "True" to download the Unofficial Arcade MRA Files(Jotego, gaz68, MrX, etc.)
 #Set to "False" if you do not want to download these files
 MRA_DOWNLOAD="True"
+
+#Set to "True" to keep the Unofficial MRA files in it's own Subfolder
+#Set to "False" to keep the Unofficial MRA files with the Official Folder
+#I HIGHLY SUGGEST keeping this set to "True" to avoid duplicates/mess/issues
+MRA_UNOFFICIAL_SUBFOLDER="True"
 
 #Set to "True" to download the HBMame Files
 #Set to "False" if you do not want to download these files
@@ -182,7 +190,7 @@ esac
 RetroDriven_Banner(){
 echo
 echo " ------------------------------------------------------------------------"
-echo "|                 RetroDriven: MiSTer MAME Updater v2.1                  |"
+echo "|                 RetroDriven: MiSTer MAME Updater v2.2                  |"
 echo " ------------------------------------------------------------------------"
 sleep 1
 }
@@ -370,6 +378,14 @@ Download_MRA(){
         cd "$BASE_PATH/Scripts/.RetroDriven/MRA"
         rm MRA*.zip 2>/dev/null; true    
         touch "$MRA_FILENAME"
+
+        #Copy MRA Files to Root MRA Path if Option is set to do so
+        if [ $MRA_UNOFFICIAL_SUBFOLDER == "False" ];then
+            cd "$MRA_PATH/_Unofficial"
+            cp -n *.mra "$MRA_PATH" 2>/dev/null; true
+            cd "$MRA_PATH/_Unofficial/_Alternatives"
+            cp -n -R * "$MRA_PATH/_alternatives" 2>/dev/null; true
+        fi   
     fi
 
         #Delete Unofficial MRA Files as needed
@@ -386,7 +402,13 @@ Download_MRA(){
             if [ -d "$dir" ];then
                 rm -R -f "$MRA_PATH/_Unofficial/_Alternatives/$dir" 2>/dev/null; true
             fi
-        done 
+        done
+        
+        #Delete Unofficial Subfolder if Option is set to do so
+        if [ $MRA_UNOFFICIAL_SUBFOLDER == "False" ];then
+        rm -R -f "$MRA_PATH/_Unofficial" 2>/dev/null; true
+        fi
+ 
     sleep 1
     clear 
 }
