@@ -385,6 +385,19 @@ Download_MRA(){
             cp -n *.mra "$MRA_PATH" 2>/dev/null; true
             cd "$MRA_PATH/_Unofficial/_Alternatives"
             cp -n -R * "$MRA_PATH/_alternatives" 2>/dev/null; true
+
+            cd "$MRA_PATH/_Jotego"
+            cp -n *.mra "$MRA_PATH" 2>/dev/null; true
+            cp -n 1942.mra "$MRA_PATH/1942_Jotego.mra" 2>/dev/null; true
+            cp -n "1943 Kai Midway Kaisen.mra" "$MRA_PATH/1943 Kai Midway Kaisen_Jotego.mra" 2>/dev/null; true
+            cp -n "1943 The Battle of Midway.mra" "$MRA_PATH/1943 The Battle of Midway_Jotego.mra" 2>/dev/null; true
+            cp -n "1943 The Battle of Midway Mark II.mra" "$MRA_PATH/1943 The Battle of Midway Mark II_Jotego.mra" 2>/dev/null; true
+            cp -n "Ghosts'n Goblins.mra" "$MRA_PATH/Ghosts'n Goblins_Jotego.mra" 2>/dev/null; true
+
+            cd "$MRA_PATH/_Sega System 1"
+            cp -n *.mra "$MRA_PATH" 2>/dev/null; true
+            cd "$MRA_PATH/_Sega System 1/_Alternatives"
+            cp -n -R * "$MRA_PATH/_alternatives" 2>/dev/null; true
         fi   
     fi
 
@@ -407,6 +420,8 @@ Download_MRA(){
         #Delete Unofficial Subfolder if Option is set to do so
         if [ $MRA_UNOFFICIAL_SUBFOLDER == "False" ];then
         rm -R -f "$MRA_PATH/_Unofficial" 2>/dev/null; true
+        rm -R -f "$MRA_PATH/_Jotego" 2>/dev/null; true
+        rm -R -f "$MRA_PATH/_Sega System 1" 2>/dev/null; true
         fi
  
     sleep 1
