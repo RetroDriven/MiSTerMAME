@@ -149,6 +149,7 @@
 ├── todruaga.zip
 ├── travrusa.zip
 ├── tron.zip
+├── turbotag.zip
 ├── twotiger.zip
 ├── ultratnk.zip
 ├── uniwars.zip
@@ -271,7 +272,6 @@
     ├── Donkey Kong Junior.mra
     ├── Rygar.mra
     ├── Space Invaders.mra
-    ├── Spy Hunter.mra
     ├── Super Cobra.mra
     ├── Tazz-Mania.mra
     ├── _Alternatives
