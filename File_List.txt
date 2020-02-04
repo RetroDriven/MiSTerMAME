@@ -7,7 +7,9 @@
 ├── alibaba.zip
 ├── alpha1v.zip
 ├── amidar.zip
+├── anteater.zip
 ├── arkanoid.zip
+├── armorcar.zip
 ├── astdelux.zip
 ├── asteroid.zip
 ├── atetris.zip
@@ -26,6 +28,7 @@
 ├── bubbles.zip
 ├── bullfgt.zip
 ├── bwidow.zip
+├── calipso.zip
 ├── canyon.zip
 ├── catacomb.zip
 ├── cavenger.zip
@@ -78,12 +81,14 @@
 ├── ladybug.zip
 ├── lizwiz.zip
 ├── llander.zip
+├── losttomb.zip
 ├── luctoday.zip
 ├── mappy.zip
 ├── maxrpm.zip
 ├── mayday.zip
 ├── mooncrst.zip
 ├── moonwarp.zip
+├── moonwar.zip
 ├── motos.zip
 ├── mpatrol.zip
 ├── mrgoemon.zip
@@ -131,6 +136,7 @@
 ├── solomon.zip
 ├── spatter.zip
 ├── spclaser.zip
+├── spdcoin.zip
 ├── splat.zip
 ├── sprint1.zip
 ├── spyhunt.zip
@@ -272,8 +278,6 @@
     ├── Donkey Kong Junior.mra
     ├── Rygar.mra
     ├── Space Invaders.mra
-    ├── Super Cobra.mra
-    ├── Tazz-Mania.mra
     ├── _Alternatives
     │   └── _Tapper
     │       ├── Tapper (Budweiser, 1-27-84 - Alternate graphics).mra
