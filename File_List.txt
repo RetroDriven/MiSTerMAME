@@ -77,6 +77,7 @@
 ├── journey.zip
 ├── joust.zip
 ├── jumpshot.zip
+├── kick.zip
 ├── kroozr.zip
 ├── ladybug.zip
 ├── lizwiz.zip
@@ -133,6 +134,7 @@
 ├── shollow.zip
 ├── sinistar.zip
 ├── snapjack.zip
+├── solarfox.zip
 ├── solomon.zip
 ├── spatter.zip
 ├── spclaser.zip
@@ -278,12 +280,3 @@
     ├── Donkey Kong Junior.mra
     ├── Rygar.mra
     ├── Space Invaders.mra
-    ├── _Alternatives
-    │   └── _Tapper
-    │       ├── Tapper (Budweiser, 1-27-84 - Alternate graphics).mra
-    │       ├── Tapper (Budweiser, 12-9-83).mra
-    │       ├── Tapper (Budweiser, Date Unknown).mra
-    │       ├── Tapper (Root Beer).mra
-    │       ├── Tapper (Simpsons Hack) - HBMame.mra
-    │       ├── Tapper (Simpsons Hack ver.81) - HBMame.mra
-    │       └── Tapper (Suntory).mra
