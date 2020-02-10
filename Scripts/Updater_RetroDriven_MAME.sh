@@ -251,8 +251,8 @@ Download_MAME(){
         echo "MAME Files are up to date!"
         sleep 1
         if [ $LOG_DOWNLOADED == "True" ];then
-            echo "Date: $TIMESTAMP" >> "$LOG_PATH/Mame_Downloaded.txt"
             echo "MAME Files are up to date!" >> "$LOG_PATH/Mame_Downloaded.txt"
+            echo "Date: $TIMESTAMP" >> "$LOG_PATH/Mame_Downloaded.txt"
             echo "" >> "$LOG_PATH/Mame_Downloaded.txt"                     
         fi        
     fi
@@ -301,8 +301,8 @@ Download_HBMAME(){
         echo "HBMAME Files are up to date!"
         sleep 1
         if [ $LOG_DOWNLOADED == "True" ];then
-            echo "Date: $TIMESTAMP" >> "$LOG_PATH/HBMame_Downloaded.txt"
             echo "HBMAME Files are up to date!" >> "$LOG_PATH/HBMame_Downloaded.txt"
+            echo "Date: $TIMESTAMP" >> "$LOG_PATH/HBMame_Downloaded.txt"
             echo "" >> "$LOG_PATH/HBMame_Downloaded.txt"                     
         fi        
     fi
@@ -351,8 +351,8 @@ Download_MRA(){
         echo "MRA Files are up to date!"
         sleep 1
         if [ $LOG_DOWNLOADED == "True" ];then
-            echo "Date: $TIMESTAMP" >> "$LOG_PATH/MRA_Downloaded.txt"
             echo "MRA Files are up to date!" >> "$LOG_PATH/MRA_Downloaded.txt"
+            echo "Date: $TIMESTAMP" >> "$LOG_PATH/MRA_Downloaded.txt"
             echo "" >> "$LOG_PATH/MRA_Downloaded.txt"                     
         fi        
     fi
@@ -797,8 +797,8 @@ if [ $RBF_DOWNLOAD == "True" ];then
 
     #Log File Timestamp for RBF Files
     if [ $LOG_DOWNLOADED == "True" ];then
-        echo "Date: $TIMESTAMP" >> "$LOG_PATH/RBF_Downloaded.txt"
         echo "" >> "$LOG_PATH/RBF_Downloaded.txt"
+        echo "Date: $TIMESTAMP" >> "$LOG_PATH/RBF_Downloaded.txt"
     fi
 fi
 
