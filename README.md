@@ -21,7 +21,7 @@ The following below is the directory structure for the new MRA/Mame Arcade Core 
 
 You can place your Mame/HbMame Zip files into your Games folder instead like below: 
 * /Games/mame/*.zip
-* /Games/hbmame/*.zipb>
+* /Games/hbmame/*.zip
 
 ## Unofficial Arcade Core/RBF Downloads ##
 As of v2.0 of this Script, I have included the ability to Download/Update Unofficial Arcade Core RBF files.
