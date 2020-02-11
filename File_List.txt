@@ -41,6 +41,7 @@
 ├── commando.zip
 ├── crater.zip
 ├── crush.zip
+├── darkplnt.zip
 ├── ddragon2.zip
 ├── ddragon.zip
 ├── defender.zip
@@ -85,8 +86,11 @@
 ├── losttomb.zip
 ├── luctoday.zip
 ├── mappy.zip
+├── mars.zip
 ├── maxrpm.zip
 ├── mayday.zip
+├── mimonkey.zip
+├── minefld.zip
 ├── mooncrst.zip
 ├── moonwarp.zip
 ├── moonwar.zip
@@ -122,6 +126,7 @@
 ├── rampage.zip
 ├── rbtapper.zip
 ├── regulus.zip
+├── rescue.zip
 ├── robotron.zip
 ├── rpatrol.zip
 ├── rygar.zip
@@ -146,6 +151,7 @@
 ├── stargate.zip
 ├── stargrds.zip
 ├── starjack.zip
+├── stratgyx.zip
 ├── suprglob.zip
 ├── swat.zip
 ├── tapper.zip
@@ -159,6 +165,7 @@
 ├── travrusa.zip
 ├── tron.zip
 ├── turbotag.zip
+├── turtles.zip
 ├── twotiger.zip
 ├── ultratnk.zip
 ├── uniwars.zip
