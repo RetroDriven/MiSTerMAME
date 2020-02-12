@@ -3,7 +3,7 @@ The purpose of this Script to to aid in downloading the correct MAME ROM Zips to
 
 # Updater Script and INI Download
 
-<a href="https://cloud.retrodriven.com/index.php/s/Updater/download"> Script Updater and INI File Download </a>
+<a href="https://retrodriven-nextcloud.cloud.seedboxes.cc/s/Updater/download"> Script Updater and INI File Download </a>
 
 ## Usage ##
 * Download the ZIP file above and Extract/Copy <b>Update_RetroDriven_MAME.sh</b>, <b>Update_RetroDriven_MAME.ini</b>, and <b>Cache_Remover_RetroDriven.sh</b> to your Scripts Folder on your MiSTer SD Card(typically /media/fat/Scripts).
@@ -21,12 +21,12 @@ The following below is the directory structure for the new MRA/Mame Arcade Core 
 
 You can place your Mame/HbMame Zip files into your Games folder instead like below: 
 * /Games/mame/*.zip
-* /Games/hbmame/*.zipb>
+* /Games/hbmame/*.zip
 
 ## Unofficial Arcade Core/RBF Downloads ##
 As of v2.0 of this Script, I have included the ability to Download/Update Unofficial Arcade Core RBF files.
 
-* Jotego's Public Cores will be Download/Updated just like his Updater Script is doing currentl. His Beta Cores are not included as those are for his Patreon Subscribers only.
+* Jotego's Public Cores will be Download/Updated just like his Updater Script is doing currently. NOTE: His Beta Cores are not included as those are for his Patreon Subscribers only.
 * All other Unofficial Arcade Cores are ones that I've come across that are not currently a part of the Official MiSTer GitHub.
 * If/When these Unofficial Arcade Cores are added to the Official MiSTer GitHub, they will be removed on my end to avoid duplicates/issues.
 * Be sure to set the INI Option "REMOVE_ARCADE_PREFIX" based on your current Arcade Core set up to avoid duplicates/issues. 
