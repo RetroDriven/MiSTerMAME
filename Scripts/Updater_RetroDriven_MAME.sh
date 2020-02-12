@@ -65,16 +65,16 @@ By downloading and using this Script you are agreeing to the following:
 
 #=========   URL OPTIONS   =========
 #Main URL
-MAIN_URL="https://cloud.retrodriven.com"
+MAIN_URL="https://retrodriven-nextcloud.cloud.seedboxes.cc"
 
 #MAME ROM Zips URL
-MAME_URL="https://cloud.retrodriven.com/index.php/s/MAME/download"
+MAME_URL="https://retrodriven-nextcloud.cloud.seedboxes.cc/s/MAME/download"
 
 #HBMAME ROM Zips URL
-HBMAME_URL="https://cloud.retrodriven.com/index.php/s/HBMAME/download"
+HBMAME_URL="https://retrodriven-nextcloud.cloud.seedboxes.cc/s/HBMAME/download"
 
 #MRA URL
-MRA_URL="https://cloud.retrodriven.com/index.php/s/MRA/download"
+MRA_URL="https://retrodriven-nextcloud.cloud.seedboxes.cc/s/MRA/download"
 
 #=========   DIRECTORY OPTIONS   =========
 
@@ -207,7 +207,7 @@ echo "==========================================================================
 Doom_Boot(){
 echo "W_Init: Init MAMEfiles."
 sleep 1
-echo "        adding mame.zip"
+echo "        adding MAME.zip"
 sleep 1
 echo "        RetroDriven version"
 sleep 1
@@ -259,6 +259,7 @@ Download_MAME(){
  
     #Download Zip and extract files/folders if they don't exist    
     if [ ! -f $MAME_FILENAME ];then    
+        echo "Downloading: $MAME_FILENAME"
         cd "$MAME_PATH"
         curl $CURL_RETRY $SSL_SECURITY_OPTION -OJs "$MAME_URL"
         #Save to Log if Option is Enabled    
@@ -308,7 +309,8 @@ Download_HBMAME(){
     fi
  
     #Download Zip and extract files/folders if they don't exist    
-    if [ ! -f $HBMAME_FILENAME ];then    
+    if [ ! -f $HBMAME_FILENAME ];then
+        echo "Downloading: $HBMAME_FILENAME"
         cd "$HBMAME_PATH"
         curl $CURL_RETRY $SSL_SECURITY_OPTION -OJs "$HBMAME_URL"
         #Save to Log if Option is Enabled    
@@ -359,6 +361,7 @@ Download_MRA(){
  
     #Download Zip and extract files/folders if they don't exist    
     if [ ! -f $MRA_FILENAME ];then    
+        echo "Downloading: $MRA_FILENAME"
         cd "$MRA_PATH"
         curl $CURL_RETRY $SSL_SECURITY_OPTION -OJs "$MRA_URL"
         #Save to Log if Option is Enabled    
