@@ -20,6 +20,8 @@ cd "$BASE_PATH/Scripts/.RetroDriven/MRA"
 rm MRA*.zip 2>/dev/null; true
 cd "$BASE_PATH/Scripts/.RetroDriven/HBMAME"
 rm HBMAME*.zip 2>/dev/null; true
+cd "$BASE_PATH/Scripts/.RetroDriven/Arduboy"
+rm Arduboy*.zip 2>/dev/null; true
 
 echo
 echo "RetroDriven MiSTerMAME Cache has been cleared!"
