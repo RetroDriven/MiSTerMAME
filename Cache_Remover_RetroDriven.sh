@@ -24,6 +24,6 @@ cd "$BASE_PATH/Scripts/.RetroDriven/Arduboy"
 rm Arduboy*.zip 2>/dev/null; true
 
 echo
-echo "RetroDriven MiSTerMAME Cache has been cleared!"
+echo "RetroDriven Cache has been cleared!"
 echo
 exit 0
