@@ -7,11 +7,6 @@ if [ "$ORIGINAL_SCRIPT_PATH" == "bash" ]
 then
 	ORIGINAL_SCRIPT_PATH=$(ps | grep "^ *$PPID " | grep -o "[^ ]*$")
 fi
-INI_PATH="Update_RetroDriven_MAME.ini"
-if [ -f $INI_PATH ]
-then
-	eval "$(cat $INI_PATH | tr -d '\r')"
-fi
 
 #Delete the Dummy/Cache Zip files
 cd "$BASE_PATH/Scripts/.RetroDriven/MAME" 2>/dev/null; true
