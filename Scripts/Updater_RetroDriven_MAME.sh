@@ -84,7 +84,7 @@ MRA_URL="https://retrodriven-nextcloud.cloud.seedboxes.cc/s/MRA/download"
 BASE_PATH="/media/fat"
 
 #Directory to save the Download Logs to if you enable this option below
-LOG_PATH=$BASE_PATH/"RetroDriven_Logs"
+LOG_PATH=$BASE_PATH/"RetroDriven_Logs/MAME"
 
 #Directory for MRA Files
 #This is your Arcade Directory. This can be change to your liking
