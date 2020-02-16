@@ -14,13 +14,13 @@ then
 fi
 
 #Delete the Dummy/Cache Zip files
-cd "$BASE_PATH/Scripts/.RetroDriven/MAME"
+cd "$BASE_PATH/Scripts/.RetroDriven/MAME" 2>/dev/null; true
 rm MAME*.zip 2>/dev/null; true
-cd "$BASE_PATH/Scripts/.RetroDriven/MRA"
+cd "$BASE_PATH/Scripts/.RetroDriven/MRA" 2>/dev/null; true
 rm MRA*.zip 2>/dev/null; true
-cd "$BASE_PATH/Scripts/.RetroDriven/HBMAME"
+cd "$BASE_PATH/Scripts/.RetroDriven/HBMAME" 2>/dev/null; true
 rm HBMAME*.zip 2>/dev/null; true
-cd "$BASE_PATH/Scripts/.RetroDriven/Arduboy"
+cd "$BASE_PATH/Scripts/.RetroDriven/Arduboy" 2>/dev/null; true
 rm Arduboy*.zip 2>/dev/null; true
 
 echo
