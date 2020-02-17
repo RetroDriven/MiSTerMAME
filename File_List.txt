@@ -71,6 +71,7 @@
 ├── gaplus.zip
 ├── gberet.zip
 ├── gng.zip
+├── gravitar.zip
 ├── gunsmoke.zip
 ├── imsorry.zip
 ├── invaders.zip
@@ -85,6 +86,7 @@
 ├── llander.zip
 ├── losttomb.zip
 ├── luctoday.zip
+├── lunarbat.zip
 ├── mappy.zip
 ├── mars.zip
 ├── maxrpm.zip
@@ -179,7 +181,6 @@
 ├── wmatch.zip
 ├── woodpeck.zip
 ├── xevious.zip
-└── zigzagb.zip
 
 ### Hbmame Files ###
 ├── 1942.zip
@@ -284,7 +285,6 @@
     ├── 1943 Kai Midway Kaisen.mra
     ├── 1943 The Battle of Midway Mark II.mra
     ├── 1943 The Battle of Midway.mra
-    ├── Black Widow.mra
     ├── Donkey Kong Junior.mra
     ├── Rygar.mra
     ├── Space Invaders.mra
