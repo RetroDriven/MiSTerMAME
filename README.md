@@ -32,6 +32,15 @@ As of v2.0 of this Script, I have included the ability to Download/Update Unoffi
 * Be sure to set the INI Option "REMOVE_ARCADE_PREFIX" based on your current Arcade Core set up to avoid duplicates/issues. 
 * If you do not wish to Download the Unofficial Arcade Core RBF files set "RBF_DOWNLOAD" to False in the INI File.
 
+## Credits ##
+* <a href="https://github.com/MiSTer-devel/Main_MiSTer/wiki">Sorgelig</a>
+* <a href="https://github.com/nullobject">Nullobject</a>
+* <a href="https://github.com/jotego">Jotego</a>
+* <a href="https://github.com/gaz68">gaz68</a>
+* <a href="https://github.com/alanswx">alanswx</a>
+* <a href="https://github.com/MrX-8B">MiSTer-X</a>
+* <a href="https://github.com/MiSTer-devel/MRA-Alternatives_MiSTer">eubrunosilva</a>
+
 ## Notes ##
 * You can save Mame and HBMame files within the "Games" Folder on your MiSTer SD Card. By default this Script saves these files within /_Arcade/Mame and /_Arcade/hbmame but the Path's can be change to your liking via the INI File.
 * Unofficial MRA files will be removed as Arcade Cores become Official within MiSTer Github and Official Downloader Script. These files within the _Unofficial Folder should be removed/cleaned up automatically but in the event that this does not take place you are free to delete the MRA files manually if needed. 
