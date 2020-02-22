@@ -235,11 +235,14 @@
 │   ├── Double Dragon II - The Revenge.mra
 │   ├── Double Dragon (World set 2).mra
 │   ├── F-1 Dream.mra
+│   ├── Final Fight.mra
 │   ├── Ghosts'n Goblins.mra
+│   ├── Ghouls'n Ghosts.mra
 │   ├── Gun.Smoke.mra
 │   ├── Popeye.mra
 │   ├── Tiger Road.mra
-│   └── Vulgus.mra
+│   ├── Vulgus.mra
+│   └── Willow.mra
 
 ├── _Sega System 1
 │   ├── 4-D Warriors.mra
