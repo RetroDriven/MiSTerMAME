@@ -61,6 +61,7 @@
 ├── eggor.zip
 ├── eyes.zip
 ├── f1dream.zip
+├── ffight.zip
 ├── flicky.zip
 ├── foodf.zip
 ├── frenzy.zip
@@ -71,6 +72,7 @@
 ├── galnamco.zip
 ├── gaplus.zip
 ├── gberet.zip
+├── ghouls.zip
 ├── gng.zip
 ├── gravitar.zip
 ├── gunsmoke.zip
@@ -179,9 +181,11 @@
 ├── wacko.zip
 ├── warofbug.zip
 ├── wboy.zip
+├── willow.zip
 ├── wmatch.zip
 ├── woodpeck.zip
 ├── xevious.zip
+└── zigzagb.zip
 
 ### Hbmame Files ###
 ├── 1942.zip
