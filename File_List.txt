@@ -62,6 +62,7 @@
 ├── eyes.zip
 ├── f1dream.zip
 ├── ffight.zip
+├── ffightae.zip
 ├── flicky.zip
 ├── foodf.zip
 ├── frenzy.zip
@@ -235,6 +236,7 @@
 │   ├── Double Dragon II - The Revenge.mra
 │   ├── Double Dragon (World set 2).mra
 │   ├── F-1 Dream.mra
+│   ├── Final Fight 30th Anniversary Edition.mra
 │   ├── Final Fight.mra
 │   ├── Ghosts'n Goblins.mra
 │   ├── Ghouls'n Ghosts.mra
@@ -243,6 +245,73 @@
 │   ├── Tiger Road.mra
 │   ├── Vulgus.mra
 │   └── Willow.mra
+├── _Alternatives
+│   ├── _1942
+│   │   ├── 1942 (First Version).mra
+│   │   ├── 1942 GalagaX + C64 Music - HBMame.mra
+│   │   ├── 1942 (Galaga X) - HBMame.mra
+│   │   ├── 1942 (Revision A).mra
+│   │   ├── 1942 Supercharger + C64 Music - HBMame.mra
+│   │   ├── 1942 (Williams Electronics license).mra
+│   │   ├── 1942 (With attract mode in free play) - HBMame.mra
+│   │   ├── 1942 (With C64 music) - HBMame.mra
+│   │   └── Supercharger 1942.mra
+│   ├── _1943
+│   │   ├── 1943 Kai Midway Kaisen(Ex Super Version 2009-02-10) - HBMame.mra
+│   │   ├── 1943 Midway Kaisen (Japan).mra
+│   │   ├── 1943 Midway Kaisen (Japan, no protection hack).mra
+│   │   ├── 1943 The Battle of Midway (bootleg set 2, hack of Japan set) - HBMame.mra
+│   │   ├── 1943 The Battle of Midway (Euro).mra
+│   │   └── 1943 The Battle of Midway (US).mra
+│   ├── _Bionic Commando
+│   │   ├── Bionic Commandos (bootleg, set 2).mra
+│   │   ├── Bionic Commando (US set 1).mra
+│   │   ├── Bionic Commando (US set 2).mra
+│   │   ├── Top Secret (Japan, old revision).mra
+│   │   └── Top Secret (Japan, revision B).mra
+│   ├── _Black Tiger
+│   │   ├── Black Dragon (bootleg).mra
+│   │   ├── Black Dragon (Japan).mra
+│   │   ├── Black Tiger - Black Dragon (mixed bootleg).mra
+│   │   ├── Black Tiger (bootleg set 1).mra
+│   │   ├── Black Tiger (bootleg set 2).mra
+│   │   └── Black Tiger (older).mra
+│   ├── _Commando
+│   │   ├── Commando Deluxe Again - HBMame.mra
+│   │   ├── Commando Deluxe - HBMame.mra
+│   │   ├── Commando (US set 1).mra
+│   │   ├── Commando (US set 2).mra
+│   │   └── Senjou no Ookami.mra
+│   ├── _Double Dragon
+│   │   ├── Double Dragon (bootleg).mra
+│   │   ├── Double Dragon (US set 1).mra
+│   │   ├── Double Dragon (US set 2).mra
+│   │   ├── Double Dragon (US set 3).mra
+│   │   ├── Double Dragon (World set 1).mra
+│   │   └── Double Dragon (World set 2).mra
+│   ├── _Ghosts'n Goblins
+│   │   ├── Ghosts'n Goblins (Italian bootleg, harder).mra
+│   │   ├── Ghosts'n Goblins (US).mra
+│   │   ├── Ghosts'n Goblins (World set 3).mra
+│   │   ├── Makai-Mura (Japan).mra
+│   │   ├── Makai-Mura (Japan Revision C).mra
+│   │   └── Makai-Mura (Japan Revision G).mra
+│   ├── _Gun.Smoke
+│   │   ├── Gun.Smoke (Japan, 851115).mra
+│   │   ├── Gun.Smoke (US, 851115, set 1).mra
+│   │   ├── Gun.Smoke (US, 851115, set 2).mra
+│   │   ├── Gun.Smoke (US, 860408).mra
+│   │   └── Gun.Smoke (World, 851115) (bootleg).mra
+│   ├── _Popeye
+│   │   └── Popeye (bootleg set 3).mra
+│   ├── _Tiger Road
+│   │   ├── Tiger Road (US, Romstar license).mra
+│   │   └── Tora e no Michi (Japan).mra
+│   └── _Vulgus
+│       ├── Mach-9 (bootleg of Vulgus).mra
+│       ├── Vulgus (Japan).mra
+│       └── Vulgus (set 2).mra
+
 
 ├── _Sega System 1
 │   ├── 4-D Warriors.mra
@@ -257,36 +326,36 @@
 │   ├── TeddyBoy Blues.mra
 │   ├── Up'n Down.mra
 │   └── Wonder Boy.mra
-│   ├── _Alternatives
-│   │   ├── _Flicky
-│   │   │   └── Flicky (128k Version, not encrypted).mra
-│   │   ├── _I'm Sorry
-│   │   │   └── Gonbee no I'm Sorry (315-5110, Japan).mra
-│   │   ├── _Mister Viking
-│   │   │   └── Mister Viking (315-5041, Japan).mra
-│   │   ├── _My Hero
-│   │   │   └── Seishun Scandal (315-5132, Japan).mra
-│   │   ├── _Regulus
-│   │   │   ├── Regulus (315-5033).mra
-│   │   │   └── Regulus (not encrypted).mra
-│   │   ├── _Sega Ninja
-│   │   │   ├── Ninja (315-5102).mra
-│   │   │   ├── Ninja Princess (315-5051, 128k Ver. bootleg).mra
-│   │   │   ├── Ninja Princess (315-5098, 128k Ver.).mra
-│   │   │   ├── Sega Ninja (315-5113).mra
-│   │   │   └── Sega Ninja (not encrypted).mra
-│   │   ├── _Spatter
-│   │   │   ├── Sanrin San Chan (Japan, 315-5xxx).mra
-│   │   │   └── Spatter (315-5099).mra
-│   │   ├── _TeddyBoy Blues
-│   │   │   └── TeddyBoy Blues (315-5115, Old Ver.).mra
-│   │   ├── _Up and Down
-│   │   │   └── Up'n Down (not encrypted).mra
-│   │   └── _Wonder Boy
-│   │       ├── Wonder Boy (prototype).mra
-│   │       ├── Wonder Boy (set 2, 315-5135).mra
-│   │       ├── Wonder Boy (set 3, 315-5135).mra
-│   │       └── Wonder Boy (set 5, bootleg).mra
+├── _Alternatives
+│   ├── _Flicky
+│   │   └── Flicky (128k Version, not encrypted).mra
+│   ├── _I'm Sorry
+│   │   └── Gonbee no I'm Sorry (315-5110, Japan).mra
+│   ├── _Mister Viking
+│   │   └── Mister Viking (315-5041, Japan).mra
+│   ├── _My Hero
+│   │   └── Seishun Scandal (315-5132, Japan).mra
+│   ├── _Regulus
+│   │   ├── Regulus (315-5033).mra
+│   │   └── Regulus (not encrypted).mra
+│   ├── _Sega Ninja
+│   │   ├── Ninja (315-5102).mra
+│   │   ├── Ninja Princess (315-5051, 128k Ver. bootleg).mra
+│   │   ├── Ninja Princess (315-5098, 128k Ver.).mra
+│   │   ├── Sega Ninja (315-5113).mra
+│   │   └── Sega Ninja (not encrypted).mra
+│   ├── _Spatter
+│   │   ├── Sanrin San Chan (Japan, 315-5xxx).mra
+│   │   └── Spatter (315-5099).mra
+│   ├── _TeddyBoy Blues
+│   │   └── TeddyBoy Blues (315-5115, Old Ver.).mra
+│   ├── _Up and Down
+│   │   └── Up'n Down (not encrypted).mra
+│   └── _Wonder Boy
+│       ├── Wonder Boy (prototype).mra
+│       ├── Wonder Boy (set 2, 315-5135).mra
+│       ├── Wonder Boy (set 3, 315-5135).mra
+│       └── Wonder Boy (set 5, bootleg).mra
 
 ├── _Unofficial
     ├── 1942.mra
@@ -296,4 +365,3 @@
     ├── Donkey Kong Junior.mra
     ├── Rygar.mra
     ├── Space Invaders.mra
-    
