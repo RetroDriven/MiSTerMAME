@@ -475,6 +475,10 @@ Download_MRA(){
             cp -n "1943 The Battle of Midway.mra" "$MRA_PATH/1943 The Battle of Midway_Jotego.mra" 2>/dev/null; true
             cp -n "1943 The Battle of Midway Mark II.mra" "$MRA_PATH/1943 The Battle of Midway Mark II_Jotego.mra" 2>/dev/null; true
             cp -n "Ghosts'n Goblins.mra" "$MRA_PATH/Ghosts'n Goblins_Jotego.mra" 2>/dev/null; true
+            cd "$MRA_PATH/_Jotego/_Alternatives"
+            cp -n -R * "$MRA_PATH/_alternatives" 2>/dev/null; true
+            cd "$MRA_PATH/_Jotego/_CPS1"
+            cp -n * "$MRA_PATH" 2>/dev/null; true
 
             cd "$MRA_PATH/_Sega System 1"
             cp -n *.mra "$MRA_PATH" 2>/dev/null; true
