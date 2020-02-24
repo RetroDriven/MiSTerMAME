@@ -499,6 +499,13 @@ Download_MRA(){
             fi
         done
         
+        #Remove CPS1 MRA files from Jotego root folder as these will be in a subfolder instead
+        cd "$MRA_PATH/_Jotego" 2>/dev/null; true
+        rm -f "Final Fight 30th Anniversary Edition.mra" 2>/dev/null; true
+        rm -f "Willow.mra" 2>/dev/null; true
+        rm -f "Final Fight.mra" 2>/dev/null; true
+        rm -f "Ghouls'n Ghosts.mra" 2>/dev/null; true
+        
         #Delete Unofficial Subfolder if Option is set to do so
         if [ $MRA_UNOFFICIAL_SUBFOLDER == "False" ];then
         rm -R -f "$MRA_PATH/_Unofficial" 2>/dev/null; true

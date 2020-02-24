@@ -236,14 +236,15 @@
 │   ├── Double Dragon II - The Revenge.mra
 │   ├── Double Dragon (World set 2).mra
 │   ├── F-1 Dream.mra
-│   ├── Final Fight 30th Anniversary Edition.mra
-│   ├── Final Fight.mra
 │   ├── Ghosts'n Goblins.mra
-│   ├── Ghouls'n Ghosts.mra
 │   ├── Gun.Smoke.mra
 │   ├── Popeye.mra
 │   ├── Tiger Road.mra
 │   ├── Vulgus.mra
+├── _CPS1
+│   ├── Final Fight 30th Anniversary Edition.mra
+│   ├── Final Fight.mra
+│   ├── Ghouls'n Ghosts.mra
 │   └── Willow.mra
 ├── _Alternatives
 │   ├── _1942
