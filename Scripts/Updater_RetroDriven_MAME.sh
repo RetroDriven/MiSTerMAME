@@ -406,7 +406,7 @@ Download_MRA(){
     
     #Get File Size
     #REMOTE_SIZE=$(curl -I "$MRA_URL" 2>/dev/null | grep "content-length" | head -1 | cut -d":" -f2 | sed '/^$/d;s/[[:space:]]//g')
-    REMOTE_SIZE=$(curl $CURL_RETRY $SSL_SECURITY_OPTION -s -L -I $MRA_URL | gawk -v IGNORECASE=1 '/^Content-Length/ { print $2 }')
+    REMOTE_SIZE=$(curl $CURL_RETRY $SSL_SECURITY_OPTION -s -L -I $MRA_URL | awk -v IGNORECASE=1 '/^Content-Length/ { print $2 }')
     
     if [ -f $MRA_FILENAME ];then
         echo "MRA Files are up to date!"
