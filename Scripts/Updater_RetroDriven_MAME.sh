@@ -430,6 +430,8 @@ Download_MRA(){
             if [ "$LOCAL_SIZE"!="$REMOTE_SIZE" ];then
                 echo
                 echo "WARNING: MRA Files did not download successfully! Please check your Internet Connection and/or try again."
+                echo "LSIZE: $LOCAL_SIZE"
+                echo "RSIZE: $REMOTE_SIZE"
                 sleep 5
                 clear
                 
