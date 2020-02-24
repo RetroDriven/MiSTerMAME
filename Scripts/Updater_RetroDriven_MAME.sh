@@ -427,7 +427,7 @@ Download_MRA(){
         LOCAL_SIZE=$(ls -l "$MRA_FILENAME" | awk '{ print $5}')
         
         #Handling for when Local and Remote Sizes don't match
-            if [ "$LOCAL_SIZE" -ne "$REMOTE_SIZE" ];then
+            if [ "$LOCAL_SIZE"!="$REMOTE_SIZE" ];then
                 echo
                 echo "WARNING: MRA Files did not download successfully! Please check your Internet Connection and/or try again."
                 sleep 5
