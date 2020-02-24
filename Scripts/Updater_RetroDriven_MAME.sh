@@ -29,6 +29,7 @@ By downloading and using this Script you are agreeing to the following:
 * I take no responsibility for any data loss or anything, use the script at your own risk.
 '
 
+# v2.3 - Added File Size Comparing and checking(Local vs Remote). This will avoid incomplete download issues
 # v2.2 - Added option to allow Unofficial MRA files to be copied over to the same path as the Official MRA files
 #        I highly suggest against changing this default option but this was a requested option for those that want it
 #        Keeping the Unofficial MRA files is a safer route and less of a chance for issues with the Official MRA files
@@ -190,7 +191,7 @@ esac
 RetroDriven_Banner(){
 echo
 echo " ------------------------------------------------------------------------"
-echo "|                 RetroDriven: MiSTer MAME Updater v2.2                  |"
+echo "|                 RetroDriven: MiSTer MAME Updater v2.3                  |"
 echo " ------------------------------------------------------------------------"
 sleep 1
 }
@@ -242,11 +243,16 @@ Download_MAME(){
     #Create Directories
     mkdir -p $MAME_PATH
     mkdir -p "$BASE_PATH/Scripts/.RetroDriven/MAME"
+    MAME_FAILED="False"
 
     #Get Current Zip File Name
     cd "$BASE_PATH/Scripts/.RetroDriven/MAME"
     MAME_FILENAME=$(curl -sIkL "$MAME_URL" | sed -r '/filename=/!d;s/.*filename=(.*)$/\1/' | sed -e 's|["'\'']||g' | sed '/^$/d;s/[[:space:]]//g')
     rm -f "download"
+    
+    #Get File Size
+    REMOTE_SIZE=$(curl -I "$MAME_URL" 2>/dev/null | grep "content-length" | head -1 | cut -d":" -f2 | sed '/^$/d;s/[[:space:]]//g')
+  
     if [ -f $MAME_FILENAME ];then
         echo "MAME Files are up to date!"
         sleep 1
@@ -262,6 +268,27 @@ Download_MAME(){
         echo "Downloading: $MAME_FILENAME"
         cd "$MAME_PATH"
         curl $CURL_RETRY $SSL_SECURITY_OPTION -OJs "$MAME_URL"
+        
+        #Check File Size
+        LOCAL_SIZE=$(ls -l "$MAME_FILENAME" | awk '{ print $5}')
+        
+        #Handling for when Local and Remote Sizes don't match
+            if [ $LOCAL_SIZE != $REMOTE_SIZE ];then
+                echo
+                echo "WARNING: MAME Files did not download successfully! Please check your Internet Connection and/or try again."
+                sleep 5
+                clear
+                
+                #Log handling
+                if [ $LOG_DOWNLOADED == "True" ];then
+                echo "WARNING: MAME Files did not download successfully! Please check your Internet Connection and/or try again." >> "$LOG_PATH/Mame_Downloaded.txt"
+                echo "Date: $TIMESTAMP" >> "$LOG_PATH/Mame_Downloaded.txt"
+                echo "" >> "$LOG_PATH/Mame_Downloaded.txt"                     
+                fi
+                MAME_FAILED="True"
+            return
+            fi
+            
         #Save to Log if Option is Enabled    
         if [ $LOG_DOWNLOADED == "True" ];then
             unzip -uo "$MAME_FILENAME" | tee -a "$LOG_PATH/Mame_Downloaded.txt"
@@ -293,11 +320,16 @@ Download_HBMAME(){
     #Create Directories
     mkdir -p "$HBMAME_PATH"    
     mkdir -p "$BASE_PATH/Scripts/.RetroDriven/HBMAME"
+    HBMAME_FAILED="False"
 
     #Get Current Zip File Name
     cd "$BASE_PATH/Scripts/.RetroDriven/HBMAME"    
     HBMAME_FILENAME=$(curl -sIkL "$HBMAME_URL" | sed -r '/filename=/!d;s/.*filename=(.*)$/\1/' | sed -e 's|["'\'']||g' | sed '/^$/d;s/[[:space:]]//g')
     rm -f "download"
+    
+    #Get File Size
+    REMOTE_SIZE=$(curl -I "$HBMAME_URL" 2>/dev/null | grep "content-length" | head -1 | cut -d":" -f2 | sed '/^$/d;s/[[:space:]]//g')
+
     if [ -f $HBMAME_FILENAME ];then
         echo "HBMAME Files are up to date!"
         sleep 1
@@ -313,6 +345,27 @@ Download_HBMAME(){
         echo "Downloading: $HBMAME_FILENAME"
         cd "$HBMAME_PATH"
         curl $CURL_RETRY $SSL_SECURITY_OPTION -OJs "$HBMAME_URL"
+        
+        #Check File Size
+        LOCAL_SIZE=$(ls -l "$HBMAME_FILENAME" | awk '{ print $5}')
+        
+        #Handling for when Local and Remote Sizes don't match
+            if [ $LOCAL_SIZE != $REMOTE_SIZE ];then
+                echo
+                echo "WARNING: HBMAME Files did not download successfully! Please check your Internet Connection and/or try again."
+                sleep 5
+                clear
+                
+                #Log handling
+                if [ $LOG_DOWNLOADED == "True" ];then
+                echo "WARNING: HBMAME Files did not download successfully! Please check your Internet Connection and/or try again." >> "$LOG_PATH/HBMame_Downloaded.txt"
+                echo "Date: $TIMESTAMP" >> "$LOG_PATH/HBMame_Downloaded.txt"
+                echo "" >> "$LOG_PATH/HBMame_Downloaded.txt"                     
+                fi
+                HBMAME_FAILED="True"
+            return
+            fi
+     
         #Save to Log if Option is Enabled    
         if [ $LOG_DOWNLOADED == "True" ];then
             unzip -uo "$HBMAME_FILENAME" | tee -a "$LOG_PATH/HBMame_Downloaded.txt"
@@ -344,11 +397,16 @@ Download_MRA(){
     #Create Directories
     mkdir -p $MRA_PATH    
     mkdir -p "$BASE_PATH/Scripts/.RetroDriven/MRA"
+    MRA_FAILED="False"
 
     #Get Current Zip File Name
     cd "$BASE_PATH/Scripts/.RetroDriven/MRA"
     MRA_FILENAME=$(curl -sIkL "$MRA_URL" | sed -r '/filename=/!d;s/.*filename=(.*)$/\1/' | sed -e 's|["'\'']||g' | sed '/^$/d;s/[[:space:]]//g')
     rm -f "download"
+    
+    #Get File Size
+    REMOTE_SIZE=$(curl -I "$MRA_URL" 2>/dev/null | grep "content-length" | head -1 | cut -d":" -f2 | sed '/^$/d;s/[[:space:]]//g')
+
     if [ -f $MRA_FILENAME ];then
         echo "MRA Files are up to date!"
         sleep 1
@@ -364,6 +422,27 @@ Download_MRA(){
         echo "Downloading: $MRA_FILENAME"
         cd "$MRA_PATH"
         curl $CURL_RETRY $SSL_SECURITY_OPTION -OJs "$MRA_URL"
+        
+        #Check File Size
+        LOCAL_SIZE=$(ls -l "$MRA_FILENAME" | awk '{ print $5}')
+        
+        #Handling for when Local and Remote Sizes don't match
+            if [ $LOCAL_SIZE != $REMOTE_SIZE ];then
+                echo
+                echo "WARNING: MRA Files did not download successfully! Please check your Internet Connection and/or try again."
+                sleep 5
+                clear
+                
+                #Log handling
+                if [ $LOG_DOWNLOADED == "True" ];then
+                echo "WARNING: MRA Files did not download successfully! Please check your Internet Connection and/or try again." >> "$LOG_PATH/MRA_Downloaded.txt"
+                echo "Date: $TIMESTAMP" >> "$LOG_PATH/MRA_Downloaded.txt"
+                echo "" >> "$LOG_PATH/MRA_Downloaded.txt"                     
+                fi
+                MRA_FAILED="True"
+            return
+            fi
+        
         #Save to Log if Option is Enabled    
         if [ $LOG_DOWNLOADED == "True" ];then
             unzip -uo "$MRA_FILENAME" | tee -a "$LOG_PATH/MRA_Downloaded.txt"
@@ -438,6 +517,16 @@ echo
 echo "=========================================================================="
 echo "                  MAME ZIP/MRA/RBF files are up to date!                  "
 echo "=========================================================================="
+echo
+if [ $MAME_FAILED == "True" ];then
+echo "WARNING: MAME Files did not download successfully! Please check your Internet Connection and/or try again."
+fi
+if [ $HBMAME_DOWNLOAD == "True" ] && [ $HBMAME_FAILED == "True" ];then
+echo "WARNING: HBMAME Files did not download successfully! Please check your Internet Connection and/or try again."
+fi
+if [ $MRA_DOWNLOAD == "True" ] && [ $MRA_FAILED == "True" ];then
+echo "WARNING: MRA Files did not download successfully! Please check your Internet Connection and/or try again."
+fi
 echo
 #echo "** Please visit RetroDriven.com for all of your MiSTer and Retro News and Updates! ***"
 #sleep 3
