@@ -252,7 +252,7 @@ Download_MAME(){
     
     #Get File Size
     REMOTE_SIZE=$(curl $CURL_RETRY $SSL_SECURITY_OPTION -s -L -I "$MAME_URL" | awk -v IGNORECASE=1 '/^content-length/ { print int($2) }')
-  
+    
     if [ -f $MAME_FILENAME ];then
         echo "MAME Files are up to date!"
         sleep 1
@@ -271,9 +271,14 @@ Download_MAME(){
         
         #Check File Size
         LOCAL_SIZE=$(ls -l "$MAME_FILENAME" | awk '{ print $5}')
-        
+
         #Handling for when Local and Remote Sizes don't match
             if [ $LOCAL_SIZE != $REMOTE_SIZE ];then
+            
+                MAME_FAILED="True"
+                MAME_LSIZE=$(($LOCAL_SIZE/1024/1024))
+                MAME_RSIZE=$(($REMOTE_SIZE/1024/1024))
+                
                 echo
                 echo "WARNING: MAME Files did not download successfully! Please check your Internet Connection and/or try again."
                 sleep 5
@@ -282,10 +287,11 @@ Download_MAME(){
                 #Log handling
                 if [ $LOG_DOWNLOADED == "True" ];then
                 echo "WARNING: MAME Files did not download successfully! Please check your Internet Connection and/or try again." >> "$LOG_PATH/Mame_Downloaded.txt"
+                echo "Total Size: $MAME_RSIZE" >> "$LOG_PATH/Mame_Downloaded.txt"
+                echo "Downloaded: $MAME_LSIZE" >> "$LOG_PATH/Mame_Downloaded.txt"
                 echo "Date: $TIMESTAMP" >> "$LOG_PATH/Mame_Downloaded.txt"
                 echo "" >> "$LOG_PATH/Mame_Downloaded.txt"                     
                 fi
-                MAME_FAILED="True"
             return
             fi
             
@@ -351,6 +357,11 @@ Download_HBMAME(){
         
         #Handling for when Local and Remote Sizes don't match
             if [ $LOCAL_SIZE != $REMOTE_SIZE ];then
+               
+                HBMAME_FAILED="True"
+                HBMAME_LSIZE=$(($LOCAL_SIZE/1024/1024))
+                HBMAME_RSIZE=$(($REMOTE_SIZE/1024/1024))
+               
                 echo
                 echo "WARNING: HBMAME Files did not download successfully! Please check your Internet Connection and/or try again."
                 sleep 5
@@ -359,10 +370,11 @@ Download_HBMAME(){
                 #Log handling
                 if [ $LOG_DOWNLOADED == "True" ];then
                 echo "WARNING: HBMAME Files did not download successfully! Please check your Internet Connection and/or try again." >> "$LOG_PATH/HBMame_Downloaded.txt"
+                echo "Total Size: $HBMAME_RSIZE" >> "$LOG_PATH/HBMame_Downloaded.txt"
+                echo "Downloaded: $HBMAME_LSIZE" >> "$LOG_PATH/HBMame_Downloaded.txt"
                 echo "Date: $TIMESTAMP" >> "$LOG_PATH/HBMame_Downloaded.txt"
                 echo "" >> "$LOG_PATH/HBMame_Downloaded.txt"                     
                 fi
-                HBMAME_FAILED="True"
             return
             fi
      
@@ -428,6 +440,11 @@ Download_MRA(){
         
         #Handling for when Local and Remote Sizes don't match
             if [ "$LOCAL_SIZE" != "$REMOTE_SIZE" ];then
+                
+                MRA_FAILED="True"
+                MRA_LSIZE=$(($LOCAL_SIZE/1024/1024))
+                MRA_RSIZE=$(($REMOTE_SIZE/1024/1024))
+                
                 echo
                 echo "WARNING: MRA Files did not download successfully! Please check your Internet Connection and/or try again."
                 sleep 5
@@ -436,10 +453,11 @@ Download_MRA(){
                 #Log handling
                 if [ $LOG_DOWNLOADED == "True" ];then
                 echo "WARNING: MRA Files did not download successfully! Please check your Internet Connection and/or try again." >> "$LOG_PATH/MRA_Downloaded.txt"
+                echo "Total Size: $MRA_RSIZE" >> "$LOG_PATH/MRA_Downloaded.txt"
+                echo "Downloaded: $MRA_LSIZE" >> "$LOG_PATH/MRA_Downloaded.txt"
                 echo "Date: $TIMESTAMP" >> "$LOG_PATH/MRA_Downloaded.txt"
                 echo "" >> "$LOG_PATH/MRA_Downloaded.txt"                     
                 fi
-                MRA_FAILED="True"
             return
             fi
         
@@ -531,12 +549,18 @@ echo "==========================================================================
 echo
 if [ $MAME_FAILED == "True" ];then
 echo "WARNING: MAME Files did not download successfully! Please check your Internet Connection and/or try again."
+echo "Total Size: $MAME_RSIZE MB"
+echo "Downloaded: $MAME_LSIZE MB"
 fi
 if [ $HBMAME_DOWNLOAD == "True" ] && [ $HBMAME_FAILED == "True" ];then
 echo "WARNING: HBMAME Files did not download successfully! Please check your Internet Connection and/or try again."
+echo "Total Size: $HBMAME_RSIZE MB"
+echo "Downloaded: $HBMAME_LSIZE MB"
 fi
 if [ $MRA_DOWNLOAD == "True" ] && [ $MRA_FAILED == "True" ];then
 echo "WARNING: MRA Files did not download successfully! Please check your Internet Connection and/or try again."
+echo "Total Size: $MRA_RSIZE MB"
+echo "Downloaded: $MRA_LSIZE MB"
 fi
 echo
 #echo "** Please visit RetroDriven.com for all of your MiSTer and Retro News and Updates! ***"
