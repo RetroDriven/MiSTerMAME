@@ -77,6 +77,7 @@
 ├── gng.zip
 ├── gravitar.zip
 ├── gunsmoke.zip
+├── gyruss.zip
 ├── imsorry.zip
 ├── invaders.zip
 ├── jin.zip
@@ -242,6 +243,7 @@
 │   ├── Tiger Road.mra
 │   ├── Vulgus.mra
 ├── _CPS1
+    ├── Daimakaimura (Japan).mra
 │   ├── Final Fight 30th Anniversary Edition.mra
 │   ├── Final Fight.mra
 │   ├── Ghouls'n Ghosts.mra
@@ -313,7 +315,6 @@
 │       ├── Vulgus (Japan).mra
 │       └── Vulgus (set 2).mra
 
-
 ├── _Sega System 1
 │   ├── 4-D Warriors.mra
 │   ├── Flicky.mra
@@ -364,5 +365,7 @@
     ├── 1943 The Battle of Midway Mark II.mra
     ├── 1943 The Battle of Midway.mra
     ├── Donkey Kong Junior.mra
+    ├── Gyruss (Centuri).mra
+    ├── Gyruss.mra
     ├── Rygar.mra
     ├── Space Invaders.mra
