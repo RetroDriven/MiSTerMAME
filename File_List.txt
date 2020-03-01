@@ -366,6 +366,8 @@
     ├── 1943 The Battle of Midway.mra
     ├── Donkey Kong Junior.mra
     ├── Gyruss (Centuri).mra
+    ├── Gyruss (bootleg).mra
     ├── Gyruss.mra
     ├── Rygar.mra
     ├── Space Invaders.mra
+    ├── Venus (bootleg of Gyruss).mra
