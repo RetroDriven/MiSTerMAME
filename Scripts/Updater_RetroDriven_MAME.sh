@@ -292,6 +292,8 @@ Download_MAME(){
                 echo "Date: $TIMESTAMP" >> "$LOG_PATH/Mame_Downloaded.txt"
                 echo "" >> "$LOG_PATH/Mame_Downloaded.txt"                     
                 fi
+                #Delete Zip as it is no longer needed after Unzip
+                rm "$MAME_FILENAME"
             return
             fi
             
@@ -375,6 +377,8 @@ Download_HBMAME(){
                 echo "Date: $TIMESTAMP" >> "$LOG_PATH/HBMame_Downloaded.txt"
                 echo "" >> "$LOG_PATH/HBMame_Downloaded.txt"                     
                 fi
+                #Delete Zip as it is no longer needed after Unzip
+                rm "$HBMAME_FILENAME"
             return
             fi
      
@@ -458,6 +462,8 @@ Download_MRA(){
                 echo "Date: $TIMESTAMP" >> "$LOG_PATH/MRA_Downloaded.txt"
                 echo "" >> "$LOG_PATH/MRA_Downloaded.txt"                     
                 fi
+                #Delete Zip as it is no longer needed after Unzip
+                rm "$MRA_FILENAME"
             return
             fi
         
