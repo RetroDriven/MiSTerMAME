@@ -145,6 +145,7 @@
 ├── seganinj.zip
 ├── shollow.zip
 ├── sinistar.zip
+├── skyskipr.zip
 ├── snapjack.zip
 ├── solarfox.zip
 ├── solomon.zip
