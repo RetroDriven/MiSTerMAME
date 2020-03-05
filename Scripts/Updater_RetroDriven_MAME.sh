@@ -264,10 +264,12 @@ Download_MAME(){
     fi
  
     #Download Zip and extract files/folders if they don't exist    
-    if [ ! -f $MAME_FILENAME ];then    
-        echo "Downloading: $MAME_FILENAME"
+    if [ ! -f $MAME_FILENAME ];then
+        SIZE=$(($REMOTE_SIZE/1024/1024))
+        echo -n "Downloading: $MAME_FILENAME($SIZE" ; echo -n "MB)";
         cd "$MAME_PATH"
-        curl $CURL_RETRY $SSL_SECURITY_OPTION -OJs "$MAME_URL"
+        echo
+        curl $CURL_RETRY $SSL_SECURITY_OPTION -OJ# "$MAME_URL"
         
         #Check File Size
         LOCAL_SIZE=$(ls -l "$MAME_FILENAME" | awk '{ print $5}')
@@ -350,8 +352,10 @@ Download_HBMAME(){
  
     #Download Zip and extract files/folders if they don't exist    
     if [ ! -f $HBMAME_FILENAME ];then
-        echo "Downloading: $HBMAME_FILENAME"
+        SIZE=$(($REMOTE_SIZE/1024/1024))
+        echo -n "Downloading: $HBMAME_FILENAME($SIZE" ; echo -n "MB)";
         cd "$HBMAME_PATH"
+        echo
         curl $CURL_RETRY $SSL_SECURITY_OPTION -OJs "$HBMAME_URL"
         
         #Check File Size
@@ -434,9 +438,11 @@ Download_MRA(){
     fi
  
     #Download Zip and extract files/folders if they don't exist    
-    if [ ! -f $MRA_FILENAME ];then    
-        echo "Downloading: $MRA_FILENAME"
+    if [ ! -f $MRA_FILENAME ];then
+        SIZE=$(($REMOTE_SIZE/1024))
+        echo -n "Downloading: $MRA_FILENAME($SIZE" ; echo -n "KB)";
         cd "$MRA_PATH"
+        echo
         curl $CURL_RETRY $SSL_SECURITY_OPTION -OJs "$MRA_URL"
         
         #Check File Size
