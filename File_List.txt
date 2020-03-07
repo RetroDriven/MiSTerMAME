@@ -132,6 +132,7 @@
 ├── popeye.zip
 ├── powerdrv.zip
 ├── puckman.zip
+├── quad.zip
 ├── raflesia.zip
 ├── rallyx.zip
 ├── rampage.zip
@@ -248,11 +249,16 @@
 │   ├── Tiger Road.mra
 │   ├── Vulgus.mra
 ├── _CPS1
-    ├── Daimakaimura (Japan).mra
+│   ├── Daimakaimura (Japan).mra
 │   ├── Final Fight 30th Anniversary Edition.mra
 │   ├── Final Fight.mra
 │   ├── Ghouls'n Ghosts.mra
+│   ├── Knights of the Round.mra
+│   ├── Magic Sword: Heroic Fantasy.mra
+│   ├── Quiz & Dragons: Capcom Quiz Game.mra
+│   ├── The King of Dragons.mra
 │   └── Willow.mra
+
 ├── _Alternatives
 │   ├── _1942
 │   │   ├── 1942 (First Version).mra
