@@ -57,6 +57,7 @@
 ├── dorodon.zip
 ├── dotron.zip
 ├── dremshpr.zip
+├── dynwar.zip
 ├── eeekk.zip
 ├── eggor.zip
 ├── eyes.zip
@@ -114,6 +115,7 @@
 ├── namco50.zip
 ├── namco51.zip
 ├── namco54.zip
+├── nemo.zip
 ├── ninjakun.zip
 ├── nrallyx.zip
 ├── orbitron.zip
@@ -132,7 +134,7 @@
 ├── popeye.zip
 ├── powerdrv.zip
 ├── puckman.zip
-├── quad.zip
+├── qad.zip
 ├── raflesia.zip
 ├── rallyx.zip
 ├── rampage.zip
@@ -165,6 +167,7 @@
 ├── stargrds.zip
 ├── starjack.zip
 ├── stratgyx.zip
+├── strider.zip
 ├── suprglob.zip
 ├── swat.zip
 ├── tapper.zip
