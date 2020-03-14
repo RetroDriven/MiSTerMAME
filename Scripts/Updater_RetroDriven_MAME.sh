@@ -43,7 +43,7 @@ By downloading and using this Script you are agreeing to the following:
 # v1.9 - Remove Unofficial MRAs when they are MiSTer Official
 # v1.8 - Removed Support for Official MRA files and Alternatives
 #        These MRA files can be downloaded via Official Updater Script
-#	     All Unofficial MRA files will remain here until those become Official
+#	 All Unofficial MRA files will remain here until those become Official
 # v1.7 - Script overhaul completed. Crazy fast Updating speeds!
 #        Zipped Mame/HBMame/MRA/Alt MRA files on my end
 #        Zips will be downloaded and exracted only if the files are missing or out of date
@@ -847,12 +847,12 @@ if [ $CPS1_SUBFOLDER == "False" ];then
 
 	#Move CPS1 Mame Zips
 	cd "$BASE_PATH/_CPS1/mame"
-	cp -f *.zip "$BASE_PATH/_Arcade/mame" 2>/dev/null; true
+	cp -f *.zip "$MAME_PATH" 2>/dev/null; true
 	
 	#Move CPS1 MRA Files
-	mkdir -p "$BASE_PATH/_Arcade/_Jotego/_CPS1"
+	mkdir -p "$MRA_PATH/_Jotego/_CPS1"
 	cd "$BASE_PATH/_CPS1"
-	cp -f *.mra "$BASE_PATH/_Arcade/_Jotego/_CPS1" 2>/dev/null; true
+	cp -f *.mra "$MRA_PATH/_Jotego/_CPS1" 2>/dev/null; true
 	
 	#Cleanup _CPS1 Folder/Files
 	rm -R -f "$BASE_PATH/_CPS1" 2>/dev/null; true
