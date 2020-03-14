@@ -238,21 +238,6 @@
 └── xevious.zip
 
 ### MRA Files ###
-├── _CPS1
-    ├── Daimakaimura (Japan).mra
-    ├── Dynasty Wars.mra
-    ├── Final Fight 30th Anniversary Edition.mra
-    ├── Final Fight.mra
-    ├── Ghouls'n Ghosts.mra
-    ├── Knights of the Round.mra
-    ├── Magic Sword - Heroic Fantasy.mra
-    ├── Nemo.mra
-    ├── Quiz and Dragons - Capcom Quiz Game.mra
-    ├── Strider.mra
-    ├── The King of Dragons.mra
-    ├── U.N. Squadron.mra
-    └── Willow.mra
-	
 ├── _Jotego
 │   ├── 1942.mra
 │   ├── 1943 Kai Midway Kaisen.mra
@@ -392,3 +377,19 @@
     ├── Rygar.mra
     ├── Space Invaders.mra
     ├── Venus (bootleg of Gyruss).mra
+	
+### CPS1 MRA Files ###
+├── _CPS1
+    ├── Daimakaimura (Japan).mra
+    ├── Dynasty Wars.mra
+    ├── Final Fight 30th Anniversary Edition.mra
+    ├── Final Fight.mra
+    ├── Ghouls'n Ghosts.mra
+    ├── Knights of the Round.mra
+    ├── Magic Sword - Heroic Fantasy.mra
+    ├── Nemo.mra
+    ├── Quiz and Dragons - Capcom Quiz Game.mra
+    ├── Strider.mra
+    ├── The King of Dragons.mra
+    ├── U.N. Squadron.mra
+    └── Willow.mra	
