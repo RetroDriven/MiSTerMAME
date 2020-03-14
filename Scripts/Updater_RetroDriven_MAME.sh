@@ -124,6 +124,10 @@ MRA_DOWNLOAD="True"
 #I HIGHLY SUGGEST keeping this set to "True" to avoid duplicates/mess/issues
 MRA_UNOFFICIAL_SUBFOLDER="True"
 
+#Set to "True" if you'd like to keep the deault $BASE_PATH/_CPS1 folder structure for CPS1 games
+#Set to "False" if you'd like to have the CPS1 games witin $BASE_PATH/_Arcade/_Jotego/_CPS1
+CPS1_SUBFOLDER="True"
+
 #Set to "True" to download the HBMame Files
 #Set to "False" if you do not want to download these files
 HBMAME_DOWNLOAD="True"
@@ -836,6 +840,22 @@ if [ $MRA_DOWNLOAD == "True" ];then
 
 	#Download CPS1 MRA Files
 	Download_MRA_CPS1
+fi
+
+#CPS1 Subfolder
+if [ $CPS1_SUBFOLDER == "False" ];then
+
+	#Move CPS1 Mame Zips
+	cd "$BASE_PATH/_CPS1/mame"
+	cp -f *.zip "$BASE_PATH/_Arcade/mame" 2>/dev/null; true
+	
+	#Move CPS1 MRA Files
+	mkdir -p "$BASE_PATH/_Arcade/_Jotego/_CPS1"
+	cd "$BASE_PATH/_CPS1"
+	cp -f *.mra "$BASE_PATH/_Arcade/_Jotego/_CPS1" 2>/dev/null; true
+	
+	#Cleanup _CPS1 Folder/Files
+	rm -R -f "$BASE_PATH/_CPS1" 2>/dev/null; true
 fi
 
 echo
