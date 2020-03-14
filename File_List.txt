@@ -57,13 +57,10 @@
 ├── dorodon.zip
 ├── dotron.zip
 ├── dremshpr.zip
-├── dynwar.zip
 ├── eeekk.zip
 ├── eggor.zip
 ├── eyes.zip
 ├── f1dream.zip
-├── ffight.zip
-├── ffightae.zip
 ├── flicky.zip
 ├── foodf.zip
 ├── frenzy.zip
@@ -74,7 +71,6 @@
 ├── galnamco.zip
 ├── gaplus.zip
 ├── gberet.zip
-├── ghouls.zip
 ├── gng.zip
 ├── gravitar.zip
 ├── gunsmoke.zip
@@ -86,8 +82,6 @@
 ├── joust.zip
 ├── jumpshot.zip
 ├── kick.zip
-├── knights.zip
-├── kod.zip
 ├── kroozr.zip
 ├── ladybug.zip
 ├── lizwiz.zip
@@ -110,12 +104,10 @@
 ├── mrtnt.zip
 ├── mrviking.zip
 ├── mspacman.zip
-├── msword.zip
 ├── myhero.zip
 ├── namco50.zip
 ├── namco51.zip
 ├── namco54.zip
-├── nemo.zip
 ├── ninjakun.zip
 ├── nrallyx.zip
 ├── orbitron.zip
@@ -134,7 +126,6 @@
 ├── popeye.zip
 ├── powerdrv.zip
 ├── puckman.zip
-├── qad.zip
 ├── raflesia.zip
 ├── rallyx.zip
 ├── rampage.zip
@@ -167,7 +158,6 @@
 ├── stargrds.zip
 ├── starjack.zip
 ├── stratgyx.zip
-├── strider.zip
 ├── suprglob.zip
 ├── swat.zip
 ├── tapper.zip
@@ -185,7 +175,6 @@
 ├── twotiger.zip
 ├── ultratnk.zip
 ├── uniwars.zip
-├── unsquad.zip
 ├── upndown.zip
 ├── vanvan.zip
 ├── victoryc.zip
@@ -193,11 +182,24 @@
 ├── wacko.zip
 ├── warofbug.zip
 ├── wboy.zip
-├── willow.zip
 ├── wmatch.zip
 ├── woodpeck.zip
 ├── xevious.zip
 └── zigzagb.zip
+
+## CPS1 Mame Files ##
+├── dynwar.zip
+├── ffight.zip
+├── ffightae.zip
+├── ghouls.zip
+├── knights.zip
+├── kod.zip
+├── msword.zip
+├── nemo.zip
+├── qad.zip
+├── strider.zip
+├── unsquad.zip
+└── willow.zip
 
 ### Hbmame Files ###
 ├── 1942.zip
@@ -236,6 +238,21 @@
 └── xevious.zip
 
 ### MRA Files ###
+├── _CPS1
+    ├── Daimakaimura (Japan).mra
+    ├── Dynasty Wars.mra
+    ├── Final Fight 30th Anniversary Edition.mra
+    ├── Final Fight.mra
+    ├── Ghouls'n Ghosts.mra
+    ├── Knights of the Round.mra
+    ├── Magic Sword - Heroic Fantasy.mra
+    ├── Nemo.mra
+    ├── Quiz and Dragons - Capcom Quiz Game.mra
+    ├── Strider.mra
+    ├── The King of Dragons.mra
+    ├── U.N. Squadron.mra
+    └── Willow.mra
+	
 ├── _Jotego
 │   ├── 1942.mra
 │   ├── 1943 Kai Midway Kaisen.mra
@@ -252,20 +269,6 @@
 │   ├── Popeye.mra
 │   ├── Tiger Road.mra
 │   ├── Vulgus.mra
-├── _CPS1
-    ├── Daimakaimura (Japan).mra
-    ├── Dynasty Wars.mra
-    ├── Final Fight 30th Anniversary Edition.mra
-    ├── Final Fight.mra
-    ├── Ghouls'n Ghosts.mra
-    ├── Knights of the Round.mra
-    ├── Magic Sword - Heroic Fantasy.mra
-    ├── Nemo.mra
-    ├── Quiz and Dragons - Capcom Quiz Game.mra
-    ├── Strider.mra
-    ├── The King of Dragons.mra
-    ├── U.N. Squadron.mra
-    └── Willow.mra
 ├── _Alternatives
 │   ├── _1942
 │   │   ├── 1942 (First Version).mra
