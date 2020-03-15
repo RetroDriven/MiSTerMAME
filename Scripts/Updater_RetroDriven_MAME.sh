@@ -339,32 +339,52 @@ Download_MAME_CPS1(){
     sleep 1
     
     #Create Directories
-    MAME_CPS1_PATH="$BASE_PATH/_CPS1/mame"
-	mkdir -p $MAME_CPS1_PATH
     mkdir -p "$BASE_PATH/Scripts/.RetroDriven/MAME_CPS1"
-	mkdir -p "$BASE_PATH/_CPS1/hbmame"
-	mkdir -p "$BASE_PATH/_CPS1/cores"
     MAME_CPS1_FAILED="False"
 	
-	#Cleanup old CPS1 MAME Zips
-	cd "$MAME_PATH"
-	rm -f "dynwar.zip" 2>/dev/null; true
-	rm -f "ffight.zip" 2>/dev/null; true
-	rm -f "ffightae.zip" 2>/dev/null; true
-	rm -f "ghouls.zip" 2>/dev/null; true
-	rm -f "knights.zip" 2>/dev/null; true
-	rm -f "kod.zip" 2>/dev/null; true
-	rm -f "msword.zip" 2>/dev/null; true
-	rm -f "nemo.zip" 2>/dev/null; true
-	rm -f "qad.zip" 2>/dev/null; true
-	rm -f "strider.zip" 2>/dev/null; true
-	rm -f "unsquad.zip" 2>/dev/null; true
-	rm -f "willow.zip" 2>/dev/null; true
+	#CPS1 Subfolder
+	if [ $CPS1_SUBFOLDER == "True" ];then
+		
+		#Set/Create Directories
+		MAME_CPS1_PATH="$BASE_PATH/_CPS1/mame"
+		CPS1_CORE_PATH="$BASE_PATH/_CPS1/cores"
+		CPS1_HBMAME_PATH="$BASE_PATH/_CPS1/hbmame"
+		mkdir -p "$MAME_CPS1_PATH"
+		mkdir -p "$CPS1_CORE_PATH"
+		mkdir -p "$CPS1_HBMAME_PATH"
+		
+		#Cleanup old CPS1 MAME Zips
+		cd "$MAME_PATH"
+		rm -f "dynwar.zip" 2>/dev/null; true
+		rm -f "ffight.zip" 2>/dev/null; true
+		rm -f "ffightae.zip" 2>/dev/null; true
+		rm -f "ghouls.zip" 2>/dev/null; true
+		rm -f "knights.zip" 2>/dev/null; true
+		rm -f "kod.zip" 2>/dev/null; true
+		rm -f "msword.zip" 2>/dev/null; true
+		rm -f "nemo.zip" 2>/dev/null; true
+		rm -f "qad.zip" 2>/dev/null; true
+		rm -f "strider.zip" 2>/dev/null; true
+		rm -f "unsquad.zip" 2>/dev/null; true
+		rm -f "willow.zip" 2>/dev/null; true
+		
+		#Copy jtcps1 Core if it exists
+		cd "$MRA_PATH/cores" 2>/dev/null; true
+		cp -f jtcps1* "$CPS1_CORE_PATH" 2>/dev/null; true
+		rm -f jtcps1*
+	fi
 	
-	#Copy jtcps1 Core if it exists
-	cd "$MRA_PATH/cores" 2>/dev/null; true
-	cp -f jtcps1* "$BASE_PATH/_CPS1/cores" 2>/dev/null; true
-	rm -f jtcps1*
+	#Non CPS1 Subfolder
+	if [ $CPS1_SUBFOLDER == "False" ];then
+		
+		#Set/Create Directories
+		MAME_CPS1_PATH="$MAME_PATH"
+		CPS1_CORE_PATH="$MRA_PATH/cores"
+		CPS1_HBMAME_PATH="$HBMAME_PATH"
+		mkdir -p "$MAME_CPS1_PATH"
+		mkdir -p "$CPS1_CORE_PATH"
+		mkdir -p "$CPS1_HBMAME_PATH"		
+	fi
 
     #Get Current Zip File Name
     cd "$BASE_PATH/Scripts/.RetroDriven/MAME_CPS1"
@@ -682,14 +702,28 @@ Download_MRA_CPS1(){
     sleep 1 
 
     #Create Directories
-	MRA_CPS1_PATH="$BASE_PATH/_CPS1"
-    mkdir -p $MRA_CPS1_PATH    
     mkdir -p "$BASE_PATH/Scripts/.RetroDriven/MRA_CPS1"
     MRA_CPS1_FAILED="False"
 	
-	#Cleanup old MRA files
-	rm -R -f "$MRA_PATH/_Jotego/_CPS1" 2>/dev/null; true
+	#CPS1 Subfolder
+	if [ $CPS1_SUBFOLDER == "True" ];then
 
+		#Set/Create Directories
+		MRA_CPS1_PATH="$BASE_PATH/_CPS1"
+		mkdir -p "$MRA_CPS1_PATH" 
+		
+		#Cleanup old MRA files
+		rm -R -f "$MRA_PATH/_Jotego/_CPS1" 2>/dev/null; true
+	fi
+	
+	#Non CPS1 Subfolder
+	if [ $CPS1_SUBFOLDER == "False" ];then	
+	
+		#Set/Create Directories
+		MRA_CPS1_PATH="$MRA_PATH/_Jotego/_CPS1"
+		mkdir -p "$MRA_CPS1_PATH" 
+	fi
+	
     #Get Current Zip File Name
     cd "$BASE_PATH/Scripts/.RetroDriven/MRA_CPS1"
     MRA_CPS1_FILENAME=$(curl -sIkL "$MRA_CPS1_URL" | sed -r '/filename=/!d;s/.*filename=(.*)$/\1/' | sed -e 's|["'\'']||g' | sed '/^$/d;s/[[:space:]]//g')
@@ -847,25 +881,26 @@ if [ $MRA_DOWNLOAD == "True" ];then
 	Download_MRA_CPS1
 fi
 
-#CPS1 Subfolder
 if [ $CPS1_SUBFOLDER == "False" ];then
-
-	#Move CPS1 Mame Zips
-	cd "$BASE_PATH/_CPS1/mame"
-	cp -f *.zip "$MAME_PATH" 2>/dev/null; true
-	
-	#Move CPS1 MRA Files
-	mkdir -p "$MRA_PATH/_Jotego/_CPS1"
-	cd "$BASE_PATH/_CPS1"
-	cp -f *.mra "$MRA_PATH/_Jotego/_CPS1" 2>/dev/null; true
 	
 	#Move jtcps1 Core if it exists
 	cd "$BASE_PATH/_CPS1/cores" 2>/dev/null; true
 	mkdir -p "$MRA_PATH/cores" 2>/dev/null; true
 	cp -f jtcps1* "$MRA_PATH/cores" 2>/dev/null; true
-	
+
 	#Cleanup _CPS1 Folder/Files
 	rm -R -f "$BASE_PATH/_CPS1" 2>/dev/null; true
+fi
+
+if [ $CPS1_SUBFOLDER == "True" ];then
+	
+	#Move jtcps1 Core if it exists
+	cd "$MRA_PATH/cores" 2>/dev/null; true
+	mkdir -p "$BASE_PATH/_CPS1/cores" 2>/dev/null; true
+	cp -f jtcps1* "$BASE_PATH/_CPS1/cores" 2>/dev/null; true
+	
+	#Cleanup _CPS1 Folder/Files
+	rm -R -f "$MRA_PATH/_Jotego/_CPS1" 2>/dev/null; true
 fi
 
 echo
