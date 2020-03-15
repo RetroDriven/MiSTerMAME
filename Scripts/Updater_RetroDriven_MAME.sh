@@ -109,6 +109,10 @@ MAME_PATH=$MRA_PATH/"mame"
 #Arcade Path: HBMAME_PATH=$MRA_PATH/"hbmame"
 HBMAME_PATH=$MRA_PATH/"hbmame"
 
+#CPS1 Folder Name: Change this if you'd like to use a custom folder name besides CPS1
+#NOTE: Do not add the underscore to the name as that will be done automatically
+CPS1_FOLDER="CPS1"
+
 #=========   USER OPTIONS   =========
 
 #Set to "True" for DOOM Loading screen and Pure Retro Nostalgia
@@ -346,9 +350,9 @@ Download_MAME_CPS1(){
 	if [ $CPS1_SUBFOLDER == "True" ];then
 		
 		#Set/Create Directories
-		MAME_CPS1_PATH="$BASE_PATH/_CPS1/mame"
-		CPS1_CORE_PATH="$BASE_PATH/_CPS1/cores"
-		CPS1_HBMAME_PATH="$BASE_PATH/_CPS1/hbmame"
+		MAME_CPS1_PATH="$BASE_PATH/_$CPS1_FOLDER/mame"
+		CPS1_CORE_PATH="$BASE_PATH/_$CPS1_FOLDER/cores"
+		CPS1_HBMAME_PATH="$BASE_PATH/_$CPS1_FOLDER/hbmame"
 		mkdir -p "$MAME_CPS1_PATH"
 		mkdir -p "$CPS1_CORE_PATH"
 		mkdir -p "$CPS1_HBMAME_PATH"
@@ -372,6 +376,7 @@ Download_MAME_CPS1(){
 		cd "$MRA_PATH/cores" 2>/dev/null; true
 		cp -f jtcps1* "$CPS1_CORE_PATH" 2>/dev/null; true
 		rm -f jtcps1*
+		
 	fi
 	
 	#Non CPS1 Subfolder
@@ -709,18 +714,18 @@ Download_MRA_CPS1(){
 	if [ $CPS1_SUBFOLDER == "True" ];then
 
 		#Set/Create Directories
-		MRA_CPS1_PATH="$BASE_PATH/_CPS1"
+		MRA_CPS1_PATH="$BASE_PATH/_$CPS1_FOLDER"
 		mkdir -p "$MRA_CPS1_PATH" 
 		
 		#Cleanup old MRA files
-		rm -R -f "$MRA_PATH/_Jotego/_CPS1" 2>/dev/null; true
+		rm -R -f "$MRA_PATH/_Jotego/_$CPS1_FOLDER" 2>/dev/null; true
 	fi
 	
 	#Non CPS1 Subfolder
 	if [ $CPS1_SUBFOLDER == "False" ];then	
 	
 		#Set/Create Directories
-		MRA_CPS1_PATH="$MRA_PATH/_Jotego/_CPS1"
+		MRA_CPS1_PATH="$MRA_PATH/_Jotego/_$CPS1_FOLDER"
 		mkdir -p "$MRA_CPS1_PATH" 
 	fi
 	
@@ -859,6 +864,74 @@ if [ $LOG_DOWNLOADED == "True" ];then
     TIMESTAMP=`date "+%m-%d-%Y @ %I:%M%P"`
 fi
 
+if [ $CPS1_SUBFOLDER == "False" ];then
+
+	#Detect INI Change and initial CPS1 Downloads
+	if [ -d "$BASE_PATH/_$CPS1_FOLDER" ] || [ -d "$BASE_PATH/_CPS1" ]; then
+		
+		#Clear CPS1 Cache
+		cd "$BASE_PATH/Scripts/.RetroDriven/MAME_CPS1" 2>/dev/null; true
+		rm MAME*.zip 2>/dev/null; true
+		cd "$BASE_PATH/Scripts/.RetroDriven/MRA_CPS1" 2>/dev/null; true
+		rm MRA*.zip 2>/dev/null; true
+		
+		#Download CPS1 MAME Zips
+		Download_MAME_CPS1
+		
+		#Download CPS1 MRA Files
+		Download_MRA_CPS1
+		
+	fi
+	
+	#Move jtcps1 Core if it exists
+	cd "$BASE_PATH/_CPS1/cores" 2>/dev/null; true
+	cp -f jtcps1* "$MRA_PATH/cores" 2>/dev/null; true
+
+	#Cleanup _CPS1 Folder/Files
+	rm -R -f "$BASE_PATH/_CPS1" 2>/dev/null; true
+	
+	#Move jtcps1 Core if it exists
+	cd "$BASE_PATH/_$CPS1_FOLDER/cores" 2>/dev/null; true
+	cp -f jtcps1* "$MRA_PATH/cores" 2>/dev/null; true
+
+	#Cleanup _CPS1 Folder/Files
+	rm -R -f "$BASE_PATH/_$CPS1_FOLDER" 2>/dev/null; true		
+fi
+
+if [ $CPS1_SUBFOLDER == "True" ];then
+
+	#Detect INI Change and initial CPS1 Downloads
+	if [ -d "$MRA_PATH/_Jotego/_$CPS1_FOLDER" ] || [ -d "$MRA_PATH/_Jotego/_CPS1" ]; then
+		
+		#Clear CPS1 Cache
+		cd "$BASE_PATH/Scripts/.RetroDriven/MAME_CPS1" 2>/dev/null; true
+		rm MAME*.zip 2>/dev/null; true
+		cd "$BASE_PATH/Scripts/.RetroDriven/MRA_CPS1" 2>/dev/null; true
+		rm MRA*.zip 2>/dev/null; true
+		
+		#Download CPS1 MAME Zips
+		Download_MAME_CPS1
+		
+		#Download CPS1 MRA Files
+		Download_MRA_CPS1
+		
+	fi
+	
+	#Move jtcps1 Core if it exists
+	cd "$MRA_PATH/cores" 2>/dev/null; true
+	cp -f jtcps1* "$BASE_PATH/_$CPS1_FOLDER/cores" 2>/dev/null; true
+	
+	#Cleanup _CPS1 Folder/Files
+	rm -R -f "$MRA_PATH/_Jotego/_$CPS1_FOLDER" 2>/dev/null; true
+	
+	#Move jtcps1 Core if it exists
+	cd "$MRA_PATH/cores" 2>/dev/null; true
+	cp -f jtcps1* "$BASE_PATH/_CPS1/cores" 2>/dev/null; true
+	
+	#Cleanup _CPS1 Folder/Files
+	rm -R -f "$MRA_PATH/_Jotego/_CPS1" 2>/dev/null; true
+fi
+
 #Download MAME Zips
 Download_MAME
 
@@ -879,28 +952,6 @@ if [ $MRA_DOWNLOAD == "True" ];then
 
 	#Download CPS1 MRA Files
 	Download_MRA_CPS1
-fi
-
-if [ $CPS1_SUBFOLDER == "False" ];then
-	
-	#Move jtcps1 Core if it exists
-	cd "$BASE_PATH/_CPS1/cores" 2>/dev/null; true
-	mkdir -p "$MRA_PATH/cores" 2>/dev/null; true
-	cp -f jtcps1* "$MRA_PATH/cores" 2>/dev/null; true
-
-	#Cleanup _CPS1 Folder/Files
-	rm -R -f "$BASE_PATH/_CPS1" 2>/dev/null; true
-fi
-
-if [ $CPS1_SUBFOLDER == "True" ];then
-	
-	#Move jtcps1 Core if it exists
-	cd "$MRA_PATH/cores" 2>/dev/null; true
-	mkdir -p "$BASE_PATH/_CPS1/cores" 2>/dev/null; true
-	cp -f jtcps1* "$BASE_PATH/_CPS1/cores" 2>/dev/null; true
-	
-	#Cleanup _CPS1 Folder/Files
-	rm -R -f "$MRA_PATH/_Jotego/_CPS1" 2>/dev/null; true
 fi
 
 echo
