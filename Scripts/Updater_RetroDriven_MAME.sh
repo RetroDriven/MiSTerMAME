@@ -360,6 +360,11 @@ Download_MAME_CPS1(){
 	rm -f "strider.zip" 2>/dev/null; true
 	rm -f "unsquad.zip" 2>/dev/null; true
 	rm -f "willow.zip" 2>/dev/null; true
+	
+	#Copy jtcps1 Core if it exists
+	cd "$MRA_PATH/cores" 2>/dev/null; true
+	cp -f jtcps1* "$BASE_PATH/_CPS1/cores" 2>/dev/null; true
+	rm -f jtcps1*
 
     #Get Current Zip File Name
     cd "$BASE_PATH/Scripts/.RetroDriven/MAME_CPS1"
@@ -628,7 +633,7 @@ Download_MRA(){
 
             cd "$MRA_PATH/_Sega System 1"
             cp -n *.mra "$MRA_PATH" 2>/dev/null; true
-            cd "$MRA_PATH/_Sega System 1/_Alternatives"
+            cd "$MRA_PATH/_Sega System 1/_Alternatives" 2>/dev/null; true
             cp -n -R * "$MRA_PATH/_alternatives" 2>/dev/null; true
         fi   
     fi
@@ -642,7 +647,7 @@ Download_MRA(){
         done
          
         #Delete Unofficial Alternative MRA Files as needed
-        cd "$MRA_PATH/_alternatives/"
+        cd "$MRA_PATH/_alternatives/" 2>/dev/null; true
         for dir in *; do
             if [ -d "$dir" ];then
                 rm -R -f "$MRA_PATH/_Unofficial/_Alternatives/$dir" 2>/dev/null; true
@@ -853,6 +858,11 @@ if [ $CPS1_SUBFOLDER == "False" ];then
 	mkdir -p "$MRA_PATH/_Jotego/_CPS1"
 	cd "$BASE_PATH/_CPS1"
 	cp -f *.mra "$MRA_PATH/_Jotego/_CPS1" 2>/dev/null; true
+	
+	#Move jtcps1 Core if it exists
+	cd "$BASE_PATH/_CPS1/cores" 2>/dev/null; true
+	mkdir -p "$MRA_PATH/cores" 2>/dev/null; true
+	cp -f jtcps1* "$MRA_PATH/cores" 2>/dev/null; true
 	
 	#Cleanup _CPS1 Folder/Files
 	rm -R -f "$BASE_PATH/_CPS1" 2>/dev/null; true
