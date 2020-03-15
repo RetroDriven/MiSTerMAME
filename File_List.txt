@@ -380,16 +380,63 @@
 	
 ### CPS1 MRA Files ###
 ├── _CPS1
-    ├── Daimakaimura (Japan).mra
-    ├── Dynasty Wars.mra
-    ├── Final Fight 30th Anniversary Edition.mra
-    ├── Final Fight.mra
-    ├── Ghouls'n Ghosts.mra
-    ├── Knights of the Round.mra
-    ├── Magic Sword - Heroic Fantasy.mra
-    ├── Nemo.mra
-    ├── Quiz and Dragons - Capcom Quiz Game.mra
-    ├── Strider.mra
-    ├── The King of Dragons.mra
-    ├── U.N. Squadron.mra
-    └── Willow.mra	
+	├── Daimakaimura (Japan).mra
+	├── Dynasty Wars.mra
+	├── Final Fight 30th Anniversary Edition.mra
+	├── Final Fight.mra
+	├── Ghouls'n Ghosts.mra
+	├── Knights of the Round.mra
+	├── Magic Sword - Heroic Fantasy.mra
+	├── Nemo.mra
+	├── Quiz and Dragons - Capcom Quiz Game.mra
+	├── Strider.mra
+	├── The King of Dragons.mra
+	├── U.N. Squadron.mra
+	├── Willow.mra
+└── _Alternatives
+    ├── Area 88 -Japan Resale Ver.-.mra
+    ├── Area 88 -Japan-.mra
+    ├── Daimakaimura -Japan-.mra
+    ├── Dynasty Wars -USA, B-Board 88622B-3-.mra
+    ├── Dynasty Wars -USA, B-Board 89624B- -.mra
+    ├── Final Fight -Japan 900112-.mra
+    ├── Final Fight -Japan 900305-.mra
+    ├── Final Fight -Japan 900405-.mra
+    ├── Final Fight -Japan 900613-.mra
+    ├── Final Fight -Japan-.mra
+    ├── Final Fight -USA 900112-.mra
+    ├── Final Fight -USA 900424-.mra
+    ├── Final Fight -USA 900613-.mra
+    ├── Final Fight -USA, set 1-.mra
+    ├── Final Fight -USA, set 2-.mra
+    ├── Final Fight -World, set 1-.mra
+    ├── Final Fight -World, set 2-.mra
+    ├── Ghouls_n Ghosts -World- notest.mra
+    ├── Knights of the Round -Japan 911127, B-Board 89625B-1-.mra
+    ├── Knights of the Round -Japan 911127, B-Board 91634B-2-.mra
+    ├── Knights of the Round -USA 911127-.mra
+    ├── Knights of the Round -World 911127-.mra
+    ├── Knights of the Round -bootleg, World 911127-.mra
+    ├── Magic Sword  Heroic Fantasy -Japan 900623-.mra
+    ├── Magic Sword  Heroic Fantasy -USA 900725-.mra
+    ├── Magic Sword  Heroic Fantasy -World 900623-.mra
+    ├── Magic Sword  Heroic Fantasy -World 900725-.mra
+    ├── Nemo -Japan 901120-.mra
+    ├── Nemo -World 901109-.mra
+    ├── Nemo -World 901130-.mra
+    ├── Quiz _ Dragons  Capcom Quiz Game -Japan Resale Ver. 940921-.mra
+    ├── Strider -USA, B-Board 89624B-2-.mra
+    ├── Strider -USA, B-Board 89624B-3-.mra
+    ├── Strider -USA, B-Board 90629B-3, buggy Street Fighter II conversion-.mra
+    ├── Strider Hiryu -Japan Resale Ver.-.mra
+    ├── Strider Hiryu -Japan-.mra
+    ├── Tenchi wo Kurau -Japan Resale Ver.-.mra
+    ├── Tenchi wo Kurau -Japan-.mra
+    ├── The King of Dragons -Japan 910805, B-Board 89625B-1-.mra
+    ├── The King of Dragons -Japan 910805, B-Board 90629B-3-.mra
+    ├── The King of Dragons -USA 910910-.mra
+    ├── The King of Dragons -World 910711-.mra
+    ├── The King of Dragons -World 910731-.mra
+    ├── The King of Dragons -World 910805-.mra
+    ├── Willow -Japan-.mra
+    └── Willow -USA-.mra
