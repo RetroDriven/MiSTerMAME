@@ -298,7 +298,10 @@
 │   │   ├── Double Dragon (US set 3).mra
 │   │   ├── Double Dragon (World set 1).mra
 │   │   └── Double Dragon (World set 2).mra
-│   ├── _Ghosts'n Goblins
+│   ├── _Double Dragon II
+│   │   ├── Double Dragon II - The Revenge (Japan).mra
+│   │   └── Double Dragon II - The Revenge (US).mra
+│   ├── _Ghosts'n Goblins
 │   │   ├── Ghosts'n Goblins (Italian bootleg, harder).mra
 │   │   ├── Ghosts'n Goblins (US).mra
 │   │   ├── Ghosts'n Goblins (World set 3).mra
