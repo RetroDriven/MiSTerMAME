@@ -188,6 +188,8 @@
 └── zigzagb.zip
 
 ## CPS1 Mame Files ##
+├── 3wonders.zip
+├── cworld2j.zip
 ├── dynwar.zip
 ├── ffight.zip
 ├── ffightae.zip
@@ -195,8 +197,11 @@
 ├── knights.zip
 ├── kod.zip
 ├── msword.zip
+├── mtwins.zip
 ├── nemo.zip
+├── pnickj.zip
 ├── qad.zip
+├── qtono2j.zip
 ├── strider.zip
 ├── unsquad.zip
 └── willow.zip
@@ -383,22 +388,28 @@
 	
 ### CPS1 MRA Files ###
 ├── _CPS1
-	├── Daimakaimura (Japan).mra
-	├── Dynasty Wars.mra
-	├── Final Fight 30th Anniversary Edition.mra
-	├── Final Fight.mra
-	├── Ghouls'n Ghosts.mra
-	├── Knights of the Round.mra
-	├── Magic Sword - Heroic Fantasy.mra
-	├── Nemo.mra
-	├── Quiz and Dragons - Capcom Quiz Game.mra
-	├── Strider.mra
-	├── The King of Dragons.mra
-	├── U.N. Squadron.mra
-	├── Willow.mra
+├── Adventure Quiz Capcom World 2.mra
+├── Daimakaimura (Japan).mra
+├── Dynasty Wars.mra
+├── Final Fight 30th Anniversary Edition.mra
+├── Final Fight.mra
+├── Ghouls'n Ghosts.mra
+├── Knights of the Round.mra
+├── Magic Sword - Heroic Fantasy.mra
+├── Mega Twins.mra
+├── Nemo.mra
+├── Pnickies.mra
+├── Quiz Tonosama no Yabou 2 - Zenkoku-ban.mra
+├── Quiz and Dragons - Capcom Quiz Game.mra
+├── Strider.mra
+├── The King of Dragons.mra
+├── Three Wonders.mra
+├── U.N. Squadron.mra
+├── Willow.mra
 └── _Alternatives
     ├── Area 88 -Japan Resale Ver.-.mra
     ├── Area 88 -Japan-.mra
+    ├── Chiki Chiki Boys -Japan 900619-.mra
     ├── Daimakaimura -Japan-.mra
     ├── Dynasty Wars -USA, B-Board 88622B-3-.mra
     ├── Dynasty Wars -USA, B-Board 89624B- -.mra
@@ -441,5 +452,11 @@
     ├── The King of Dragons -World 910711-.mra
     ├── The King of Dragons -World 910731-.mra
     ├── The King of Dragons -World 910805-.mra
+    ├── Three Wonders -USA 910520-.mra
+    ├── Three Wonders -World 910513-.mra
+    ├── Three Wonders -World 910520-.mra
+    ├── Three Wonders -bootleg-.mra
+    ├── Three Wonders -hack-.mra
     ├── Willow -Japan-.mra
-    └── Willow -USA-.mra
+    ├── Willow -USA-.mra
+    └── Wonder 3 -Japan 910520-.mra
