@@ -148,6 +148,12 @@ RBF_DOWNLOAD="True"
 #Set to "False" if you'd like to keep the "Arcade-" prefix in place 
 REMOVE_ARCADE_PREFIX="True"
 
+#Set to "True" to save Zip Cache. This will prevent you from downloading the same file twice
+#Set to "False" to delete the Zip Cache each time the Script is run
+#NOTE: Setting to "True" will save time/bandwidth
+#NOTE: Setting to "False" will be good to use if you run into issues downloading
+CACHE_SAVE="True"
+
 #========= DO NOT CHANGE BELOW =========
 
 ALLOW_INSECURE_SSL="true"
@@ -268,6 +274,11 @@ Download_MAME(){
     #Get File Size
     REMOTE_SIZE=$(curl $CURL_RETRY $SSL_SECURITY_OPTION -s -L -I "$MAME_URL" | awk -v IGNORECASE=1 '/^content-length/ { print int($2) }')
     
+	#Clear Cache
+	if [ $CACHE_SAVE == "False" ];then
+		rm MAME*.zip 2>/dev/null; true
+	fi
+	
     if [ -f $MAME_FILENAME ];then
         echo "MAME Files are up to date!"
         sleep 1
@@ -324,10 +335,14 @@ Download_MAME(){
         fi    
         #Delete Zip as it is no longer needed after Unzip
         rm "$MAME_FILENAME"
-        #Create Dummy Zip to avoid downloading the same file
-        cd "$BASE_PATH/Scripts/.RetroDriven/MAME"
-        rm MAME*.zip 2>/dev/null; true    
-        touch "$MAME_FILENAME"
+        
+		#Cache Handling
+		if [ $CACHE_SAVE == "True" ];then
+			#Create Dummy Zip to avoid downloading the same file
+			cd "$BASE_PATH/Scripts/.RetroDriven/MAME"
+			rm MAME*.zip 2>/dev/null; true    
+			touch "$MAME_FILENAME"
+		fi
     fi
     sleep 1
     clear     
@@ -399,6 +414,11 @@ Download_MAME_CPS1(){
     #Get File Size
     REMOTE_SIZE=$(curl $CURL_RETRY $SSL_SECURITY_OPTION -s -L -I "$MAME_CPS1_URL" | awk -v IGNORECASE=1 '/^content-length/ { print int($2) }')
     
+	#Clear Cache
+	if [ $CACHE_SAVE == "False" ];then
+		rm MAME*.zip 2>/dev/null; true
+	fi	
+	
     if [ -f $MAME_CPS1_FILENAME ];then
         echo "CPS1 MAME Files are up to date!"
         sleep 1
@@ -455,10 +475,14 @@ Download_MAME_CPS1(){
         fi    
         #Delete Zip as it is no longer needed after Unzip
         rm "$MAME_CPS1_FILENAME"
-        #Create Dummy Zip to avoid downloading the same file
-        cd "$BASE_PATH/Scripts/.RetroDriven/MAME_CPS1"
-        rm MAME*.zip 2>/dev/null; true    
-        touch "$MAME_CPS1_FILENAME"
+        
+		#Cache Handling
+		if [ $CACHE_SAVE == "True" ];then
+			#Create Dummy Zip to avoid downloading the same file
+			cd "$BASE_PATH/Scripts/.RetroDriven/MAME_CPS1"
+			rm MAME*.zip 2>/dev/null; true    
+			touch "$MAME_CPS1_FILENAME"
+		fi
     fi
     sleep 1
     clear     
@@ -485,6 +509,11 @@ Download_HBMAME(){
     
     #Get File Size
     REMOTE_SIZE=$(curl $CURL_RETRY $SSL_SECURITY_OPTION -s -L -I "$HBMAME_URL" | awk -v IGNORECASE=1 '/^content-length/ { print int($2) }')
+
+	#Clear Cache
+	if [ $CACHE_SAVE == "False" ];then
+		rm HBMAME*.zip 2>/dev/null; true
+	fi
 
     if [ -f $HBMAME_FILENAME ];then
         echo "HBMAME Files are up to date!"
@@ -542,10 +571,14 @@ Download_HBMAME(){
         fi    
         #Delete Zip as it is no longer needed after Unzip
         rm "$HBMAME_FILENAME"
-        #Create Dummy Zip to avoid downloading the same file
-        cd "$BASE_PATH/Scripts/.RetroDriven/HBMAME"
-        rm HBMAME*.zip 2>/dev/null; true    
-        touch "$HBMAME_FILENAME"
+        
+		#Cache Handling
+		if [ $CACHE_SAVE == "True" ];then
+			#Create Dummy Zip to avoid downloading the same file
+			cd "$BASE_PATH/Scripts/.RetroDriven/HBMAME"
+			rm HBMAME*.zip 2>/dev/null; true    
+			touch "$HBMAME_FILENAME"
+		fi
     fi
     sleep 1
     clear
@@ -573,6 +606,11 @@ Download_MRA(){
     #Get File Size
     REMOTE_SIZE=$(curl $CURL_RETRY $SSL_SECURITY_OPTION -s -L -I "$MRA_URL" | awk -v IGNORECASE=1 '/^content-length/ { print int($2) }')
     
+	#Clear Cache
+	if [ $CACHE_SAVE == "False" ];then
+		rm MRA*.zip 2>/dev/null; true
+	fi
+	
     if [ -f $MRA_FILENAME ];then
         echo "MRA Files are up to date!"
         sleep 1
@@ -632,10 +670,13 @@ Download_MRA(){
         cd "$MRA_PATH"       
         rm "$MRA_FILENAME"
         
-        #Create Dummy Zip to avoid downloading the same file
-        cd "$BASE_PATH/Scripts/.RetroDriven/MRA"
-        rm MRA*.zip 2>/dev/null; true    
-        touch "$MRA_FILENAME"
+		#Cache Handling
+		if [ $CACHE_SAVE == "True" ];then
+			#Create Dummy Zip to avoid downloading the same file
+			cd "$BASE_PATH/Scripts/.RetroDriven/MRA"
+			rm MRA*.zip 2>/dev/null; true    
+			touch "$MRA_FILENAME"
+		fi
 
         #Copy MRA Files to Root MRA Path if Option is set to do so
         if [ $MRA_UNOFFICIAL_SUBFOLDER == "False" ];then
@@ -737,6 +778,11 @@ Download_MRA_CPS1(){
     #Get File Size
     REMOTE_SIZE=$(curl $CURL_RETRY $SSL_SECURITY_OPTION -s -L -I "$MRA_CPS1_URL" | awk -v IGNORECASE=1 '/^content-length/ { print int($2) }')
     
+	#Clear Cache
+	if [ $CACHE_SAVE == "False" ];then
+		rm MRA*.zip 2>/dev/null; true
+	fi
+	
     if [ -f $MRA_CPS1_FILENAME ];then
         echo "CPS1 MRA Files are up to date!"
         sleep 1
@@ -796,10 +842,13 @@ Download_MRA_CPS1(){
         cd "$MRA_CPS1_PATH"       
         rm "$MRA_CPS1_FILENAME"
         
-        #Create Dummy Zip to avoid downloading the same file
-        cd "$BASE_PATH/Scripts/.RetroDriven/MRA_CPS1"
-        rm MRA*.zip 2>/dev/null; true    
-        touch "$MRA_CPS1_FILENAME"
+		#Cache Handling
+		if [ $CACHE_SAVE == "True" ];then
+			#Create Dummy Zip to avoid downloading the same file
+			cd "$BASE_PATH/Scripts/.RetroDriven/MRA_CPS1"
+			rm MRA*.zip 2>/dev/null; true    
+			touch "$MRA_CPS1_FILENAME"
+		fi
 
 	fi
  
