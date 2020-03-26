@@ -272,7 +272,7 @@ Download_MAME(){
     rm -f "download"
     
     #Get File Size
-    REMOTE_SIZE=$(curl $CURL_RETRY $SSL_SECURITY_OPTION -s -L -I "$MAME_URL" | awk -v IGNORECASE=1 '/^content-length/ { print int($2) }')
+    REMOTE_SIZE=$(curl $SSL_SECURITY_OPTION -s -L -I "$MAME_URL" | awk -v IGNORECASE=1 '/^content-length/ { print int($2) }')
     
 	#Clear Cache
 	if [ $CACHE_SAVE == "False" ];then
@@ -295,7 +295,7 @@ Download_MAME(){
         echo -n "Downloading: $MAME_FILENAME($SIZE" ; echo -n "MB)";
         cd "$MAME_PATH"
         echo
-        curl $CURL_RETRY $SSL_SECURITY_OPTION -OJ# "$MAME_URL"
+        curl $SSL_SECURITY_OPTION -OJ# "$MAME_URL"
         
         #Check File Size
         LOCAL_SIZE=$(ls -l "$MAME_FILENAME" | awk '{ print $5}')
@@ -412,7 +412,7 @@ Download_MAME_CPS1(){
     rm -f "download"
     
     #Get File Size
-    REMOTE_SIZE=$(curl $CURL_RETRY $SSL_SECURITY_OPTION -s -L -I "$MAME_CPS1_URL" | awk -v IGNORECASE=1 '/^content-length/ { print int($2) }')
+    REMOTE_SIZE=$(curl $SSL_SECURITY_OPTION -s -L -I "$MAME_CPS1_URL" | awk -v IGNORECASE=1 '/^content-length/ { print int($2) }')
     
 	#Clear Cache
 	if [ $CACHE_SAVE == "False" ];then
@@ -435,7 +435,7 @@ Download_MAME_CPS1(){
         echo -n "Downloading: $MAME_CPS1_FILENAME($SIZE" ; echo -n "MB)";
         cd "$MAME_CPS1_PATH"
         echo
-        curl $CURL_RETRY $SSL_SECURITY_OPTION -OJ# "$MAME_CPS1_URL"
+        curl $SSL_SECURITY_OPTION -OJ# "$MAME_CPS1_URL"
         
         #Check File Size
         LOCAL_SIZE=$(ls -l "$MAME_CPS1_FILENAME" | awk '{ print $5}')
@@ -508,7 +508,7 @@ Download_HBMAME(){
     rm -f "download"
     
     #Get File Size
-    REMOTE_SIZE=$(curl $CURL_RETRY $SSL_SECURITY_OPTION -s -L -I "$HBMAME_URL" | awk -v IGNORECASE=1 '/^content-length/ { print int($2) }')
+    REMOTE_SIZE=$(curl $SSL_SECURITY_OPTION -s -L -I "$HBMAME_URL" | awk -v IGNORECASE=1 '/^content-length/ { print int($2) }')
 
 	#Clear Cache
 	if [ $CACHE_SAVE == "False" ];then
@@ -531,7 +531,7 @@ Download_HBMAME(){
         echo -n "Downloading: $HBMAME_FILENAME($SIZE" ; echo -n "MB)";
         cd "$HBMAME_PATH"
         echo
-        curl $CURL_RETRY $SSL_SECURITY_OPTION -OJs "$HBMAME_URL"
+        curl $SSL_SECURITY_OPTION -OJs "$HBMAME_URL"
         
         #Check File Size
         LOCAL_SIZE=$(ls -l "$HBMAME_FILENAME" | awk '{ print $5}')
@@ -604,7 +604,7 @@ Download_MRA(){
     rm -f "download"
     
     #Get File Size
-    REMOTE_SIZE=$(curl $CURL_RETRY $SSL_SECURITY_OPTION -s -L -I "$MRA_URL" | awk -v IGNORECASE=1 '/^content-length/ { print int($2) }')
+    REMOTE_SIZE=$(curl $SSL_SECURITY_OPTION -s -L -I "$MRA_URL" | awk -v IGNORECASE=1 '/^content-length/ { print int($2) }')
     
 	#Clear Cache
 	if [ $CACHE_SAVE == "False" ];then
@@ -627,7 +627,7 @@ Download_MRA(){
         echo -n "Downloading: $MRA_FILENAME($SIZE" ; echo -n "KB)";
         cd "$MRA_PATH"
         echo
-        curl $CURL_RETRY $SSL_SECURITY_OPTION -OJs "$MRA_URL"
+        curl $SSL_SECURITY_OPTION -OJs "$MRA_URL"
         
         #Check File Size
         LOCAL_SIZE=$(ls -l "$MRA_FILENAME" | awk '{ print $5}')
@@ -776,7 +776,7 @@ Download_MRA_CPS1(){
     rm -f "download"
     
     #Get File Size
-    REMOTE_SIZE=$(curl $CURL_RETRY $SSL_SECURITY_OPTION -s -L -I "$MRA_CPS1_URL" | awk -v IGNORECASE=1 '/^content-length/ { print int($2) }')
+    REMOTE_SIZE=$(curl $SSL_SECURITY_OPTION -s -L -I "$MRA_CPS1_URL" | awk -v IGNORECASE=1 '/^content-length/ { print int($2) }')
     
 	#Clear Cache
 	if [ $CACHE_SAVE == "False" ];then
@@ -799,7 +799,7 @@ Download_MRA_CPS1(){
         echo -n "Downloading: $MRA_CPS1_FILENAME($SIZE" ; echo -n "KB)";
         cd "$MRA_CPS1_PATH"
         echo
-        curl $CURL_RETRY $SSL_SECURITY_OPTION -OJs "$MRA_CPS1_URL"
+        curl $SSL_SECURITY_OPTION -OJs "$MRA_CPS1_URL"
         
         #Check File Size
         LOCAL_SIZE=$(ls -l "$MRA_CPS1_FILENAME" | awk '{ print $5}')
@@ -1065,7 +1065,7 @@ then
 	mkdir -p "${NEW_CORE_CATEGORY_PATHS[@]}"
 fi
 
-CORE_URLS=$(curl $CURL_RETRY $SSL_SECURITY_OPTION -sLf "$WIKI_URL" | grep -io '\('$GITHUB_CORE_URL'/[a-zA-Z0-9./_-]*\)\|\(user-content-[a-z-]*\)')
+CORE_URLS=$(curl $SSL_SECURITY_OPTION -sLf "$WIKI_URL" | grep -io '\('$GITHUB_CORE_URL'/[a-zA-Z0-9./_-]*\)\|\(user-content-[a-z-]*\)')
 
 
 CORE_CATEGORY="-"
@@ -1076,7 +1076,7 @@ CORE_CATEGORIES_FILTER=""
 GOOD_CORES=""
 if [ "$GOOD_CORES_URL" != "" ]
 then
-	GOOD_CORES=$(curl $CURL_RETRY $SSL_SECURITY_OPTION -sLf "$GOOD_CORES_URL")
+	GOOD_CORES=$(curl $SSL_SECURITY_OPTION -sLf "$GOOD_CORES_URL")
 fi
 
 function checkCoreURL {
@@ -1087,10 +1087,10 @@ function checkCoreURL {
 	then
 		RELEASES_URL="$CORE_URL"
 	else
-		RELEASES_URL=https://github.com$(curl $CURL_RETRY $SSL_SECURITY_OPTION -sLf "$CORE_URL" | grep -o '/'$DEV_NAME'/[a-zA-Z0-9./_-]*/tree/master/[a-zA-Z0-9./_-]*/releases' | head -n1)
+		RELEASES_URL=https://github.com$(curl $SSL_SECURITY_OPTION -sLf "$CORE_URL" | grep -o '/'$DEV_NAME'/[a-zA-Z0-9./_-]*/tree/master/[a-zA-Z0-9./_-]*/releases' | head -n1)
 	fi
 
-	RELEASE_URLS=$(curl $CURL_RETRY $SSL_SECURITY_OPTION -sLf "$RELEASES_URL" | grep -o '/'$DEV_NAME'/[a-zA-Z0-9./_-]*_[0-9]\{8\}[a-zA-Z]\?\(\.rbf\|\.rar\)\?')
+	RELEASE_URLS=$(curl $SSL_SECURITY_OPTION -sLf "$RELEASES_URL" | grep -o '/'$DEV_NAME'/[a-zA-Z0-9./_-]*_[0-9]\{8\}[a-zA-Z]\?\(\.rbf\|\.rar\)\?')
 
 	MAX_VERSION=""
 	MAX_RELEASE_URL=""
@@ -1204,7 +1204,7 @@ function checkCoreURL {
 		then
 			echo "Downloading $FILE_NAME"
 			[ "${SSH_CLIENT}" != "" ] && echo "URL: https://github.com$MAX_RELEASE_URL?raw=true"
-			if curl $CURL_RETRY $SSL_SECURITY_OPTION -# -L "https://github.com$MAX_RELEASE_URL?raw=true" -o "$CURRENT_DIR/$FILE_NAME"
+			if curl $SSL_SECURITY_OPTION -# -L "https://github.com$MAX_RELEASE_URL?raw=true" -o "$CURRENT_DIR/$FILE_NAME"
                 #Log File handling                
                 if [ $LOG_DOWNLOADED == "True" ];then
                 echo "$FILE_NAME" >> "$LOG_PATH/RBF_Downloaded.txt"                
