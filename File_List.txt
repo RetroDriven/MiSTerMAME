@@ -189,6 +189,7 @@
 
 ## CPS1 Mame Files ##
 ├── 3wonders.zip
+├── captcomm.zip
 ├── cworld2j.zip
 ├── dynwar.zip
 ├── ffight.zip
@@ -196,6 +197,7 @@
 ├── ghouls.zip
 ├── knights.zip
 ├── kod.zip
+├── megaman.zip
 ├── msword.zip
 ├── mtwins.zip
 ├── nemo.zip
@@ -388,27 +390,35 @@
 	
 ### CPS1 MRA Files ###
 ├── _CPS1
-├── Adventure Quiz Capcom World 2.mra
-├── Daimakaimura (Japan).mra
-├── Dynasty Wars.mra
-├── Final Fight 30th Anniversary Edition.mra
-├── Final Fight.mra
-├── Ghouls'n Ghosts.mra
-├── Knights of the Round.mra
-├── Magic Sword - Heroic Fantasy.mra
-├── Mega Twins.mra
-├── Nemo.mra
-├── Pnickies.mra
-├── Quiz Tonosama no Yabou 2 - Zenkoku-ban.mra
-├── Quiz and Dragons - Capcom Quiz Game.mra
-├── Strider.mra
-├── The King of Dragons.mra
-├── Three Wonders.mra
-├── U.N. Squadron.mra
-├── Willow.mra
-└── _Alternatives
+	├── Adventure Quiz Capcom World 2.mra
+	├── Captain Commando.mra
+	├── Daimakaimura (Japan).mra
+	├── Dynasty Wars.mra
+	├── Final Fight 30th Anniversary Edition.mra
+	├── Final Fight.mra
+	├── Ghouls'n Ghosts.mra
+	├── Knights of the Round.mra
+	├── Magic Sword - Heroic Fantasy.mra
+	├── Mega Man - The Power Battle.mra
+	├── Mega Twins.mra
+	├── Nemo.mra
+	├── Pnickies.mra
+	├── Quiz Tonosama no Yabou 2 - Zenkoku-ban.mra
+	├── Quiz and Dragons - Capcom Quiz Game.mra
+	├── Strider.mra
+	├── The King of Dragons.mra
+	├── Three Wonders.mra
+	├── U.N. Squadron.mra
+	├── Willow.mra
+└─_Alternatives
     ├── Area 88 -Japan Resale Ver.-.mra
     ├── Area 88 -Japan-.mra
+    ├── Captain Commando -Japan 910928-.mra
+    ├── Captain Commando -Japan 911202-.mra
+    ├── Captain Commando -USA 910928-.mra
+    ├── Captain Commando -World 911014-.mra
+    ├── Captain Commando -World 911202-.mra
+    ├── Captain Commando -bootleg-.mra
     ├── Chiki Chiki Boys -Japan 900619-.mra
     ├── Daimakaimura -Japan-.mra
     ├── Dynasty Wars -USA, B-Board 88622B-3-.mra
@@ -435,10 +445,13 @@
     ├── Magic Sword  Heroic Fantasy -USA 900725-.mra
     ├── Magic Sword  Heroic Fantasy -World 900623-.mra
     ├── Magic Sword  Heroic Fantasy -World 900725-.mra
+    ├── Mega Man  The Power Battle -CPS1, Asia 951006-.mra
+    ├── Mega Man  The Power Battle -CPS1, USA 951006-.mra
     ├── Nemo -Japan 901120-.mra
     ├── Nemo -World 901109-.mra
     ├── Nemo -World 901130-.mra
     ├── Quiz _ Dragons  Capcom Quiz Game -Japan Resale Ver. 940921-.mra
+    ├── Rockman  The Power Battle -CPS1, Japan 950922-.mra
     ├── Strider -USA, B-Board 89624B-2-.mra
     ├── Strider -USA, B-Board 89624B-3-.mra
     ├── Strider -USA, B-Board 90629B-3, buggy Street Fighter II conversion-.mra
