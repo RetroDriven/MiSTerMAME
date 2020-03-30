@@ -57,6 +57,7 @@
 ├── dorodon.zip
 ├── dotron.zip
 ├── dremshpr.zip
+├── ebases.zip
 ├── eeekk.zip
 ├── eggor.zip
 ├── eyes.zip
@@ -132,6 +133,7 @@
 ├── rbtapper.zip
 ├── regulus.zip
 ├── rescue.zip
+├── robby.zip
 ├── robotron.zip
 ├── rpatrol.zip
 ├── rygar.zip
@@ -140,6 +142,7 @@
 ├── sbrkout.zip
 ├── scobra.zip
 ├── scramble.zip
+├── seawolf2.zip
 ├── seganinj.zip
 ├── shollow.zip
 ├── sinistar.zip
@@ -147,6 +150,7 @@
 ├── snapjack.zip
 ├── solarfox.zip
 ├── solomon.zip
+├── spacezap.zip
 ├── spatter.zip
 ├── spclaser.zip
 ├── spdcoin.zip
@@ -184,6 +188,7 @@
 ├── wboy.zip
 ├── wmatch.zip
 ├── woodpeck.zip
+├── wow.zip
 ├── xevious.zip
 └── zigzagb.zip
 
