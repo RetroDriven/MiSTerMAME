@@ -39,7 +39,7 @@ By downloading and using this Script you are agreeing to the following:
 #        Script will look to the Dummy files and only download if there's a newer Zip
 #        This will increase the Script's speed and save Download Bandwith for all
 # v2.0 - Added option to download/update Unofficial Arcade Cores/RBFs
-#        No more manually adding/updating these on your own   
+#        No more manually adding/updating these on your own
 # v1.9 - Remove Unofficial MRAs when they are MiSTer Official
 # v1.8 - Removed Support for Official MRA files and Alternatives
 #        These MRA files can be downloaded via Official Updater Script
@@ -110,8 +110,15 @@ MAME_PATH=$MRA_PATH/"mame"
 HBMAME_PATH=$MRA_PATH/"hbmame"
 
 #CPS1 Folder Name: Change this if you'd like to use a custom folder name besides CPS1
-#NOTE: Do not add the underscore to the name as that will be done automatically
-CPS1_FOLDER="CPS1"
+#NOTE: The directory needs an underscore "_" for MiSTer to see the Directory
+CPS1_PATH=$BASE_PATH/"_CPS1"
+
+#Directory for CPS MAME Zips
+#If not using CPS1 Path for your MAME zips. Please set CPS1_MAME_IN_CPS_FOLDER to False.
+MAME_CPS1_PATH=$CPS1_PATH/"mame"
+
+#Directory for CPS HBMAME Zips
+CPS1_HBMAME_PATH=$CPS1_PATH/"hbmame"
 
 #=========   USER OPTIONS   =========
 
@@ -132,11 +139,15 @@ MRA_UNOFFICIAL_SUBFOLDER="True"
 #Set to "False" if you'd like to have the CPS1 games witin $BASE_PATH/_Arcade/_Jotego/_CPS1
 CPS1_SUBFOLDER="True"
 
+#Set to "True" if you'd like to keep the deault $BASE_PATH/_CPS1 folder structure for CPS1 games
+#Set to "False" if you'd like to have the CPS1 mame zips somewhere else. Needed to be "False" for central mame dir in "/" or "/games"
+CPS1_MAME_IN_CPS_FOLDER="True"
+
 #Set to "True" to download the HBMame Files
 #Set to "False" if you do not want to download these files
 HBMAME_DOWNLOAD="True"
 
-#Set to "True" to save a Log File showing which Files were Downloaded/Updated 
+#Set to "True" to save a Log File showing which Files were Downloaded/Updated
 #Set to "False" if you do not want to save the Log Files
 LOG_DOWNLOADED="True"
 
@@ -145,7 +156,7 @@ LOG_DOWNLOADED="True"
 RBF_DOWNLOAD="True"
 
 #Set to "True" to remove the "Arcade-" prefix with the Unofficial Arcade RBF Files
-#Set to "False" if you'd like to keep the "Arcade-" prefix in place 
+#Set to "False" if you'd like to keep the "Arcade-" prefix in place
 REMOVE_ARCADE_PREFIX="True"
 
 #Set to "True" to save Zip Cache. This will prevent you from downloading the same file twice
@@ -260,7 +271,7 @@ Download_MAME(){
     echo "                          Downloading MAME Files                          "
     echo "=========================================================================="
     sleep 1
-    
+
     #Create Directories
     mkdir -p $MAME_PATH
     mkdir -p "$BASE_PATH/Scripts/.RetroDriven/MAME"
@@ -270,82 +281,82 @@ Download_MAME(){
     cd "$BASE_PATH/Scripts/.RetroDriven/MAME"
     MAME_FILENAME=$(curl -sIkL "$MAME_URL" | sed -r '/filename=/!d;s/.*filename=(.*)$/\1/' | sed -e 's|["'\'']||g' | sed '/^$/d;s/[[:space:]]//g')
     rm -f "download"
-    
+
     #Get File Size
     REMOTE_SIZE=$(curl $SSL_SECURITY_OPTION -s -L -I "$MAME_URL" | awk -v IGNORECASE=1 '/^content-length/ { print int($2) }')
-    
+
 	#Clear Cache
 	if [ $CACHE_SAVE == "False" ];then
 		rm MAME*.zip 2>/dev/null; true
 	fi
-	
+
     if [ -f $MAME_FILENAME ];then
         echo "MAME Files are up to date!"
         sleep 1
         if [ $LOG_DOWNLOADED == "True" ];then
             echo "MAME Files are up to date!" >> "$LOG_PATH/Mame_Downloaded.txt"
             echo "Date: $TIMESTAMP" >> "$LOG_PATH/Mame_Downloaded.txt"
-            echo "" >> "$LOG_PATH/Mame_Downloaded.txt"                     
-        fi        
+            echo "" >> "$LOG_PATH/Mame_Downloaded.txt"
+        fi
     fi
- 
-    #Download Zip and extract files/folders if they don't exist    
+
+    #Download Zip and extract files/folders if they don't exist
     if [ ! -f $MAME_FILENAME ];then
         SIZE=$(($REMOTE_SIZE/1024/1024))
         echo -n "Downloading: $MAME_FILENAME($SIZE" ; echo -n "MB)";
         cd "$MAME_PATH"
         echo
         curl $SSL_SECURITY_OPTION -OJ# "$MAME_URL"
-        
+
         #Check File Size
         LOCAL_SIZE=$(ls -l "$MAME_FILENAME" | awk '{ print $5}')
 
         #Handling for when Local and Remote Sizes don't match
             if [ $LOCAL_SIZE != $REMOTE_SIZE ];then
-            
+
                 MAME_FAILED="True"
                 MAME_LSIZE=$(($LOCAL_SIZE/1024/1024))
                 MAME_RSIZE=$(($REMOTE_SIZE/1024/1024))
-                
+
                 echo
                 echo "WARNING: MAME Files did not download successfully! Please check your Internet Connection and/or try again."
                 sleep 5
                 clear
-                
+
                 #Log handling
                 if [ $LOG_DOWNLOADED == "True" ];then
                 echo "WARNING: MAME Files did not download successfully! Please check your Internet Connection and/or try again." >> "$LOG_PATH/Mame_Downloaded.txt"
                 echo "Total Size: $MAME_RSIZE" >> "$LOG_PATH/Mame_Downloaded.txt"
                 echo "Downloaded: $MAME_LSIZE" >> "$LOG_PATH/Mame_Downloaded.txt"
                 echo "Date: $TIMESTAMP" >> "$LOG_PATH/Mame_Downloaded.txt"
-                echo "" >> "$LOG_PATH/Mame_Downloaded.txt"                     
+                echo "" >> "$LOG_PATH/Mame_Downloaded.txt"
                 fi
                 #Delete Zip as it is no longer needed after Unzip
                 rm "$MAME_FILENAME"
             return
             fi
-            
-        #Save to Log if Option is Enabled    
+
+        #Save to Log if Option is Enabled
         if [ $LOG_DOWNLOADED == "True" ];then
             unzip -uo "$MAME_FILENAME" | tee -a "$LOG_PATH/Mame_Downloaded.txt"
             echo "Date: $TIMESTAMP" >> "$LOG_PATH/Mame_Downloaded.txt"
-            echo "" >> "$LOG_PATH/Mame_Downloaded.txt"   
-        else   
+            echo "" >> "$LOG_PATH/Mame_Downloaded.txt"
+        else
             unzip -uo "$MAME_FILENAME"
-        fi    
+        fi
         #Delete Zip as it is no longer needed after Unzip
         rm "$MAME_FILENAME"
-        
+
 		#Cache Handling
 		if [ $CACHE_SAVE == "True" ];then
 			#Create Dummy Zip to avoid downloading the same file
 			cd "$BASE_PATH/Scripts/.RetroDriven/MAME"
-			rm MAME*.zip 2>/dev/null; true    
+			rm MAME*.zip 2>/dev/null; true
 			touch "$MAME_FILENAME"
 		fi
     fi
     sleep 1
-    clear     
+    clear
 }
 
 #Download CPS1 MAME Function
@@ -356,22 +367,22 @@ Download_MAME_CPS1(){
     echo "                        Downloading CPS1 MAME Files                       "
     echo "=========================================================================="
     sleep 1
-    
+
     #Create Directories
     mkdir -p "$BASE_PATH/Scripts/.RetroDriven/MAME_CPS1"
     MAME_CPS1_FAILED="False"
-	
+
 	#CPS1 Subfolder
 	if [ $CPS1_SUBFOLDER == "True" ];then
-		
+
+		CPS1_CORE_PATH=$CPS1_PATH/"cores"
 		#Set/Create Directories
-		MAME_CPS1_PATH="$BASE_PATH/_$CPS1_FOLDER/mame"
-		CPS1_CORE_PATH="$BASE_PATH/_$CPS1_FOLDER/cores"
-		CPS1_HBMAME_PATH="$BASE_PATH/_$CPS1_FOLDER/hbmame"
+
 		mkdir -p "$MAME_CPS1_PATH"
 		mkdir -p "$CPS1_CORE_PATH"
 		mkdir -p "$CPS1_HBMAME_PATH"
-		
+
+		if [ $CPS1_MAME_IN_CPS_FOLDER="True" ];then
 		#Cleanup old CPS1 MAME Zips
 		cd "$MAME_PATH"
 		rm -f "dynwar.zip" 2>/dev/null; true
@@ -386,106 +397,107 @@ Download_MAME_CPS1(){
 		rm -f "strider.zip" 2>/dev/null; true
 		rm -f "unsquad.zip" 2>/dev/null; true
 		rm -f "willow.zip" 2>/dev/null; true
-		
+		fi
+
 		#Copy jtcps1 Core if it exists
 		cd "$MRA_PATH/cores" 2>/dev/null; true
 		cp -f jtcps1* "$CPS1_CORE_PATH" 2>/dev/null; true
 		rm -f jtcps1*
-		
+
 	fi
-	
+
 	#Non CPS1 Subfolder
 	if [ $CPS1_SUBFOLDER == "False" ];then
-		
+
 		#Set/Create Directories
 		MAME_CPS1_PATH="$MAME_PATH"
 		CPS1_CORE_PATH="$MRA_PATH/cores"
 		CPS1_HBMAME_PATH="$HBMAME_PATH"
 		mkdir -p "$MAME_CPS1_PATH"
 		mkdir -p "$CPS1_CORE_PATH"
-		mkdir -p "$CPS1_HBMAME_PATH"		
+		mkdir -p "$CPS1_HBMAME_PATH"
 	fi
 
     #Get Current Zip File Name
     cd "$BASE_PATH/Scripts/.RetroDriven/MAME_CPS1"
     MAME_CPS1_FILENAME=$(curl -sIkL "$MAME_CPS1_URL" | sed -r '/filename=/!d;s/.*filename=(.*)$/\1/' | sed -e 's|["'\'']||g' | sed '/^$/d;s/[[:space:]]//g')
     rm -f "download"
-    
+
     #Get File Size
     REMOTE_SIZE=$(curl $SSL_SECURITY_OPTION -s -L -I "$MAME_CPS1_URL" | awk -v IGNORECASE=1 '/^content-length/ { print int($2) }')
-    
+
 	#Clear Cache
 	if [ $CACHE_SAVE == "False" ];then
 		rm MAME*.zip 2>/dev/null; true
-	fi	
-	
+	fi
+
     if [ -f $MAME_CPS1_FILENAME ];then
         echo "CPS1 MAME Files are up to date!"
         sleep 1
         if [ $LOG_DOWNLOADED == "True" ];then
             echo "CPS1 MAME Files are up to date!" >> "$LOG_PATH/Mame_CPS1_Downloaded.txt"
             echo "Date: $TIMESTAMP" >> "$LOG_PATH/Mame_CPS1_Downloaded.txt"
-            echo "" >> "$LOG_PATH/Mame_CPS1_Downloaded.txt"              
-        fi        
+            echo "" >> "$LOG_PATH/Mame_CPS1_Downloaded.txt"
+        fi
     fi
- 
-    #Download Zip and extract files/folders if they don't exist    
+
+    #Download Zip and extract files/folders if they don't exist
     if [ ! -f $MAME_CPS1_FILENAME ];then
         SIZE=$(($REMOTE_SIZE/1024/1024))
         echo -n "Downloading: $MAME_CPS1_FILENAME($SIZE" ; echo -n "MB)";
         cd "$MAME_CPS1_PATH"
         echo
         curl $SSL_SECURITY_OPTION -OJ# "$MAME_CPS1_URL"
-        
+
         #Check File Size
         LOCAL_SIZE=$(ls -l "$MAME_CPS1_FILENAME" | awk '{ print $5}')
 
         #Handling for when Local and Remote Sizes don't match
             if [ $LOCAL_SIZE != $REMOTE_SIZE ];then
-            
+
                 MAME_CPS1_FAILED="True"
                 MAME_CPS1_LSIZE=$(($LOCAL_SIZE/1024/1024))
                 MAME_CPS1_RSIZE=$(($REMOTE_SIZE/1024/1024))
-                
+
                 echo
                 echo "WARNING: CPS1 MAME Files did not download successfully! Please check your Internet Connection and/or try again."
                 sleep 5
                 clear
-                
+
                 #Log handling
                 if [ $LOG_DOWNLOADED == "True" ];then
                 echo "WARNING: CPS1 MAME Files did not download successfully! Please check your Internet Connection and/or try again." >> "$LOG_PATH/Mame_CPS1_Downloaded.txt"
                 echo "Total Size: $MAME_CPS1_RSIZE" >> "$LOG_PATH/Mame_CPS1_Downloaded.txt"
                 echo "Downloaded: $MAME_CPS1_LSIZE" >> "$LOG_PATH/Mame_CPS1_Downloaded.txt"
                 echo "Date: $TIMESTAMP" >> "$LOG_PATH/Mame_CPS1_Downloaded.txt"
-                echo "" >> "$LOG_PATH/Mame_CPS1_Downloaded.txt"                     
+                echo "" >> "$LOG_PATH/Mame_CPS1_Downloaded.txt"
                 fi
                 #Delete Zip as it is no longer needed after Unzip
                 rm "$MAME_CPS1_FILENAME"
             return
             fi
-            
-        #Save to Log if Option is Enabled    
+
+        #Save to Log if Option is Enabled
         if [ $LOG_DOWNLOADED == "True" ];then
             unzip -uo "$MAME_CPS1_FILENAME" | tee -a "$LOG_PATH/Mame_CPS1_Downloaded.txt"
             echo "Date: $TIMESTAMP" >> "$LOG_PATH/Mame_CPS1_Downloaded.txt"
-            echo "" >> "$LOG_PATH/Mame_CPS1_Downloaded.txt"   
-        else   
+            echo "" >> "$LOG_PATH/Mame_CPS1_Downloaded.txt"
+        else
             unzip -uo "$MAME_CPS1_FILENAME"
-        fi    
+        fi
         #Delete Zip as it is no longer needed after Unzip
         rm "$MAME_CPS1_FILENAME"
-        
+
 		#Cache Handling
 		if [ $CACHE_SAVE == "True" ];then
 			#Create Dummy Zip to avoid downloading the same file
 			cd "$BASE_PATH/Scripts/.RetroDriven/MAME_CPS1"
-			rm MAME*.zip 2>/dev/null; true    
+			rm MAME*.zip 2>/dev/null; true
 			touch "$MAME_CPS1_FILENAME"
 		fi
     fi
     sleep 1
-    clear     
+    clear
 }
 
 #Download HBMAME Function
@@ -496,17 +508,17 @@ Download_HBMAME(){
     echo "                         Downloading HBMAME Files                         "
     echo "=========================================================================="
     sleep 1
-    
+
     #Create Directories
-    mkdir -p "$HBMAME_PATH"    
+    mkdir -p "$HBMAME_PATH"
     mkdir -p "$BASE_PATH/Scripts/.RetroDriven/HBMAME"
     HBMAME_FAILED="False"
 
     #Get Current Zip File Name
-    cd "$BASE_PATH/Scripts/.RetroDriven/HBMAME"    
+    cd "$BASE_PATH/Scripts/.RetroDriven/HBMAME"
     HBMAME_FILENAME=$(curl -sIkL "$HBMAME_URL" | sed -r '/filename=/!d;s/.*filename=(.*)$/\1/' | sed -e 's|["'\'']||g' | sed '/^$/d;s/[[:space:]]//g')
     rm -f "download"
-    
+
     #Get File Size
     REMOTE_SIZE=$(curl $SSL_SECURITY_OPTION -s -L -I "$HBMAME_URL" | awk -v IGNORECASE=1 '/^content-length/ { print int($2) }')
 
@@ -521,62 +533,62 @@ Download_HBMAME(){
         if [ $LOG_DOWNLOADED == "True" ];then
             echo "HBMAME Files are up to date!" >> "$LOG_PATH/HBMame_Downloaded.txt"
             echo "Date: $TIMESTAMP" >> "$LOG_PATH/HBMame_Downloaded.txt"
-            echo "" >> "$LOG_PATH/HBMame_Downloaded.txt"                     
-        fi        
+            echo "" >> "$LOG_PATH/HBMame_Downloaded.txt"
+        fi
     fi
- 
-    #Download Zip and extract files/folders if they don't exist    
+
+    #Download Zip and extract files/folders if they don't exist
     if [ ! -f $HBMAME_FILENAME ];then
         SIZE=$(($REMOTE_SIZE/1024/1024))
         echo -n "Downloading: $HBMAME_FILENAME($SIZE" ; echo -n "MB)";
         cd "$HBMAME_PATH"
         echo
         curl $SSL_SECURITY_OPTION -OJs "$HBMAME_URL"
-        
+
         #Check File Size
         LOCAL_SIZE=$(ls -l "$HBMAME_FILENAME" | awk '{ print $5}')
-        
+
         #Handling for when Local and Remote Sizes don't match
             if [ $LOCAL_SIZE != $REMOTE_SIZE ];then
-               
+
                 HBMAME_FAILED="True"
                 HBMAME_LSIZE=$(($LOCAL_SIZE/1024/1024))
                 HBMAME_RSIZE=$(($REMOTE_SIZE/1024/1024))
-               
+
                 echo
                 echo "WARNING: HBMAME Files did not download successfully! Please check your Internet Connection and/or try again."
                 sleep 5
                 clear
-                
+
                 #Log handling
                 if [ $LOG_DOWNLOADED == "True" ];then
                 echo "WARNING: HBMAME Files did not download successfully! Please check your Internet Connection and/or try again." >> "$LOG_PATH/HBMame_Downloaded.txt"
                 echo "Total Size: $HBMAME_RSIZE" >> "$LOG_PATH/HBMame_Downloaded.txt"
                 echo "Downloaded: $HBMAME_LSIZE" >> "$LOG_PATH/HBMame_Downloaded.txt"
                 echo "Date: $TIMESTAMP" >> "$LOG_PATH/HBMame_Downloaded.txt"
-                echo "" >> "$LOG_PATH/HBMame_Downloaded.txt"                     
+                echo "" >> "$LOG_PATH/HBMame_Downloaded.txt"
                 fi
                 #Delete Zip as it is no longer needed after Unzip
                 rm "$HBMAME_FILENAME"
             return
             fi
-     
-        #Save to Log if Option is Enabled    
+
+        #Save to Log if Option is Enabled
         if [ $LOG_DOWNLOADED == "True" ];then
             unzip -uo "$HBMAME_FILENAME" | tee -a "$LOG_PATH/HBMame_Downloaded.txt"
             echo "Date: $TIMESTAMP" >> "$LOG_PATH/HBMame_Downloaded.txt"
-            echo "" >> "$LOG_PATH/HBMame_Downloaded.txt"   
-        else   
+            echo "" >> "$LOG_PATH/HBMame_Downloaded.txt"
+        else
             unzip -uo "$HBMAME_FILENAME"
-        fi    
+        fi
         #Delete Zip as it is no longer needed after Unzip
         rm "$HBMAME_FILENAME"
-        
+
 		#Cache Handling
 		if [ $CACHE_SAVE == "True" ];then
 			#Create Dummy Zip to avoid downloading the same file
 			cd "$BASE_PATH/Scripts/.RetroDriven/HBMAME"
-			rm HBMAME*.zip 2>/dev/null; true    
+			rm HBMAME*.zip 2>/dev/null; true
 			touch "$HBMAME_FILENAME"
 		fi
     fi
@@ -591,10 +603,10 @@ Download_MRA(){
     echo "=========================================================================="
     echo "                           Downloading MRA Files                          "
     echo "=========================================================================="
-    sleep 1 
+    sleep 1
 
     #Create Directories
-    mkdir -p $MRA_PATH    
+    mkdir -p $MRA_PATH
     mkdir -p "$BASE_PATH/Scripts/.RetroDriven/MRA"
     MRA_FAILED="False"
 
@@ -602,79 +614,79 @@ Download_MRA(){
     cd "$BASE_PATH/Scripts/.RetroDriven/MRA"
     MRA_FILENAME=$(curl -sIkL "$MRA_URL" | sed -r '/filename=/!d;s/.*filename=(.*)$/\1/' | sed -e 's|["'\'']||g' | sed '/^$/d;s/[[:space:]]//g')
     rm -f "download"
-    
+
     #Get File Size
     REMOTE_SIZE=$(curl $SSL_SECURITY_OPTION -s -L -I "$MRA_URL" | awk -v IGNORECASE=1 '/^content-length/ { print int($2) }')
-    
+
 	#Clear Cache
 	if [ $CACHE_SAVE == "False" ];then
 		rm MRA*.zip 2>/dev/null; true
 	fi
-	
+
     if [ -f $MRA_FILENAME ];then
         echo "MRA Files are up to date!"
         sleep 1
         if [ $LOG_DOWNLOADED == "True" ];then
             echo "MRA Files are up to date!" >> "$LOG_PATH/MRA_Downloaded.txt"
             echo "Date: $TIMESTAMP" >> "$LOG_PATH/MRA_Downloaded.txt"
-            echo "" >> "$LOG_PATH/MRA_Downloaded.txt"                     
-        fi        
+            echo "" >> "$LOG_PATH/MRA_Downloaded.txt"
+        fi
     fi
- 
-    #Download Zip and extract files/folders if they don't exist    
+
+    #Download Zip and extract files/folders if they don't exist
     if [ ! -f $MRA_FILENAME ];then
         SIZE=$(($REMOTE_SIZE/1024))
         echo -n "Downloading: $MRA_FILENAME($SIZE" ; echo -n "KB)";
         cd "$MRA_PATH"
         echo
         curl $SSL_SECURITY_OPTION -OJs "$MRA_URL"
-        
+
         #Check File Size
         LOCAL_SIZE=$(ls -l "$MRA_FILENAME" | awk '{ print $5}')
-        
+
         #Handling for when Local and Remote Sizes don't match
             if [ "$LOCAL_SIZE" != "$REMOTE_SIZE" ];then
-                
+
                 MRA_FAILED="True"
                 MRA_LSIZE=$(($LOCAL_SIZE/1024/1024))
                 MRA_RSIZE=$(($REMOTE_SIZE/1024/1024))
-                
+
                 echo
                 echo "WARNING: MRA Files did not download successfully! Please check your Internet Connection and/or try again."
                 sleep 5
                 clear
-                
+
                 #Log handling
                 if [ $LOG_DOWNLOADED == "True" ];then
                 echo "WARNING: MRA Files did not download successfully! Please check your Internet Connection and/or try again." >> "$LOG_PATH/MRA_Downloaded.txt"
                 echo "Total Size: $MRA_RSIZE" >> "$LOG_PATH/MRA_Downloaded.txt"
                 echo "Downloaded: $MRA_LSIZE" >> "$LOG_PATH/MRA_Downloaded.txt"
                 echo "Date: $TIMESTAMP" >> "$LOG_PATH/MRA_Downloaded.txt"
-                echo "" >> "$LOG_PATH/MRA_Downloaded.txt"                     
+                echo "" >> "$LOG_PATH/MRA_Downloaded.txt"
                 fi
                 #Delete Zip as it is no longer needed after Unzip
                 rm "$MRA_FILENAME"
             return
             fi
-        
-        #Save to Log if Option is Enabled    
+
+        #Save to Log if Option is Enabled
         if [ $LOG_DOWNLOADED == "True" ];then
             unzip -uo "$MRA_FILENAME" | tee -a "$LOG_PATH/MRA_Downloaded.txt"
             echo "Date: $TIMESTAMP" >> "$LOG_PATH/MRA_Downloaded.txt"
-            echo "" >> "$LOG_PATH/MRA_Downloaded.txt"   
-        else   
+            echo "" >> "$LOG_PATH/MRA_Downloaded.txt"
+        else
             unzip -uo "$MRA_FILENAME"
-        fi    
-        
+        fi
+
         #Delete Zip as it is no longer needed after Unzip
-        cd "$MRA_PATH"       
+        cd "$MRA_PATH"
         rm "$MRA_FILENAME"
-        
+
 		#Cache Handling
 		if [ $CACHE_SAVE == "True" ];then
 			#Create Dummy Zip to avoid downloading the same file
 			cd "$BASE_PATH/Scripts/.RetroDriven/MRA"
-			rm MRA*.zip 2>/dev/null; true    
+			rm MRA*.zip 2>/dev/null; true
 			touch "$MRA_FILENAME"
 		fi
 
@@ -701,7 +713,7 @@ Download_MRA(){
             cp -n *.mra "$MRA_PATH" 2>/dev/null; true
             cd "$MRA_PATH/_Sega System 1/_Alternatives" 2>/dev/null; true
             cp -n -R * "$MRA_PATH/_alternatives" 2>/dev/null; true
-        fi   
+        fi
     fi
 
         #Delete Unofficial MRA Files as needed
@@ -711,7 +723,7 @@ Download_MRA(){
                 rm "$MRA_PATH/_Unofficial/$file" 2>/dev/null; true
             fi
         done
-         
+
         #Delete Unofficial Alternative MRA Files as needed
         cd "$MRA_PATH/_alternatives/" 2>/dev/null; true
         for dir in *; do
@@ -719,23 +731,23 @@ Download_MRA(){
                 rm -R -f "$MRA_PATH/_Unofficial/_Alternatives/$dir" 2>/dev/null; true
             fi
         done
-        
+
         #Remove CPS1 MRA files from Jotego root folder as these will be in a subfolder instead
         cd "$MRA_PATH/_Jotego" 2>/dev/null; true
         rm -f "Final Fight 30th Anniversary Edition.mra" 2>/dev/null; true
         rm -f "Willow.mra" 2>/dev/null; true
         rm -f "Final Fight.mra" 2>/dev/null; true
         rm -f "Ghouls'n Ghosts.mra" 2>/dev/null; true
-        
+
         #Delete Unofficial Subfolder if Option is set to do so
         if [ $MRA_UNOFFICIAL_SUBFOLDER == "False" ];then
         rm -R -f "$MRA_PATH/_Unofficial" 2>/dev/null; true
         rm -R -f "$MRA_PATH/_Jotego" 2>/dev/null; true
         rm -R -f "$MRA_PATH/_Sega System 1" 2>/dev/null; true
         fi
- 
+
     sleep 1
-    clear 
+    clear
 }
 
 #Download CPS1 MRA Function
@@ -745,115 +757,115 @@ Download_MRA_CPS1(){
     echo "=========================================================================="
     echo "                        Downloading CPS1 MRA Files                        "
     echo "=========================================================================="
-    sleep 1 
+    sleep 1
 
     #Create Directories
     mkdir -p "$BASE_PATH/Scripts/.RetroDriven/MRA_CPS1"
     MRA_CPS1_FAILED="False"
-	
+
 	#CPS1 Subfolder
 	if [ $CPS1_SUBFOLDER == "True" ];then
 
 		#Set/Create Directories
-		MRA_CPS1_PATH="$BASE_PATH/_$CPS1_FOLDER"
-		mkdir -p "$MRA_CPS1_PATH" 
-		
+		MRA_CPS1_PATH="$CPS1_PATH"
+		mkdir -p "$MRA_CPS1_PATH"
+
 		#Cleanup old MRA files
 		rm -R -f "$MRA_PATH/_Jotego/_$CPS1_FOLDER" 2>/dev/null; true
 	fi
-	
+
 	#Non CPS1 Subfolder
-	if [ $CPS1_SUBFOLDER == "False" ];then	
-	
+	if [ $CPS1_SUBFOLDER == "False" ];then
+
 		#Set/Create Directories
 		MRA_CPS1_PATH="$MRA_PATH/_Jotego/_$CPS1_FOLDER"
-		mkdir -p "$MRA_CPS1_PATH" 
+		mkdir -p "$MRA_CPS1_PATH"
 	fi
-	
+
     #Get Current Zip File Name
     cd "$BASE_PATH/Scripts/.RetroDriven/MRA_CPS1"
     MRA_CPS1_FILENAME=$(curl -sIkL "$MRA_CPS1_URL" | sed -r '/filename=/!d;s/.*filename=(.*)$/\1/' | sed -e 's|["'\'']||g' | sed '/^$/d;s/[[:space:]]//g')
     rm -f "download"
-    
+
     #Get File Size
     REMOTE_SIZE=$(curl $SSL_SECURITY_OPTION -s -L -I "$MRA_CPS1_URL" | awk -v IGNORECASE=1 '/^content-length/ { print int($2) }')
-    
+
 	#Clear Cache
 	if [ $CACHE_SAVE == "False" ];then
 		rm MRA*.zip 2>/dev/null; true
 	fi
-	
+
     if [ -f $MRA_CPS1_FILENAME ];then
         echo "CPS1 MRA Files are up to date!"
         sleep 1
         if [ $LOG_DOWNLOADED == "True" ];then
             echo "CPS1 MRA Files are up to date!" >> "$LOG_PATH/MRA_CPS1_Downloaded.txt"
             echo "Date: $TIMESTAMP" >> "$LOG_PATH/MRA_CPS1_Downloaded.txt"
-            echo "" >> "$LOG_PATH/MRA_CPS1_Downloaded.txt"                     
-        fi        
+            echo "" >> "$LOG_PATH/MRA_CPS1_Downloaded.txt"
+        fi
     fi
- 
-    #Download Zip and extract files/folders if they don't exist    
+
+    #Download Zip and extract files/folders if they don't exist
     if [ ! -f $MRA_CPS1_FILENAME ];then
         SIZE=$(($REMOTE_SIZE/1024))
         echo -n "Downloading: $MRA_CPS1_FILENAME($SIZE" ; echo -n "KB)";
         cd "$MRA_CPS1_PATH"
         echo
         curl $SSL_SECURITY_OPTION -OJs "$MRA_CPS1_URL"
-        
+
         #Check File Size
         LOCAL_SIZE=$(ls -l "$MRA_CPS1_FILENAME" | awk '{ print $5}')
-        
+
         #Handling for when Local and Remote Sizes don't match
             if [ "$LOCAL_SIZE" != "$REMOTE_SIZE" ];then
-                
+
                 MRA_CPS1_FAILED="True"
                 MRA_CPS1_LSIZE=$(($LOCAL_SIZE/1024/1024))
                 MRA_CPS1_RSIZE=$(($REMOTE_SIZE/1024/1024))
-                
+
                 echo
                 echo "WARNING: CPS1 MRA Files did not download successfully! Please check your Internet Connection and/or try again."
                 sleep 5
                 clear
-                
+
                 #Log handling
                 if [ $LOG_DOWNLOADED == "True" ];then
                 echo "WARNING: CPS1 MRA Files did not download successfully! Please check your Internet Connection and/or try again." >> "$LOG_PATH/MRA_CPS1_Downloaded.txt"
                 echo "Total Size: $MRA_CPS1_RSIZE" >> "$LOG_PATH/MRA_CPS1_Downloaded.txt"
                 echo "Downloaded: $MRA_CPS1_LSIZE" >> "$LOG_PATH/MRA_CPS1_Downloaded.txt"
                 echo "Date: $TIMESTAMP" >> "$LOG_PATH/MRA_CPS1_Downloaded.txt"
-                echo "" >> "$LOG_PATH/MRA_CPS1_Downloaded.txt"                     
+                echo "" >> "$LOG_PATH/MRA_CPS1_Downloaded.txt"
                 fi
                 #Delete Zip as it is no longer needed after Unzip
                 rm "$MRA_CPS1_FILENAME"
             return
             fi
-        
-        #Save to Log if Option is Enabled    
+
+        #Save to Log if Option is Enabled
         if [ $LOG_DOWNLOADED == "True" ];then
             unzip -uo "$MRA_CPS1_FILENAME" | tee -a "$LOG_PATH/MRA_CPS1_Downloaded.txt"
             echo "Date: $TIMESTAMP" >> "$LOG_PATH/MRA_CPS1_Downloaded.txt"
-            echo "" >> "$LOG_PATH/MRA_CPS1_Downloaded.txt"   
-        else   
+            echo "" >> "$LOG_PATH/MRA_CPS1_Downloaded.txt"
+        else
             unzip -uo "$MRA_CPS1_FILENAME"
-        fi    
-        
+        fi
+
         #Delete Zip as it is no longer needed after Unzip
-        cd "$MRA_CPS1_PATH"       
+        cd "$MRA_CPS1_PATH"
         rm "$MRA_CPS1_FILENAME"
-        
+
 		#Cache Handling
 		if [ $CACHE_SAVE == "True" ];then
 			#Create Dummy Zip to avoid downloading the same file
 			cd "$BASE_PATH/Scripts/.RetroDriven/MRA_CPS1"
-			rm MRA*.zip 2>/dev/null; true    
+			rm MRA*.zip 2>/dev/null; true
 			touch "$MRA_CPS1_FILENAME"
 		fi
 
 	fi
- 
+
     sleep 1
-    clear 
+    clear
 }
 
 #Footer Function
@@ -917,66 +929,66 @@ if [ $CPS1_SUBFOLDER == "False" ];then
 
 	#Detect INI Change and initial CPS1 Downloads
 	if [ -d "$BASE_PATH/_$CPS1_FOLDER" ] || [ -d "$BASE_PATH/_CPS1" ]; then
-		
+
 		#Clear CPS1 Cache
 		cd "$BASE_PATH/Scripts/.RetroDriven/MAME_CPS1" 2>/dev/null; true
 		rm MAME*.zip 2>/dev/null; true
 		cd "$BASE_PATH/Scripts/.RetroDriven/MRA_CPS1" 2>/dev/null; true
 		rm MRA*.zip 2>/dev/null; true
-		
+
 		#Download CPS1 MAME Zips
 		Download_MAME_CPS1
-		
+
 		#Download CPS1 MRA Files
 		Download_MRA_CPS1
-		
+
 	fi
-	
+
 	#Move jtcps1 Core if it exists
 	cd "$BASE_PATH/_CPS1/cores" 2>/dev/null; true
 	cp -f jtcps1* "$MRA_PATH/cores" 2>/dev/null; true
 
 	#Cleanup _CPS1 Folder/Files
 	rm -R -f "$BASE_PATH/_CPS1" 2>/dev/null; true
-	
+
 	#Move jtcps1 Core if it exists
 	cd "$BASE_PATH/_$CPS1_FOLDER/cores" 2>/dev/null; true
 	cp -f jtcps1* "$MRA_PATH/cores" 2>/dev/null; true
 
 	#Cleanup _CPS1 Folder/Files
-	rm -R -f "$BASE_PATH/_$CPS1_FOLDER" 2>/dev/null; true		
+	rm -R -f "$BASE_PATH/_$CPS1_FOLDER" 2>/dev/null; true
 fi
 
 if [ $CPS1_SUBFOLDER == "True" ];then
 
 	#Detect INI Change and initial CPS1 Downloads
 	if [ -d "$MRA_PATH/_Jotego/_$CPS1_FOLDER" ] || [ -d "$MRA_PATH/_Jotego/_CPS1" ]; then
-		
+
 		#Clear CPS1 Cache
 		cd "$BASE_PATH/Scripts/.RetroDriven/MAME_CPS1" 2>/dev/null; true
 		rm MAME*.zip 2>/dev/null; true
 		cd "$BASE_PATH/Scripts/.RetroDriven/MRA_CPS1" 2>/dev/null; true
 		rm MRA*.zip 2>/dev/null; true
-		
+
 		#Download CPS1 MAME Zips
 		Download_MAME_CPS1
-		
+
 		#Download CPS1 MRA Files
 		Download_MRA_CPS1
-		
+
 	fi
-	
+
 	#Move jtcps1 Core if it exists
 	cd "$MRA_PATH/cores" 2>/dev/null; true
 	cp -f jtcps1* "$BASE_PATH/_$CPS1_FOLDER/cores" 2>/dev/null; true
-	
+
 	#Cleanup _CPS1 Folder/Files
 	rm -R -f "$MRA_PATH/_Jotego/_$CPS1_FOLDER" 2>/dev/null; true
-	
+
 	#Move jtcps1 Core if it exists
 	cd "$MRA_PATH/cores" 2>/dev/null; true
 	cp -f jtcps1* "$BASE_PATH/_CPS1/cores" 2>/dev/null; true
-	
+
 	#Cleanup _CPS1 Folder/Files
 	rm -R -f "$MRA_PATH/_Jotego/_CPS1" 2>/dev/null; true
 fi
@@ -989,15 +1001,15 @@ Download_MAME_CPS1
 
 #Download HBMAME Zips
 if [ $HBMAME_DOWNLOAD == "True" ];then
-    echo    
+    echo
     Download_HBMAME
 fi
 
 #MRA Downloading
 if [ $MRA_DOWNLOAD == "True" ];then
-  
+
     #Download MRA Files
-    Download_MRA  
+    Download_MRA
 
 	#Download CPS1 MRA Files
 	Download_MRA_CPS1
@@ -1034,8 +1046,8 @@ TO_BE_DELETED_EXTENSION="to_be_deleted"
 
 #========= CODE STARTS HERE =========
 if [ $RBF_DOWNLOAD == "True" ];then
-    
-    clear    
+
+    clear
     echo
     echo "=========================================================================="
     echo "                    Downloading Unofficial Arcade Cores                   "
@@ -1047,12 +1059,12 @@ fi
 Unofficial_Updater(){
 
 if [ $DEV_NAME == "jotego" ];then
-    clear    
+    clear
     echo
     echo "=========================================================================="
     echo "                      Downloading Jotego Arcade Cores                     "
     echo "=========================================================================="
-    sleep 1 
+    sleep 1
 fi
 
 mkdir -p "$MRA_PATH/cores"
@@ -1080,7 +1092,7 @@ then
 fi
 
 function checkCoreURL {
-	
+
 	echo "Checking $(echo $CORE_URL | sed 's/.*\///g' | sed 's/_MiSTer//gI')"
 	[ "${SSH_CLIENT}" != "" ] && echo "URL: $CORE_URL"
 	if echo "$CORE_URL" | grep -q "SD-Installer"
@@ -1099,7 +1111,7 @@ function checkCoreURL {
 		if echo "$RELEASE_URL" | grep -q "SharpMZ"
 		then
 			RELEASE_URL=$(echo "$RELEASE_URL"  | grep '\.rbf$')
-		fi			
+		fi
 		if echo "$RELEASE_URL" | grep -q "Atari800"
 		then
 			if [ "$CORE_CATEGORY" == "cores" ]
@@ -1108,9 +1120,9 @@ function checkCoreURL {
 			else
 				RELEASE_URL=$(echo "$RELEASE_URL"  | grep '5200_[0-9]\{8\}[a-zA-Z]\?\.rbf$')
 			fi
-		fi			
+		fi
 		CURRENT_VERSION=$(echo "$RELEASE_URL" | grep -o '[0-9]\{8\}[a-zA-Z]\?')
-		
+
 		if [ "$GOOD_CORES" != "" ]
 		then
 			GOOD_CORE_VERSION=$(echo "$GOOD_CORES" | grep -wo "$(echo "$RELEASE_URL" | sed 's/.*\///g')" | grep -o '[0-9]\{8\}[a-zA-Z]\?')
@@ -1121,26 +1133,26 @@ function checkCoreURL {
 				break
 			fi
 		fi
-		
+
 		if [[ "$CURRENT_VERSION" > "$MAX_VERSION" ]]
 		then
 			MAX_VERSION=$CURRENT_VERSION
 			MAX_RELEASE_URL=$RELEASE_URL
 		fi
 	done
-	
+
 	FILE_NAME=$(echo "$MAX_RELEASE_URL" | sed 's/.*\///g')
 	if [ "$CORE_CATEGORY" == "arcade-cores" ] && [ $REMOVE_ARCADE_PREFIX == "True" ]
 	then
 		FILE_NAME=$(echo "$FILE_NAME" | sed 's/Arcade-//gI')
 	fi
 	BASE_FILE_NAME=$(echo "$FILE_NAME" | sed 's/_[0-9]\{8\}.*//g')
-	
+
 	CURRENT_DIRS="${CORE_CATEGORY_PATHS[$CORE_CATEGORY]}"
 	if [ "${NEW_CORE_CATEGORY_PATHS[$CORE_CATEGORY]}" != "" ]
 	then
 		CURRENT_DIRS=("$CURRENT_DIRS" "${NEW_CORE_CATEGORY_PATHS[$CORE_CATEGORY]}")
-	fi 
+	fi
 	if [ "$CURRENT_DIRS" == "" ]
 	then
 		CURRENT_DIRS=("$BASE_PATH")
@@ -1150,7 +1162,7 @@ function checkCoreURL {
 		mkdir -p "$WORK_PATH"
 		CURRENT_DIRS=("$WORK_PATH")
 	fi
-	
+
 	CURRENT_LOCAL_VERSION=""
 	MAX_LOCAL_VERSION=""
 	for CURRENT_DIR in "${CURRENT_DIRS[@]}"
@@ -1188,7 +1200,7 @@ function checkCoreURL {
 							mv "${CURRENT_FILE}" "${CURRENT_FILE}.${TO_BE_DELETED_EXTENSION}" > /dev/null 2>&1
 						fi
 					fi
-				
+
 				fi
 			fi
 		done
@@ -1197,7 +1209,7 @@ function checkCoreURL {
 			break
 		fi
 	done
-	
+
 	if [[ "$MAX_VERSION" > "$MAX_LOCAL_VERSION" ]]
 	then
 		if [ "$DOWNLOAD_NEW_CORES" != "false" ] || [ "$MAX_LOCAL_VERSION" != "" ] || [ "$BASE_FILE_NAME" == "MiSTer" ] || [ "$BASE_FILE_NAME" == "menu" ] || { echo "$CORE_URL" | grep -q "SD-Installer"; }
@@ -1205,10 +1217,10 @@ function checkCoreURL {
 			echo "Downloading $FILE_NAME"
 			[ "${SSH_CLIENT}" != "" ] && echo "URL: https://github.com$MAX_RELEASE_URL?raw=true"
 			if curl $SSL_SECURITY_OPTION -# -L "https://github.com$MAX_RELEASE_URL?raw=true" -o "$CURRENT_DIR/$FILE_NAME"
-                #Log File handling                
+                #Log File handling
                 if [ $LOG_DOWNLOADED == "True" ];then
-                echo "$FILE_NAME" >> "$LOG_PATH/RBF_Downloaded.txt"                
-                fi 			
+                echo "$FILE_NAME" >> "$LOG_PATH/RBF_Downloaded.txt"
+                fi
             then
 				if [ ${DELETE_OLD_FILES} == "true" ]
 				then
@@ -1274,7 +1286,7 @@ function checkCoreURL {
 	else
 		echo "Nothing to update"
 	fi
-	
+
 	echo ""
 }
 
