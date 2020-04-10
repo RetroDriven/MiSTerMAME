@@ -214,6 +214,10 @@
 ├── pnickj.zip
 ├── qad.zip
 ├── qtono2j.zip
+├── sf2.zip
+├── sf2ce.zip
+├── sf2hf.zip
+├── sfzch.zip
 ├── strider.zip
 ├── unsquad.zip
 ├── varth.zip
@@ -419,6 +423,10 @@
 	├── Pnickies.mra
 	├── Quiz Tonosama no Yabou 2 - Zenkoku-ban.mra
 	├── Quiz and Dragons - Capcom Quiz Game.mra
+	├── Street Fighter Alpha - Warriors Dreams.mra
+	├── Street Fighter II - Champion Edition.mra
+	├── Street Fighter II - Hyper Fighting.mra
+	├── Street Fighter Zero.mra
 	├── Strider.mra
 	├── The King of Dragons.mra
 	├── Three Wonders.mra
@@ -490,6 +498,82 @@
     ├── Quiz _ Dragons  Capcom Quiz Game -Japan Resale Ver. 940921-.mra
     ├── Rockman  The Power Battle -CPS1, Japan 950922-.mra
     ├── Senjou no Ookami II -Japan 900302-.mra
+    ├── Street Fighter II  The World Warrior -Japan 910214-.mra
+    ├── Street Fighter II  The World Warrior -Japan 910306-.mra
+    ├── Street Fighter II  The World Warrior -Japan 910411-.mra
+    ├── Street Fighter II  The World Warrior -Japan 910522-.mra
+    ├── Street Fighter II  The World Warrior -Japan 911210, CPS-B-13-.mra
+    ├── Street Fighter II  The World Warrior -Japan 911210, CPS-B-17-.mra
+    ├── Street Fighter II  The World Warrior -Japan 920312-.mra
+    ├── Street Fighter II  The World Warrior -Quicken Pt-I, bootleg-.mra
+    ├── Street Fighter II  The World Warrior -Quicken, bootleg-.mra
+    ├── Street Fighter II  The World Warrior -RK, bootleg-.mra
+    ├── Street Fighter II  The World Warrior -TAB Austria, bootleg, set 1-.mra
+    ├── Street Fighter II  The World Warrior -TAB Austria, bootleg, set 2-.mra
+    ├── Street Fighter II  The World Warrior -TAB Austria, bootleg, set 3-.mra
+    ├── Street Fighter II  The World Warrior -TAB Austria, bootleg, set 4-.mra
+    ├── Street Fighter II  The World Warrior -Thunder Edition, bootleg, set 1-.mra
+    ├── Street Fighter II  The World Warrior -Thunder Edition, bootleg, set 2-.mra
+    ├── Street Fighter II  The World Warrior -USA 910206-.mra
+    ├── Street Fighter II  The World Warrior -USA 910214-.mra
+    ├── Street Fighter II  The World Warrior -USA 910228-.mra
+    ├── Street Fighter II  The World Warrior -USA 910306-.mra
+    ├── Street Fighter II  The World Warrior -USA 910318-.mra
+    ├── Street Fighter II  The World Warrior -USA 910411-.mra
+    ├── Street Fighter II  The World Warrior -USA 910522, Rev. G-.mra
+    ├── Street Fighter II  The World Warrior -USA 910522, Rev. H-.mra
+    ├── Street Fighter II  The World Warrior -USA 910522, Rev. I-.mra
+    ├── Street Fighter II  The World Warrior -USA 911101-.mra
+    ├── Street Fighter II  The World Warrior -World 910129-.mra
+    ├── Street Fighter II  The World Warrior -World 910204, conversion-.mra
+    ├── Street Fighter II  The World Warrior -World 910204-.mra
+    ├── Street Fighter II  The World Warrior -World 910214-.mra
+    ├── Street Fighter II  The World Warrior -World 910228-.mra
+    ├── Street Fighter II  The World Warrior -World 910318-.mra
+    ├── Street Fighter II  The World Warrior -bootleg with rules screen-.mra
+    ├── Street Fighter II'  Champion Edition -'Taiwan' bootleg with PAL-.mra
+    ├── Street Fighter II'  Champion Edition -Accelerator Pt.II, bootleg-.mra
+    ├── Street Fighter II'  Champion Edition -Accelerator!, bootleg, set 1-.mra
+    ├── Street Fighter II'  Champion Edition -Accelerator!, bootleg, set 2-.mra
+    ├── Street Fighter II'  Champion Edition -Alpha Magic-F, bootleg-.mra
+    ├── Street Fighter II'  Champion Edition -Dongfang Bubai protection, bootleg-.mra
+    ├── Street Fighter II'  Champion Edition -Dstreet-6, bootleg-.mra
+    ├── Street Fighter II'  Champion Edition -Hung Hsi, bootleg-.mra
+    ├── Street Fighter II'  Champion Edition -Japan 920322-.mra
+    ├── Street Fighter II'  Champion Edition -Japan 920513-.mra
+    ├── Street Fighter II'  Champion Edition -Japan 920803-.mra
+    ├── Street Fighter II'  Champion Edition -L735 Test Rom, bootleg, set 1-.mra
+    ├── Street Fighter II'  Champion Edition -L735 Test Rom, bootleg, set 2-.mra
+    ├── Street Fighter II'  Champion Edition -M10, bootleg-.mra
+    ├── Street Fighter II'  Champion Edition -M2, bootleg-.mra
+    ├── Street Fighter II'  Champion Edition -M3, bootleg-.mra
+    ├── Street Fighter II'  Champion Edition -M4, bootleg-.mra
+    ├── Street Fighter II'  Champion Edition -M5, bootleg-.mra
+    ├── Street Fighter II'  Champion Edition -M6, bootleg-.mra
+    ├── Street Fighter II'  Champion Edition -M7, bootleg-.mra
+    ├── Street Fighter II'  Champion Edition -M8, bootleg-.mra
+    ├── Street Fighter II'  Champion Edition -Mstreet-6, bootleg, set 1-.mra
+    ├── Street Fighter II'  Champion Edition -Mstreet-6, bootleg, set 2-.mra
+    ├── Street Fighter II'  Champion Edition -Mstreet-6, bootleg, set 3-.mra
+    ├── Street Fighter II'  Champion Edition -RE, bootleg-.mra
+    ├── Street Fighter II'  Champion Edition -Rainbow, bootleg, set 1-.mra
+    ├── Street Fighter II'  Champion Edition -Rainbow, bootleg, set 2-.mra
+    ├── Street Fighter II'  Champion Edition -Rainbow, bootleg, set 3-.mra
+    ├── Street Fighter II'  Champion Edition -Red Wave PtII, bootleg-.mra
+    ├── Street Fighter II'  Champion Edition -Red Wave, bootleg-.mra
+    ├── Street Fighter II'  Champion Edition -Taiwan 920313-.mra
+    ├── Street Fighter II'  Champion Edition -UPL bootleg-.mra
+    ├── Street Fighter II'  Champion Edition -USA 920313-.mra
+    ├── Street Fighter II'  Champion Edition -USA 920513-.mra
+    ├── Street Fighter II'  Champion Edition -USA 920803-.mra
+    ├── Street Fighter II'  Champion Edition -V004, bootleg-.mra
+    ├── Street Fighter II'  Champion Edition -World 920313-.mra
+    ├── Street Fighter II'  Champion Edition -Xiang Long, Chinese bootleg-.mra
+    ├── Street Fighter II'  Champion Edition -bootleg with level selection-.mra
+    ├── Street Fighter II'  Champion Edition -protected bootleg on non-dash board-.mra
+    ├── Street Fighter II'  Hyper Fighting -World 921209-.mra
+    ├── Street Fighter II' Turbo  Hyper Fighting -Japan 921209-.mra
+    ├── Street Fighter Zero -CPS Changer, Brazil 950727-.mra
     ├── Strider -USA, B-Board 89624B-2-.mra
     ├── Strider -USA, B-Board 89624B-3-.mra
     ├── Strider -USA, B-Board 90629B-3, buggy Street Fighter II conversion-.mra
