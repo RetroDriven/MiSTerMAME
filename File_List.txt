@@ -426,6 +426,7 @@
 	├── Street Fighter Alpha - Warriors Dreams.mra
 	├── Street Fighter II - Champion Edition.mra
 	├── Street Fighter II - Hyper Fighting.mra
+    ├── Street Fighter II - The World Warrior.mra
 	├── Street Fighter Zero.mra
 	├── Strider.mra
 	├── The King of Dragons.mra
