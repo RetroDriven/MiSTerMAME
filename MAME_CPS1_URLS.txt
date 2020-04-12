@@ -1,0 +1,5 @@
+#1941: Counter Attack (World 900227)
+url="https://edgeemu.net/down.php?id=153340"
+
+#Adventure Quiz Capcom World 2 (Japan 920611)
+url="https://edgeemu.net/down.php?id=157255"
