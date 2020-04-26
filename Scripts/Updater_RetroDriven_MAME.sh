@@ -79,7 +79,7 @@ HBMAME_URL="https://retrodriven-nextcloud.cloud.seedboxes.cc/s/HBMAME/download"
 MRA_URL="https://retrodriven-nextcloud.cloud.seedboxes.cc/s/MRA/download"
 
 #CPS1 MAME ROM Zips URL
-MAME_CPS1_URL="https://retrodriven-nextcloud.cloud.seedboxes.cc/s/MAME-CPS1/download"
+MAME_CPS1_URL="https://retrodriven-nextcloud.cloud.seedboxes.cc/s/MAME_CPS1/download"
 
 #CPS1 MRA URL
 MRA_CPS1_URL="https://retrodriven-nextcloud.cloud.seedboxes.cc/s/MRA-CPS1/download"
