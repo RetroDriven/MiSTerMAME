@@ -209,7 +209,7 @@ Download_MAME(){
 	echo
 	
     #Sync Files
-    lftp "$MAME_URL" -e "mirror -p -P 25 --ignore-time --verbose=1 --log="$LOGS_PATH/MAME_Downloads.txt"; quit"
+    lftp "$MAME_URL" -e "mirror -p -P 10 --ignore-time --verbose=1 --log="$LOGS_PATH/MAME_Downloads.txt"; quit"
     
 	sleep 1
     clear 	
@@ -234,7 +234,7 @@ Download_HBMAME(){
 	echo
 	
     #Sync Files
-    lftp "$HBMAME_URL" -e "mirror -p -P 25 --ignore-time --verbose=1 --log="$LOGS_PATH/HBMAME_Downloads.txt"; quit"
+    lftp "$HBMAME_URL" -e "mirror -p -P 10 --ignore-time --verbose=1 --log="$LOGS_PATH/HBMAME_Downloads.txt"; quit"
      
 	sleep 1
     clear 	
@@ -337,12 +337,12 @@ Backup(){
 	cd  "$BASE_PATH/_Arcade" 2>/dev/null
 	mkdir "$BASE_PATH/_Arcade/RD_BACKUP" 2>/dev/null
 
-	mv -f "$BASE_PATH/_CPS1" "$BASE_PATH/$ARCADE_FOLDER/RD_BACKUP" 2>/dev/null
+	rm -f "$BASE_PATH/_CPS1" "$BASE_PATH/$ARCADE_FOLDER/RD_BACKUP" 2>/dev/null
 	mv -f "_Jotego" "$BASE_PATH/$ARCADE_FOLDER/RD_BACKUP" 2>/dev/null
 	mv -f "_Unofficial" "$BASE_PATH/$ARCADE_FOLDER/RD_BACKUP" 2>/dev/null
 	mv -f "_Sega System 1" "$BASE_PATH/$ARCADE_FOLDER/RD_BACKUP" 2>/dev/null
-	mv -f "_CPS1" "$BASE_PATH/$ARCADE_FOLDER/RD_BACKUP" 2>/dev/null
-	mv -f "_Jotego/_CPS1" "$BASE_PATH/$ARCADE_FOLDER/RD_BACKUP" 2>/dev/null
+	mv "_CPS1" "$BASE_PATH/$ARCADE_FOLDER/RD_BACKUP" 2>/dev/null
+	mv "_Jotego/_CPS1" "$BASE_PATH/$ARCADE_FOLDER/RD_BACKUP" 2>/dev/null
 	#Zip and delete
 	cd "$BASE_PATH/_Arcade/RD_BACKUP" 2>/dev/null
 	zip -qrm --exclude=*.zip* Backup.zip *
@@ -351,8 +351,8 @@ Backup(){
 	mv -f "_Jotego" "$BASE_PATH/$ARCADE_FOLDER/RD_BACKUP" 2>/dev/null
 	mv -f "_Unofficial" "$BASE_PATH/$ARCADE_FOLDER/RD_BACKUP" 2>/dev/null
 	mv -f "_Sega System 1" "$BASE_PATH/$ARCADE_FOLDER/RD_BACKUP" 2>/dev/null
-	mv -f "_CPS1" "$BASE_PATH/$ARCADE_FOLDER/RD_BACKUP" 2>/dev/null
-	mv -f "_Jotego/_CPS1" "$BASE_PATH/$ARCADE_FOLDER/RD_BACKUP" 2>/dev/null
+	mv "_CPS1" "$BASE_PATH/$ARCADE_FOLDER/RD_BACKUP" 2>/dev/null
+	mv "_Jotego/_CPS1" "$BASE_PATH/$ARCADE_FOLDER/RD_BACKUP" 2>/dev/null
 	#Zip and delete
 	cd "$BASE_PATH/$ARCADE_FOLDER/RD_BACKUP" 2>/dev/null
 	zip -qrm --exclude=*.zip* Backup.zip *
