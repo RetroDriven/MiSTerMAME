@@ -63,4 +63,9 @@ sleep 1
 curl $SSL_SECURITY_OPTION -OJs "https://raw.githubusercontent.com/RetroDriven/MiSTerMAME/master/Update_RetroDriven_MAME_SE.sh"
 curl $SSL_SECURITY_OPTION -OJs "https://raw.githubusercontent.com/RetroDriven/MiSTerMAME/master/Update_RetroDriven_MAME_SE.ini"
 
+#Delete Previous Script
+rm -f "Update_RetroDriven_MAME.ini" 2>/dev/null; true
+rm -f "Update_RetroDriven_MAME.sh" 2>/dev/null; true
+rm -f "Cache_Remover_RetroDriven.sh" 2>/dev/null; true
+
 echo
