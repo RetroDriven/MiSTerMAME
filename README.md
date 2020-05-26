@@ -22,6 +22,14 @@ You can place your Mame/HbMame Zip files into your Games folder instead like bel
 * /Games/mame/*.zip
 * /Games/hbmame/*.zip
 
+## Default Arcade Core Folder Structure for this Script ##
+The Folder Names and Structure can be changed via the INI File.
+
+* /_Arcade/_Unofficial/*.mra
+* /_Arcade/_Unofficial/_CPS1
+* /_Arcade/_Unofficial/_Jotego
+* /_Arcade/_Unofficial/_Sega System 1
+
 ## Unofficial Arcade Core/RBF Downloads ##
 I have included the ability to Download/Update Unofficial Arcade Core RBF files.
 
