@@ -60,6 +60,7 @@ echo " ------------------------------------------------------------------------"
 sleep 1
 
 #Download New Script and INI
-curl $SSL_SECURITY_OPTION -OJs "https://raw.githubusercontent.com/RetroDriven/MiSTerMAME/master/Scripts/Updater_RetroDriven_MAME_SE.ini"
+curl $SSL_SECURITY_OPTION -OJs "https://raw.githubusercontent.com/RetroDriven/MiSTerMAME/master/Update_RetroDriven_MAME_SE.sh"
+curl $SSL_SECURITY_OPTION -OJs "https://raw.githubusercontent.com/RetroDriven/MiSTerMAME/master/Update_RetroDriven_MAME_SE.ini"
 
 echo
