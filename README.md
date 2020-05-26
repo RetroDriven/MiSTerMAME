@@ -6,7 +6,7 @@ The purpose of this Script to to aid in downloading the correct MAME ROM Zips to
 <a href="https://retrodriven-nextcloud.cloud.seedboxes.cc/s/Updater/download"> Script Updater and INI File Download </a>
 
 ## Usage ##
-* Download the ZIP file above and Extract/Copy <b>Update_RetroDriven_MAME_SE.sh</b>, <b>Update_RetroDriven_MAME_SE.ini</b>, and <b>Cache_Remover_RetroDriven.sh</b> to your Scripts Folder on your MiSTer SD Card(typically /media/fat/Scripts).
+* Download the ZIP file above and Extract/Copy <b>Update_RetroDriven_MAME_SE.sh</b> and <b>Update_RetroDriven_MAME_SE.ini</b> to your Scripts Folder on your MiSTer SD Card(typically /media/fat/Scripts).
 * Simply run <b>Update_RetroDriven_MAME_SE.sh</b> via MiSTer Scripts Menu to Download/Update your MAME ROM Zips/MRAs and Unofficial Arcade Cores(RBF Files).
 * Optional: Changing the <b>Update_RetroDriven_MAME_SE.ini</b> file is optional based on your setup/needs.
 
