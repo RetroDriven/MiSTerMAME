@@ -337,25 +337,26 @@ Backup(){
 	cd  "$BASE_PATH/_Arcade" 2>/dev/null
 	mkdir "$BASE_PATH/_Arcade/rd_backup" 2>/dev/null
 
-	rm -f "$BASE_PATH/_CPS1" "$BASE_PATH/$ARCADE_FOLDER/rd_backup" 2>/dev/null
-	mv -f "_Jotego" "$BASE_PATH/$ARCADE_FOLDER/rd_backup" 2>/dev/null
-	mv -f "_Unofficial" "$BASE_PATH/$ARCADE_FOLDER/rd_backup" 2>/dev/null
-	mv -f "_Sega System 1" "$BASE_PATH/$ARCADE_FOLDER/rd_backup" 2>/dev/null
-	mv "_CPS1" "$BASE_PATH/$ARCADE_FOLDER/rd_backup" 2>/dev/null
-	mv "_Jotego/_CPS1" "$BASE_PATH/$ARCADE_FOLDER/rd_backup" 2>/dev/null
+	mm -f "$BASE_PATH/_CPS1" "$BASE_PATH/_Arcade/rd_backup" 2>/dev/null
+	mv -f "_Jotego" "$BASE_PATH/_Arcade/rd_backup" 2>/dev/null
+	mv -f "_Unofficial" "$BASE_PATH/_Arcade/rd_backup" 2>/dev/null
+	mv -f "_Sega System 1" "$BASE_PATH/_Arcade/rd_backup" 2>/dev/null
+	mv -f "_CPS1" "$BASE_PATH/_Arcade/rd_backup" 2>/dev/null
+	mv -f "_Jotego/_CPS1" "$BASE_PATH/_Arcade/rd_backup" 2>/dev/null
 	#Zip and delete
 	cd "$BASE_PATH/_Arcade/rd_backup" 2>/dev/null
-	zip -qrm --exclude=*.zip* Backup.zip *
+	zip -qrm --exclude=Backup.zip Backup.zip *
 	
 	cd "$BASE_PATH/$ARCADE_FOLDER" 2>/dev/null
+	mv -f "$BASE_PATH/_CPS1" "$BASE_PATH/$ARCADE_FOLDER/rd_backup" 2>/dev/null
 	mv -f "_Jotego" "$BASE_PATH/$ARCADE_FOLDER/rd_backup" 2>/dev/null
 	mv -f "_Unofficial" "$BASE_PATH/$ARCADE_FOLDER/rd_backup" 2>/dev/null
 	mv -f "_Sega System 1" "$BASE_PATH/$ARCADE_FOLDER/rd_backup" 2>/dev/null
-	mv "_CPS1" "$BASE_PATH/$ARCADE_FOLDER/rd_backup" 2>/dev/null
-	mv "_Jotego/_CPS1" "$BASE_PATH/$ARCADE_FOLDER/rd_backup" 2>/dev/null
+	mv -f "_CPS1" "$BASE_PATH/$ARCADE_FOLDER/rd_backup" 2>/dev/null
+	mv -f "_Jotego/_CPS1" "$BASE_PATH/$ARCADE_FOLDER/rd_backup" 2>/dev/null
 	#Zip and delete
 	cd "$BASE_PATH/$ARCADE_FOLDER/rd_backup" 2>/dev/null
-	zip -qrm --exclude=*.zip* Backup.zip *
+	zip -qrm --exclude=Backup.zip Backup.zip *
 
 	#Delete Cached Files/Folder from Original Scipt
 	rm -r "/media/fat/scripts/.RetroDriven/HBMAME"
