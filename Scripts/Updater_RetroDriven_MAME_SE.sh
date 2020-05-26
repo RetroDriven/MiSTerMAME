@@ -201,18 +201,18 @@ Download_MAME(){
 
 	#Make Directories if needed
 	mkdir -p "$MAME_PATH/mame"
-    cd "$MAME_PATH/mame"
+    	cd "$MAME_PATH/mame"
 
-    #MAME Zip Downloading
+    	#MAME Zip Downloading
 	echo
 	echo "Checking Existing MAME Zips for Updates/New Files......"
 	echo
 	
-    #Sync Files
-    lftp "$MAME_URL" -e "mirror -p -P 25 --ignore-time --verbose=1 --log="$LOGS_PATH/MAME_Downloads.txt"; quit"
+    	#Sync Files
+    	lftp "$MAME_URL" -e "mirror -p -P 25 --ignore-time --verbose=1 --log="$LOGS_PATH/MAME_Downloads.txt"; quit"
     
 	sleep 1
-    clear 	
+    	clear 	
 }
 
 #Download HBMAME Function
@@ -226,18 +226,18 @@ Download_HBMAME(){
 
 	#Make Directories if needed
 	mkdir -p "$MAME_PATH/hbmame"
-    cd "$MAME_PATH/hbmame"
+   	cd "$MAME_PATH/hbmame"
 
 	#HBMAME Zip Downloading
 	echo
 	echo "Checking Existing HBMAME Zips for Updates/New Files......"
 	echo
 	
-    #Sync Files
-    lftp "$HBMAME_URL" -e "mirror -p -P 25 --ignore-time --verbose=1 --log="$LOGS_PATH/HBMAME_Downloads.txt"; quit"
+    	#Sync Files
+    	lftp "$HBMAME_URL" -e "mirror -p -P 25 --ignore-time --verbose=1 --log="$LOGS_PATH/HBMAME_Downloads.txt"; quit"
      
 	sleep 1
-    clear 	
+    	clear 	
 }
 
 #MRA Banner
@@ -256,69 +256,69 @@ Download_MRA(){
 	#Create Directories
   	MRA_PATH="$BASE_PATH/$ARCADE_FOLDER/$UNOFFICIAL_PATH"
 	mkdir -p "$MRA_PATH"
-    cd "$MRA_PATH"
+    	cd "$MRA_PATH"
     
 	MRA_BANNER	
 	echo
 	echo "Checking Existing Unofficial MRA Files for Updates/New Files......"
 	echo
 
-    #Sync Files
-    lftp "$MRA_URL" -e "mirror -p -P 25 --ignore-time --verbose=1 --log="$LOGS_PATH/MRA_Unofficial_Downloads.txt"; quit"
+    	#Sync Files
+    	lftp "$MRA_URL" -e "mirror -p -P 25 --ignore-time --verbose=1 --log="$LOGS_PATH/MRA_Unofficial_Downloads.txt"; quit"
 	
-    sleep 1
-    clear 
+	sleep 1
+    	clear 
 	
 #MRA - Jotego Downloading
 	#Create Directories
   	MRA_PATH="$BASE_PATH/$ARCADE_FOLDER/$JOTEGO_PATH"
-    mkdir -p "$MRA_PATH"
-    cd "$MRA_PATH"
+    	mkdir -p "$MRA_PATH"
+    	cd "$MRA_PATH"
 	
 	MRA_BANNER	
 	echo
 	echo "Checking Existing Jotego MRA Files for Updates/New Files......"
 	echo
     
-    #Sync Files
-    lftp "$MRA_JOTEGO_URL" -e "mirror -p -P 25 --ignore-time --verbose=1 --log="$LOGS_PATH/MRA_Jotego_Downloads.txt"; quit"
+    	#Sync Files
+    	lftp "$MRA_JOTEGO_URL" -e "mirror -p -P 25 --ignore-time --verbose=1 --log="$LOGS_PATH/MRA_Jotego_Downloads.txt"; quit"
     
 	sleep 1
-    clear 
+    	clear 
 
 #MRA - CPS1 Downloading
 	#Create Directories
   	MRA_PATH="$BASE_PATH/$ARCADE_FOLDER/$CPS1_PATH"
-    mkdir -p "$MRA_PATH"
-    cd "$MRA_PATH"
+    	mkdir -p "$MRA_PATH"
+    	cd "$MRA_PATH"
 
 	MRA_BANNER	
 	echo
 	echo "Checking Existing CPS1 MRA Files for Updates/New Files......"
 	echo
 
-    #Sync Files
-    lftp "$MRA_CPS1_URL" -e "mirror -p -P 25 --ignore-time --verbose=1 --log="$LOGS_PATH/MRA_CPS1_Downloads.txt"; quit"
+    	#Sync Files
+    	lftp "$MRA_CPS1_URL" -e "mirror -p -P 25 --ignore-time --verbose=1 --log="$LOGS_PATH/MRA_CPS1_Downloads.txt"; quit"
 	
-    sleep 1
-    clear 
+    	sleep 1
+    	clear 
 
 #MRA - Sega System 1 Downloading
 	#Create Directories
-    MRA_PATH="$BASE_PATH/$ARCADE_FOLDER/$SEGASYS1_PATH"
+    	MRA_PATH="$BASE_PATH/$ARCADE_FOLDER/$SEGASYS1_PATH"
   	mkdir -p "$MRA_PATH"
-    cd "$MRA_PATH"
+    	cd "$MRA_PATH"
 	
 	MRA_BANNER	
 	echo
 	echo "Checking Existing Sega System 1 MRA Files for Updates/New Files......"
 	echo
     
-    #Sync Files
-    lftp "$MRA_SEGASYS1_URL" -e "mirror -p -P 25 --ignore-time --verbose=1 --log="$LOGS_PATH/MRA_SEGASYS1_Downloads.txt"; quit"
+    	#Sync Files
+    	lftp "$MRA_SEGASYS1_URL" -e "mirror -p -P 25 --ignore-time --verbose=1 --log="$LOGS_PATH/MRA_SEGASYS1_Downloads.txt"; quit"
 
 	sleep 1
-    clear 
+    	clear 
 }
 
 #Backup Function
