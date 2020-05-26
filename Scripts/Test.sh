@@ -60,6 +60,6 @@ echo " ------------------------------------------------------------------------"
 sleep 1
 
 #Download New Script and INI
-curl $SSL_SECURITY_OPTION -OJ# "https://github.com/RetroDriven/MiSTerMAME/blob/master/Scripts/Test.sh"
+curl $SSL_SECURITY_OPTION -OJ# "https://github.com/RetroDriven/MiSTerMAME/blob/master/Scripts/Test.sh?raw=true"
 
 echo
