@@ -72,8 +72,8 @@ rm -f "Cache_Remover_RetroDriven.sh" 2>/dev/null; true
 echo
 echo "** Migration to the New RetroDriven SE Script is Complete! **"
 echo
-echo "** Please open Update_RetroDriven_MAME_SE.ini within your Scripts folder to 
-Review/Change Options as needed(The Default Options are likely good though) **"
+echo "** Please open Update_RetroDriven_MAME_SE.ini within your Scripts folder to" 
+echo "Review/Change Options as needed(The Default Options are likely good though) **"
 echo
 echo "** Once complete simply run the Update_RetroDriven_MAME_SE Script and Enjoy! **"
 
