@@ -335,26 +335,26 @@ Backup(){
 
 	#Backup Files from Original Script
 	cd  "$BASE_PATH/_Arcade" 2>/dev/null
-	mkdir "$BASE_PATH/_Arcade/RD_BACKUP" 2>/dev/null
+	mkdir "$BASE_PATH/_Arcade/rd_backup" 2>/dev/null
 
-	rm -f "$BASE_PATH/_CPS1" "$BASE_PATH/$ARCADE_FOLDER/RD_BACKUP" 2>/dev/null
-	mv -f "_Jotego" "$BASE_PATH/$ARCADE_FOLDER/RD_BACKUP" 2>/dev/null
-	mv -f "_Unofficial" "$BASE_PATH/$ARCADE_FOLDER/RD_BACKUP" 2>/dev/null
-	mv -f "_Sega System 1" "$BASE_PATH/$ARCADE_FOLDER/RD_BACKUP" 2>/dev/null
-	mv "_CPS1" "$BASE_PATH/$ARCADE_FOLDER/RD_BACKUP" 2>/dev/null
-	mv "_Jotego/_CPS1" "$BASE_PATH/$ARCADE_FOLDER/RD_BACKUP" 2>/dev/null
+	rm -f "$BASE_PATH/_CPS1" "$BASE_PATH/$ARCADE_FOLDER/rd_backup" 2>/dev/null
+	mv -f "_Jotego" "$BASE_PATH/$ARCADE_FOLDER/rd_backup" 2>/dev/null
+	mv -f "_Unofficial" "$BASE_PATH/$ARCADE_FOLDER/rd_backup" 2>/dev/null
+	mv -f "_Sega System 1" "$BASE_PATH/$ARCADE_FOLDER/rd_backup" 2>/dev/null
+	mv "_CPS1" "$BASE_PATH/$ARCADE_FOLDER/rd_backup" 2>/dev/null
+	mv "_Jotego/_CPS1" "$BASE_PATH/$ARCADE_FOLDER/rd_backup" 2>/dev/null
 	#Zip and delete
-	cd "$BASE_PATH/_Arcade/RD_BACKUP" 2>/dev/null
+	cd "$BASE_PATH/_Arcade/rd_backup" 2>/dev/null
 	zip -qrm --exclude=*.zip* Backup.zip *
 	
 	cd "$BASE_PATH/$ARCADE_FOLDER" 2>/dev/null
-	mv -f "_Jotego" "$BASE_PATH/$ARCADE_FOLDER/RD_BACKUP" 2>/dev/null
-	mv -f "_Unofficial" "$BASE_PATH/$ARCADE_FOLDER/RD_BACKUP" 2>/dev/null
-	mv -f "_Sega System 1" "$BASE_PATH/$ARCADE_FOLDER/RD_BACKUP" 2>/dev/null
-	mv "_CPS1" "$BASE_PATH/$ARCADE_FOLDER/RD_BACKUP" 2>/dev/null
-	mv "_Jotego/_CPS1" "$BASE_PATH/$ARCADE_FOLDER/RD_BACKUP" 2>/dev/null
+	mv -f "_Jotego" "$BASE_PATH/$ARCADE_FOLDER/rd_backup" 2>/dev/null
+	mv -f "_Unofficial" "$BASE_PATH/$ARCADE_FOLDER/rd_backup" 2>/dev/null
+	mv -f "_Sega System 1" "$BASE_PATH/$ARCADE_FOLDER/rd_backup" 2>/dev/null
+	mv "_CPS1" "$BASE_PATH/$ARCADE_FOLDER/rd_backup" 2>/dev/null
+	mv "_Jotego/_CPS1" "$BASE_PATH/$ARCADE_FOLDER/rd_backup" 2>/dev/null
 	#Zip and delete
-	cd "$BASE_PATH/$ARCADE_FOLDER/RD_BACKUP" 2>/dev/null
+	cd "$BASE_PATH/$ARCADE_FOLDER/rd_backup" 2>/dev/null
 	zip -qrm --exclude=*.zip* Backup.zip *
 
 	#Delete Cached Files/Folder from Original Scipt
@@ -743,6 +743,6 @@ wait
 Footer
 echo "Downloaded Log Files are located here: $LOGS_PATH"
 if [ $SHOW_BACKUP_LOCATION == "True" ];then
-	echo "Backup Files from Previous Script located here: $BASE_PATH/$ARCADE_FOLDER/RD_BACKUP"
+	echo "Backup Files from Previous Script located here: $BASE_PATH/$ARCADE_FOLDER/rd_backup"
 fi
 echo
