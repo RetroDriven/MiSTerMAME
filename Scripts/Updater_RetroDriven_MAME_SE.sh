@@ -28,6 +28,8 @@ By downloading and using this Script you are agreeing to the following:
 * You own the original Arcade PCB for each ROM file that you download.
 * I take no responsibility for any data loss or anything, use the script at your own risk.
 '
+# v1.1 - Added Options to control what is downloaded via INI
+#        Added Option to Download Beta MRA Files
 # v1.0 - SE(Second Edition) Script Created based off the Original Script
 #        This is a slight revamp with less options to make things cleaner for less mess/issues globally
 #        This version is using Mirror/Sync to provide a faster and more reliable experience 
@@ -56,6 +58,9 @@ MRA_CPS1_URL="https://www.retrodriven.appboxes.co/MiSTerMAME/Arcade/mra/CPS1/"
 #MRA - Sega System 1
 MRA_SEGASYS1_URL="https://www.retrodriven.appboxes.co/MiSTerMAME/Arcade/mra/SegaSystem1/"
 
+#MRA - Beta
+MRA_BETA_URL="https://www.retrodriven.appboxes.co/MiSTerMAME/Arcade/mra/Beta/"
+
 #=========   DIRECTORY OPTIONS   =========
 
 #Base directory for all script’s tasks, "/media/fat" for SD root, "/media/usb0" for USB drive root.
@@ -75,11 +80,26 @@ UNOFFICIAL_PATH="_Unofficial"
 JOTEGO_PATH="$UNOFFICIAL_PATH/_Jotego"
 CPS1_PATH="$UNOFFICIAL_PATH/_CPS1"
 SEGASYS1_PATH="$UNOFFICIAL_PATH/_Sega System 1"
+BETA_PATH="$UNOFFICIAL_PATH/_Beta"
 
 #Directory for MAME/HBMAME ROM Zips
 #Arcade Path = "$BASE_PATH/$ARCADE_FOLDER"
 #Games Path = "$BASE_PATH/Games"
 MAME_PATH="$BASE_PATH/$ARCADE_FOLDER"
+
+#=========   DOWNLOAD OPTIONS   =========
+
+DOWNLOAD_MRA_UNOFFICIAL="True"
+DOWNLOAD_MRA_JOTEGO="True"
+DOWNLOAD_MRA_CPS1="True"
+DOWNLOAD_MRA_SEGASYS1="True"
+DOWNLOAD_MRA_BETA="False"
+
+DOWNLOAD_MAME="True"
+DOWNLOAD_HBMAME="True"
+
+DOWNLOAD_CORES_UNOFFICIAL="True"
+DOWNLOAD_CORES_JOTEGO="True"
 
 #=========   USER OPTIONS   =========
 
@@ -150,7 +170,7 @@ esac
 RetroDriven_Banner(){
 echo
 echo " ------------------------------------------------------------------------"
-echo "|                RetroDriven: MiSTer MAME Updater SE v1.0                |"
+echo "|                RetroDriven: MiSTer MAME Updater SE v1.1                |"
 echo " ------------------------------------------------------------------------"
 sleep 1
 }
@@ -252,71 +272,18 @@ MRA_BANNER(){
 #Download MRA Function
 Download_MRA(){
 
-#MRA - Unofficial Downloading
 	#Create Directories
-  	MRA_PATH="$BASE_PATH/$ARCADE_FOLDER/$UNOFFICIAL_PATH"
 	mkdir -p "$MRA_PATH"
     	cd "$MRA_PATH"
     
 	MRA_BANNER	
 	echo
-	echo "Checking Existing Unofficial MRA Files for Updates/New Files......"
+	echo "Checking Existing $MRA_TYPE MRA Files for Updates/New Files......"
 	echo
 
     	#Sync Files
-    	lftp "$MRA_URL" -e "mirror -p -P 25 --ignore-time --verbose=1 --log="$LOGS_PATH/MRA_Unofficial_Downloads.txt"; quit"
+    	lftp "$MRA_DOWNLOAD_URL" -e "mirror -p -P 25 --ignore-time --verbose=1 --log="$LOGS_PATH/$MRA_LOG"; quit"
 	
-	sleep 1
-    	clear 
-	
-#MRA - Jotego Downloading
-	#Create Directories
-  	MRA_PATH="$BASE_PATH/$ARCADE_FOLDER/$JOTEGO_PATH"
-    	mkdir -p "$MRA_PATH"
-    	cd "$MRA_PATH"
-	
-	MRA_BANNER	
-	echo
-	echo "Checking Existing Jotego MRA Files for Updates/New Files......"
-	echo
-    
-    	#Sync Files
-    	lftp "$MRA_JOTEGO_URL" -e "mirror -p -P 25 --ignore-time --verbose=1 --log="$LOGS_PATH/MRA_Jotego_Downloads.txt"; quit"
-    
-	sleep 1
-    	clear 
-
-#MRA - CPS1 Downloading
-	#Create Directories
-  	MRA_PATH="$BASE_PATH/$ARCADE_FOLDER/$CPS1_PATH"
-    	mkdir -p "$MRA_PATH"
-    	cd "$MRA_PATH"
-
-	MRA_BANNER	
-	echo
-	echo "Checking Existing CPS1 MRA Files for Updates/New Files......"
-	echo
-
-    	#Sync Files
-    	lftp "$MRA_CPS1_URL" -e "mirror -p -P 25 --ignore-time --verbose=1 --log="$LOGS_PATH/MRA_CPS1_Downloads.txt"; quit"
-	
-    	sleep 1
-    	clear 
-
-#MRA - Sega System 1 Downloading
-	#Create Directories
-    	MRA_PATH="$BASE_PATH/$ARCADE_FOLDER/$SEGASYS1_PATH"
-  	mkdir -p "$MRA_PATH"
-    	cd "$MRA_PATH"
-	
-	MRA_BANNER	
-	echo
-	echo "Checking Existing Sega System 1 MRA Files for Updates/New Files......"
-	echo
-    
-    	#Sync Files
-    	lftp "$MRA_SEGASYS1_URL" -e "mirror -p -P 25 --ignore-time --verbose=1 --log="$LOGS_PATH/MRA_SEGASYS1_Downloads.txt"; quit"
-
 	sleep 1
     	clear 
 }
@@ -337,7 +304,7 @@ Backup(){
 	cd  "$BASE_PATH/_Arcade" 2>/dev/null
 	mkdir "$BASE_PATH/_Arcade/rd_backup" 2>/dev/null
 
-	mm -f "$BASE_PATH/_CPS1" "$BASE_PATH/_Arcade/rd_backup" 2>/dev/null
+	mv -f "$BASE_PATH/_CPS1" "$BASE_PATH/_Arcade/rd_backup" 2>/dev/null
 	mv -f "_Jotego" "$BASE_PATH/_Arcade/rd_backup" 2>/dev/null
 	mv -f "_Unofficial" "$BASE_PATH/_Arcade/rd_backup" 2>/dev/null
 	mv -f "_Sega System 1" "$BASE_PATH/_Arcade/rd_backup" 2>/dev/null
@@ -397,9 +364,20 @@ if [ ! -f ~/.lftp/rc ]; then
     
     mkdir -p ~/.lftp
     echo "set ssl:verify-certificate no" >> ~/.lftp/rc
-    
+    echo "set xfer:log no" >> ~/.lftp/rc
+
     [ "$RO_ROOT" == "true" ] && mount / -o remount,ro
 fi
+
+#Cleaner Download Details
+	if ! grep -q "set xfer:log no" "/root/.lftp/rc"; then
+	echo "set xfer:log no" >> /root/.lftp/rc
+	fi
+
+	if ! grep -q "set ssl:verify-certificate no" "/root/.lftp/rc"; then
+	echo "set ssl:verify-certificate no" >> /root/.lftp/rc
+	fi
+
 
 #Backup from previous Script
 SHOW_BACKUP_LOCATION="False"
@@ -409,15 +387,64 @@ if [ -d "/media/fat/scripts/.RetroDriven/MAME" ];then
 fi
 
 #Download MAME Zips
-Download_MAME
+if [ $DOWNLOAD_MAME == "True" ];then
+	Download_MAME
+fi
 
 #Download HBMAME Zips
-Download_HBMAME
+if [ $DOWNLOAD_HBMAME == "True" ];then
+	Download_HBMAME
+fi
 
 #Download Unofficial MRAs
-Download_MRA
+if [ $DOWNLOAD_MRA_UNOFFICIAL == "True" ];then
+	MRA_PATH="$BASE_PATH/$ARCADE_FOLDER/$UNOFFICIAL_PATH"
+	MRA_TYPE="Unofficial"
+	MRA_DOWNLOAD_URL="$MRA_URL"
+	MRA_LOG="MRA_Unofficial_Downloads.txt"
+	Download_MRA "$MRA_PATH" "$MRA_TYPE" "$MRA_DOWNLOAD_URL" "$MRA_LOG"
+fi
+
+#Download Jotego MRAs
+if [ $DOWNLOAD_MRA_JOTEGO == "True" ];then
+	MRA_PATH="$BASE_PATH/$ARCADE_FOLDER/$JOTEGO_PATH"
+	MRA_TYPE="Jotego"
+	MRA_DOWNLOAD_URL="$MRA_JOTEGO_URL"
+	MRA_LOG="MRA_Jotego_Downloads.txt"
+	Download_MRA "$MRA_PATH" "$MRA_TYPE" "$MRA_DOWNLOAD_URL" "$MRA_LOG"
+fi
+
+#Download CPS1 MRAs
+if [ $DOWNLOAD_MRA_CPS1 == "True" ];then
+	MRA_PATH="$BASE_PATH/$ARCADE_FOLDER/$CPS1_PATH"
+	MRA_TYPE="CPS1"
+	MRA_DOWNLOAD_URL="$MRA_CPS1_URL"
+	MRA_LOG="MRA_CPS1_Downloads.txt"
+	Download_MRA "$MRA_PATH" "$MRA_TYPE" "$MRA_DOWNLOAD_URL" "$MRA_LOG"
+fi
+
+#Download Sega System 1 MRAs
+if [ $DOWNLOAD_MRA_SEGASYS1 == "True" ];then
+	MRA_PATH="$BASE_PATH/$ARCADE_FOLDER/$SEGASYS1_PATH"
+	MRA_TYPE="Sega System 1"
+	MRA_DOWNLOAD_URL="$MRA_SEGASYS1_URL"
+	MRA_LOG="MRA_SEGASYS1_Downloads.txt"
+	Download_MRA "$MRA_PATH" "$MRA_TYPE" "$MRA_DOWNLOAD_URL" "$MRA_LOG"
+fi
+
+#Download Beta MRAs
+if [ $DOWNLOAD_MRA_BETA == "True" ];then
+	MRA_PATH="$BASE_PATH/$ARCADE_FOLDER/$BETA_PATH"
+	MRA_TYPE="Beta"
+	MRA_DOWNLOAD_URL="$MRA_BETA_URL"
+	MRA_LOG="MRA_Beta_Downloads.txt"
+	Download_MRA "$MRA_PATH" "$MRA_TYPE" "$MRA_DOWNLOAD_URL" "$MRA_LOG"
+fi
 
 echo
+
+#Unofficial Updater Function
+Unofficial_Updater(){
 
 #================================================================================#
 #                       UNOFFICIAL CORE UPDATER STARTS HERE                      #
@@ -454,10 +481,7 @@ TO_BE_DELETED_EXTENSION="to_be_deleted"
     echo "=========================================================================="
     echo "                    Downloading Unofficial Arcade Cores                   "
     echo "=========================================================================="
-    sleep 1
-
-#Unofficial Updater Function
-Unofficial_Updater(){
+    sleep 1	
 
 if [ $DEV_NAME == "jotego" ];then
     clear    
@@ -720,12 +744,18 @@ wait
 #Download Unofficial Arcade Cores
 	
     #Get Unofficial Arcade RBF Cores - My GitHub
+if [ $DOWNLOAD_CORES_UNOFFICIAL == "True" ];then
     WIKI_URL="https://github.com/RetroDriven/MiSTerMAME/wiki"
     GITHUB_CORE_URL="https://github.com/RetroDriven/MiSTerMAME/tree/master/Unofficial_Cores"
     DEV_NAME="RetroDriven"
     Unofficial_Updater $WIKI_URL $GITHUB_CORE_URL $DEV_NAME
 
+	#Log File Handling
+	echo "Date: $TIMESTAMP" >> "$LOGS_PATH/RBF_Downloaded.txt"
+fi	
+
     #Get Unofficial Arcade RBF Cores - Jotego
+if [ $DOWNLOAD_CORES_JOTEGO == "True" ];then   
     WIKI_URL="https://github.com/jotego/jtbin/wiki"
     GITHUB_CORE_URL="https://github.com/jotego/jtbin/tree/master/mister"
     DEV_NAME="jotego"
@@ -733,6 +763,7 @@ wait
 
 	#Log File Handling
 	echo "Date: $TIMESTAMP" >> "$LOGS_PATH/RBF_Downloaded.txt"
+fi
 
 #Display Footer
 Footer
