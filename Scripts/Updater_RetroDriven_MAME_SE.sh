@@ -378,7 +378,9 @@ fi
 	fi
 
 	if ! grep -q "set ssl:verify-certificate no" "/root/.lftp/rc"; then
+	[ "$RO_ROOT" == "true" ] && mount / -o remount,rw
 	echo "set ssl:verify-certificate no" >> /root/.lftp/rc
+	[ "$RO_ROOT" == "true" ] && mount / -o remount,ro
 	fi
 
 
