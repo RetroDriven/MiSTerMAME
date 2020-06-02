@@ -371,7 +371,10 @@ fi
 
 #Cleaner Download Details
 	if ! grep -q "set xfer:log no" "/root/.lftp/rc"; then
+	mount | grep "on / .*[(,]ro[,$]" -q && RO_ROOT="true"
+    	[ "$RO_ROOT" == "true" ] && mount / -o remount,rw
 	echo "set xfer:log no" >> /root/.lftp/rc
+	[ "$RO_ROOT" == "true" ] && mount / -o remount,ro
 	fi
 
 	if ! grep -q "set ssl:verify-certificate no" "/root/.lftp/rc"; then
