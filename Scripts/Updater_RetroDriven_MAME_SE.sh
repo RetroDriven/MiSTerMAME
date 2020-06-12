@@ -28,6 +28,7 @@ By downloading and using this Script you are agreeing to the following:
 * You own the original Arcade PCB for each ROM file that you download.
 * I take no responsibility for any data loss or anything, use the script at your own risk.
 '
+# v1.2 - Changed Default Mame path to use /Games/mame and /Games/hbmame
 # v1.1 - Added Options to control what is downloaded via INI
 #        Added Option to Download Beta MRA Files
 # v1.0 - SE(Second Edition) Script Created based off the Original Script
@@ -85,7 +86,7 @@ BETA_PATH="$UNOFFICIAL_PATH/_Beta"
 #Directory for MAME/HBMAME ROM Zips
 #Arcade Path = "$BASE_PATH/$ARCADE_FOLDER"
 #Games Path = "$BASE_PATH/Games"
-MAME_PATH="$BASE_PATH/$ARCADE_FOLDER"
+MAME_PATH="$BASE_PATH/Games"
 
 #=========   DOWNLOAD OPTIONS   =========
 
@@ -170,7 +171,7 @@ esac
 RetroDriven_Banner(){
 echo
 echo " ------------------------------------------------------------------------"
-echo "|                RetroDriven: MiSTer MAME Updater SE v1.1                |"
+echo "|                RetroDriven: MiSTer MAME Updater SE v1.2                |"
 echo " ------------------------------------------------------------------------"
 sleep 1
 }
