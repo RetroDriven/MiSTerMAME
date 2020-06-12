@@ -15,12 +15,15 @@ The following below is the directory structure for the new MRA/Mame Arcade Core 
 
 * /_Arcade/*.mra
 * /_Arcade/cores/*.rbf
-* /_Arcade/mame/*.zip 
+* /Games/mame/*.zip 
+* /Games/hbmame/*.zip
+
+You can place your Mame/HbMame Zip files within your _Arcade folder instead like below:
+
+* /_Arcade/mame/*.zip
 * /_Arcade/hbmame/*.zip
 
-You can place your Mame/HbMame Zip files into your Games folder instead like below: 
-* /Games/mame/*.zip
-* /Games/hbmame/*.zip
+NOTE: This change can be made via the INI File. It is recommended to use the Default of using the Games Folder though
 
 ## Default Arcade Core Folder Structure for this Script ##
 The Folder Names and Structure can be changed via the INI File.
@@ -47,10 +50,6 @@ I have included the ability to Download/Update Unofficial Arcade Core RBF files.
 * <a href="https://github.com/alanswx">alanswx</a>
 * <a href="https://github.com/MrX-8B">MiSTer-X</a>
 * <a href="https://github.com/MiSTer-devel/MRA-Alternatives_MiSTer">eubrunosilva</a>
-
-## Notes ##
-* You can save Mame and HBMame files within the "Games" Folder on your MiSTer SD Card. By default this Script saves these files within /_Arcade/Mame and /_Arcade/hbmame but the Path's can be change to your liking via the INI File.
-* Unofficial MRA files will be removed as Arcade Cores become Official within MiSTer Github and Official Downloader Script. 
 
 ## Disclaimer / Legal Information
 By downloading and using this Script you are agreeing to the following:
