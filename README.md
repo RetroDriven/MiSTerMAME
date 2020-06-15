@@ -3,7 +3,7 @@ The purpose of this Script to to aid in downloading the correct MAME ROM Zips to
 
 # Updater Script and INI Download
 
-<a href="https://github.com/RetroDriven/MiSTerMAME/archive/1.2.zip"> Script Updater and INI File Download </a>
+<a href="https://github.com/RetroDriven/MiSTerMAME/releases/download/SE_v1.2/RetroDriven_MAME_SE_Updater_v1.2.zip"> Script Updater and INI File Download </a>
 
 ## Usage ##
 * Download the ZIP file above and Extract/Copy <b>Update_RetroDriven_MAME_SE.sh</b> and <b>Update_RetroDriven_MAME_SE.ini</b> to your Scripts Folder on your MiSTer SD Card(typically /media/fat/Scripts).
