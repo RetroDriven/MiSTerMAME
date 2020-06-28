@@ -13,7 +13,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-# Copyright 2018-2019 Alessandro "Locutus73" Miele
+# Copyright 2018-2020 Alessandro "Locutus73" Miele
+# Copyright 2020 RetroDriven
+# Adapted to jotego cores by José Manuel Barroso Galindo "theypsilon" © 2020
 
 # You can download the latest version of this script from:
 # https://github.com/RetroDriven/MiSTerMAME
@@ -28,7 +30,7 @@ By downloading and using this Script you are agreeing to the following:
 * You own the original Arcade PCB for each ROM file that you download.
 * I take no responsibility for any data loss or anything, use the script at your own risk.
 '
-# Version 1.3 - 06/27/2020 - Changed Script to use the latest Official Updater Code(v4.0.9). This will pull almost all MRA/RBF files from the Proper GitHub Pages; Added DOWNLOAD_MRA_ALTERNATIVES to control if you'd like Download/Skip MRA Alternatives
+# Version 1.3 - 06/27/2020 - Changed/Adapted parts of this Script from the latest Jotego Updater. This will pull almost all MRA/RBF files from the Proper GitHub Pages; Added DOWNLOAD_MRA_ALTERNATIVES to control if you'd like Download/Skip MRA Alternatives
 # Version 1.2 - 06/12/2020 - Changed Default Mame path to use /Games/mame and /Games/hbmame
 # Version 1.1 - 05/30/2020 - Added Options to control what is downloaded via INI; Added Option to Download Beta MRA Files
 # Version 1.0 - 05/25/2020 - SE(Second Edition) Script Created based off the Original Script; This is a slight revamp with less options to make things cleaner for less mess/issues globally; This version is using Mirror/Sync to provide a faster and more reliable experience 
