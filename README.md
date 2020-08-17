@@ -50,7 +50,7 @@ I have included the ability to Download/Update Unofficial Arcade Core RBF files.
 * <a href="https://github.com/alanswx">alanswx</a>
 * <a href="https://github.com/MrX-8B">MiSTer-X</a>
 * <a href="https://github.com/MiSTer-devel/MRA-Alternatives_MiSTer">eubrunosilva</a>
-* <a href="https://github.com/d18c7db">Alexd18c7db</a>
+* <a href="https://github.com/d18c7db">Alex d18c7db</a>
 
 ## Disclaimer / Legal Information
 By downloading and using this Script you are agreeing to the following:
