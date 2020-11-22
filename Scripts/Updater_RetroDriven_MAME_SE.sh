@@ -30,6 +30,7 @@ By downloading and using this Script you are agreeing to the following:
 * You own the original Arcade PCB for each ROM file that you download.
 * I take no responsibility for any data loss or anything, use the script at your own risk.
 '
+# Version 1.4 - 11/21/2020 - Removed Sega System  1 from the Script as that is an Official Core
 # Version 1.3 - 06/27/2020 - Changed/Adapted parts of this Script from the latest Jotego Updater. This will pull almost all MRA/RBF files from the Proper GitHub Pages; Added DOWNLOAD_MRA_ALTERNATIVES to control if you'd like Download/Skip MRA Alternatives
 # Version 1.2 - 06/12/2020 - Changed Default Mame path to use /Games/mame and /Games/hbmame
 # Version 1.1 - 05/30/2020 - Added Options to control what is downloaded via INI; Added Option to Download Beta MRA Files
@@ -52,9 +53,6 @@ MRA_JOTEGO_URL="https://www.retrodriven.appboxes.co/MiSTerMAME/Arcade/MRA/Altern
 #MRA - CPS1 Alternatives
 MRA_CPS1_URL="https://www.retrodriven.appboxes.co/MiSTerMAME/Arcade/MRA/Alternatives/CPS1/"
 
-#MRA - Sega System 1 Alternatives
-MRA_SEGASYS1_URL="https://www.retrodriven.appboxes.co/MiSTerMAME/Arcade/MRA/Alternatives/SEGASYS1/"
-
 #MRA - Beta
 MRA_BETA_URL="https://www.retrodriven.appboxes.co/MiSTerMAME/Arcade/MRA/Beta/"
 
@@ -76,7 +74,6 @@ ARCADE_FOLDER="_Arcade"
 UNOFFICIAL_PATH="_Unofficial"
 JOTEGO_PATH="$UNOFFICIAL_PATH/_Jotego"
 CPS1_PATH="$UNOFFICIAL_PATH/_CPS1"
-SEGASYS1_PATH="$UNOFFICIAL_PATH/_Sega System 1"
 BETA_PATH="$UNOFFICIAL_PATH/_Beta"
 
 #Directory for MAME/HBMAME ROM Zips
@@ -89,7 +86,6 @@ MAME_PATH="$BASE_PATH/Games"
 DOWNLOAD_MRA_UNOFFICIAL="True"
 DOWNLOAD_MRA_JOTEGO="True"
 DOWNLOAD_MRA_CPS1="True"
-DOWNLOAD_MRA_SEGASYS1="True"
 DOWNLOAD_MRA_BETA="False"
 
 DOWNLOAD_MRA_ALTERNATIVES="True"
@@ -100,7 +96,6 @@ DOWNLOAD_HBMAME="True"
 DOWNLOAD_CORES_UNOFFICIAL="True"
 DOWNLOAD_CORES_JOTEGO="True"
 DOWNLOAD_CORES_CPS1="True"
-DOWNLOAD_CORES_SEGASYS1="True"
 
 #=========   USER OPTIONS   =========
 
@@ -171,7 +166,7 @@ esac
 RetroDriven_Banner(){
 echo
 echo " ------------------------------------------------------------"
-echo "|          RetroDriven: MiSTer MAME Updater SE v1.3          |"
+echo "|          RetroDriven: MiSTer MAME Updater SE v1.4          |"
 echo " ------------------------------------------------------------"
 sleep 1
 }
@@ -659,16 +654,6 @@ if [ $DEV_NAME == "CPS1" ];then
     echo
     echo "================================================================"
     echo "               Downloading CPS1 Arcade Core/MRAs                "
-    echo "================================================================"
-    echo ""
-    sleep 1 
-fi
-
-if [ $DEV_NAME == "SEGASYS1" ];then
-    clear    
-    echo
-    echo "================================================================"
-    echo "           Downloading Sega System 1 Arcade Core/MRAs           "
     echo "================================================================"
     echo ""
     sleep 1 
@@ -1738,44 +1723,6 @@ if [ $DOWNLOAD_CORES_CPS1 == "True" ];then
 	fi
 
 fi
-
-
-#Sega System 1 Updates
-if [ $DOWNLOAD_CORES_SEGASYS1 == "True" ];then 
-
-	DEV_NAME="SEGASYS1"
-	MISTER_DEVEL_REPOS_URL="https://api.github.com/users/MrX-8B/repos"
-	DEV_WIKI="https://github.com/RetroDriven/MiSTerMAME/wiki/SEGASYS1"
-	ARCADE_SUBFOLDER="$SEGASYS1_PATH"
-	mkdir -p "$BASE_PATH/$ARCADE_FOLDER/$ARCADE_SUBFOLDER"
-	WORK_PATH="$LOGS_PATH/.segasys1"
-	mkdir -p "$WORK_PATH"
-	RUN_NAME="segasys1"
-	CORE_URLS="user-content-arcade-cores"$'\n'$'\n'$(curl $CURL_RETRY $SSL_SECURITY_OPTION -sSLf "$DEV_WIKI"| awk '/wiki-content/,/wiki-rightbar/' | grep -io '\(https://github.com/[a-zA-Z0-9./_-]*\)' | awk '!a[$0]++')
-
-	#MRA Handling
-	if [ $DOWNLOAD_MRA_SEGASYS1 == "True" ];then
-		MAME_ARCADE_ROMS="true"
-	fi
-	if [ $DOWNLOAD_MRA_SEGASYS1 != "True" ];then
-		MAME_ARCADE_ROMS="false"
-	fi
-
-	Unofficial_Updater $MISTER_DEVEL_REPOS_URL $CORE_URLS $ARCADE_SUBFOLDER $RUN_NAME $DEV_NAME $MAME_ARCADE_ROMS
-	#Log File Handling
-	#echo "Date: $TIMESTAMP" >> "$LOGS_PATH/RBF_Downloaded.txt"
-
-	#Download SEGASYS1 MRA Alternatives
-	if [ $DOWNLOAD_MRA_ALTERNATIVES == "True" ];then
-		clear	
-		MRA_PATH="$BASE_PATH/$ARCADE_FOLDER/$SEGASYS1_PATH/_Alternatives"
-		MRA_TYPE="Sega System 1 Alternatives"
-		MRA_DOWNLOAD_URL="$MRA_SEGASYS1_URL"
-		MRA_LOG="MRA_SEGASYS1_Alternatives.txt"
-		Download_MRA "$MRA_PATH" "$MRA_TYPE" "$MRA_DOWNLOAD_URL" "$MRA_LOG"
-	fi
-fi
-
 
 #Display Footer
 Footer
