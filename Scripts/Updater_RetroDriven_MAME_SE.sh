@@ -53,6 +53,9 @@ MRA_JOTEGO_URL="https://www.retrodriven.appboxes.co/MiSTerMAME/Arcade/MRA/Altern
 #MRA - CPS1 Alternatives
 MRA_CPS1_URL="https://www.retrodriven.appboxes.co/MiSTerMAME/Arcade/MRA/Alternatives/CPS1/"
 
+#MRA - CPS15 Alternatives
+MRA_CPS15_URL="https://www.retrodriven.appboxes.co/MiSTerMAME/Arcade/MRA/Alternatives/CPS15/"
+
 #MRA - Beta
 MRA_BETA_URL="https://www.retrodriven.appboxes.co/MiSTerMAME/Arcade/MRA/Beta/"
 
@@ -74,6 +77,7 @@ ARCADE_FOLDER="_Arcade"
 UNOFFICIAL_PATH="_Unofficial"
 JOTEGO_PATH="$UNOFFICIAL_PATH/_Jotego"
 CPS1_PATH="$UNOFFICIAL_PATH/_CPS1"
+CPS15_PATH="$UNOFFICIAL_PATH/_CPS15"
 BETA_PATH="$UNOFFICIAL_PATH/_Beta"
 
 #Directory for MAME/HBMAME ROM Zips
@@ -86,6 +90,7 @@ MAME_PATH="$BASE_PATH/Games"
 DOWNLOAD_MRA_UNOFFICIAL="True"
 DOWNLOAD_MRA_JOTEGO="True"
 DOWNLOAD_MRA_CPS1="True"
+DOWNLOAD_MRA_CPS15="True"
 DOWNLOAD_MRA_BETA="False"
 
 DOWNLOAD_MRA_ALTERNATIVES="True"
@@ -96,6 +101,7 @@ DOWNLOAD_HBMAME="True"
 DOWNLOAD_CORES_UNOFFICIAL="True"
 DOWNLOAD_CORES_JOTEGO="True"
 DOWNLOAD_CORES_CPS1="True"
+DOWNLOAD_CORES_CPS15="True"
 
 #=========   USER OPTIONS   =========
 
@@ -677,6 +683,16 @@ if [ $DEV_NAME == "CPS1" ];then
     echo
     echo "================================================================"
     echo "               Downloading CPS1 Arcade Core/MRAs                "
+    echo "================================================================"
+    echo ""
+    sleep 1 
+fi
+
+if [ $DEV_NAME == "CPS15" ];then
+    clear    
+    echo
+    echo "================================================================"
+    echo "             Downloading CPS1.5 Arcade Core/MRAs                "
     echo "================================================================"
     echo ""
     sleep 1 
@@ -1742,6 +1758,44 @@ if [ $DOWNLOAD_CORES_CPS1 == "True" ];then
 		MRA_TYPE="CPS1 Alternatives"
 		MRA_DOWNLOAD_URL="$MRA_CPS1_URL"
 		MRA_LOG="MRA_CPS1_Alternatives.txt"
+		Download_MRA "$MRA_PATH" "$MRA_TYPE" "$MRA_DOWNLOAD_URL" "$MRA_LOG"
+	fi
+
+fi
+
+#CPS1.5 Updates
+if [ $DOWNLOAD_CORES_CPS15 == "True" ];then  
+
+	DEV_NAME="CPS15"
+	MISTER_DEVEL_REPOS_URL="https://api.github.com/users/jotego/repos"
+	DEV_WIKI="https://github.com/RetroDriven/MiSTerMAME/wiki/CPS15"
+	DEV_GITHUB="https://github.com/jotego/jtbin"
+	ARCADE_SUBFOLDER="$CPS15_PATH"
+	mkdir -p "$BASE_PATH/$ARCADE_FOLDER/$ARCADE_SUBFOLDER"
+	WORK_PATH="$LOGS_PATH/.cps15"
+	mkdir -p "$WORK_PATH"
+	RUN_NAME="cps15"
+	CORE_URLS="user-content-arcade-cores"$'\n'$'\n'$(curl $CURL_RETRY $SSL_SECURITY_OPTION -sSLf "$DEV_WIKI"| awk '/wiki-content/,/wiki-rightbar/' | grep -ioE '(https://github.com/[a-zA-Z0-9./_-]*_MiSTer)|('$DEV_GITHUB'/[a-zA-Z0-9./_-]*)' | awk '!a[$0]++')
+
+	#MRA Handling
+	if [ $DOWNLOAD_MRA_CPS15 == "True" ];then
+		MAME_ARCADE_ROMS="true"
+	fi
+	if [ $DOWNLOAD_MRA_CPS15 != "True" ];then
+		MAME_ARCADE_ROMS="false"
+	fi
+
+	Unofficial_Updater $MISTER_DEVEL_REPOS_URL $CORE_URLS $ARCADE_SUBFOLDER $RUN_NAME $DEV_NAME $MAME_ARCADE_ROMS
+	#Log File Handling
+	#echo "Date: $TIMESTAMP" >> "$LOGS_PATH/RBF_Downloaded.txt"
+	
+	#Download CPS15 MRA Alternatives
+	if [ $DOWNLOAD_MRA_ALTERNATIVES == "True" ];then
+		clear	
+		MRA_PATH="$BASE_PATH/$ARCADE_FOLDER/$CPS15_PATH/_Alternatives"
+		MRA_TYPE="CPS15 Alternatives"
+		MRA_DOWNLOAD_URL="$MRA_CPS15_URL"
+		MRA_LOG="MRA_CPS15_Alternatives.txt"
 		Download_MRA "$MRA_PATH" "$MRA_TYPE" "$MRA_DOWNLOAD_URL" "$MRA_LOG"
 	fi
 
