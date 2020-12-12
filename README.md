@@ -1,3 +1,17 @@
+# IMPORTANT NOTE
+
+## Scripts End Of Life(January 2021) 
+
+The Good News: My Family will be growing by one more with a new Baby on the way soon! 
+
+The Bad News: Come January my Scripts will go EOL.
+
+TLDR:New Baby,Not enough time,I will be back at some point
+
+Full Details Below:
+
+<a href="https://www.patreon.com/posts/scripts-end-of-44945379">https://www.patreon.com/posts/scripts-end-of-44945379</a>
+
 # MiSTerMAME
 The purpose of this Script to to aid in downloading the correct MAME ROM Zips to use for the new MiSTer Arcade Core MRA configuration. This Script is for testing/educational purposes only.
 
