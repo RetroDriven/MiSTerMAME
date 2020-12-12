@@ -169,6 +169,17 @@ echo " ------------------------------------------------------------"
 echo "|          RetroDriven: MiSTer MAME Updater SE v1.4          |"
 echo " ------------------------------------------------------------"
 sleep 1
+
+echo
+echo " ------------------------------------------------------------"
+echo "                   *** IMPORTANT NOTE ***                     "
+echo
+echo "   All RetroDriven Scripts will be End Of Life January 2021   "
+echo
+echo "   Please see my GitHub, Twitter, or Patreon for full details "                         
+echo " ------------------------------------------------------------"
+sleep 10
+
 }
 
 #Shareware Info Function
